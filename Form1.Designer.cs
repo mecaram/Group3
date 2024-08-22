@@ -28,12 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            btnClientes = new Button();
+            btnProveedores = new Button();
+            btnProductos = new Button();
+            SuspendLayout();
+            // 
+            // btnClientes
+            // 
+            btnClientes.Location = new Point(39, 33);
+            btnClientes.Name = "btnClientes";
+            btnClientes.Size = new Size(90, 44);
+            btnClientes.TabIndex = 0;
+            btnClientes.Text = "Clientes";
+            btnClientes.UseVisualStyleBackColor = true;
+            btnClientes.Click += btnClientes_Click;
+            // 
+            // btnProveedores
+            // 
+            btnProveedores.Location = new Point(153, 33);
+            btnProveedores.Name = "btnProveedores";
+            btnProveedores.Size = new Size(90, 44);
+            btnProveedores.TabIndex = 1;
+            btnProveedores.Text = "Proveedores";
+            btnProveedores.UseVisualStyleBackColor = true;
+            btnProveedores.Click += btnProveedores_Click;
+            // 
+            // btnProductos
+            // 
+            btnProductos.Location = new Point(263, 33);
+            btnProductos.Name = "btnProductos";
+            btnProductos.Size = new Size(90, 44);
+            btnProductos.TabIndex = 2;
+            btnProductos.Text = "Productos";
+            btnProductos.UseVisualStyleBackColor = true;
+            btnProductos.Click += btnProductos_Click;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnProductos);
+            Controls.Add(btnProveedores);
+            Controls.Add(btnClientes);
+            Name = "Form1";
+            Text = "Form1";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btnClientes;
+        private Button btnProveedores;
+        private Button btnProductos;
     }
 }
