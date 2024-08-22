@@ -1,6 +1,6 @@
 ﻿namespace Gestion
 {
-    partial class Form1
+    partial class GestorMenu
     {
         /// <summary>
         ///  Required designer variable.
@@ -63,7 +63,7 @@
             btnProductos.UseVisualStyleBackColor = true;
             btnProductos.Click += btnProductos_Click;
             // 
-            // Form1
+            // GestorMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -71,8 +71,8 @@
             Controls.Add(btnProductos);
             Controls.Add(btnProveedores);
             Controls.Add(btnClientes);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "GestorMenu";
+            Text = "Menú Principal - Gestion";
             ResumeLayout(false);
         }
 
