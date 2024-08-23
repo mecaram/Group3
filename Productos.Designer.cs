@@ -110,6 +110,7 @@
             // 
             // txtIdProducto
             // 
+            txtIdProducto.Enabled = false;
             txtIdProducto.Location = new Point(167, 42);
             txtIdProducto.Name = "txtIdProducto";
             txtIdProducto.Size = new Size(100, 23);
