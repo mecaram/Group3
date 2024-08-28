@@ -44,7 +44,7 @@
             // 
             // btnClientes
             // 
-            btnClientes.Location = new Point(45, 44);
+            btnClientes.Location = new Point(84, 44);
             btnClientes.Margin = new Padding(3, 4, 3, 4);
             btnClientes.Name = "btnClientes";
             btnClientes.Size = new Size(103, 59);
@@ -55,7 +55,7 @@
             // 
             // btnProveedores
             // 
-            btnProveedores.Location = new Point(296, 44);
+            btnProveedores.Location = new Point(338, 44);
             btnProveedores.Margin = new Padding(3, 4, 3, 4);
             btnProveedores.Name = "btnProveedores";
             btnProveedores.Size = new Size(103, 59);
@@ -66,7 +66,7 @@
             // 
             // btnProductos
             // 
-            btnProductos.Location = new Point(510, 44);
+            btnProductos.Location = new Point(581, 44);
             btnProductos.Margin = new Padding(3, 4, 3, 4);
             btnProductos.Name = "btnProductos";
             btnProductos.Size = new Size(103, 59);
@@ -77,9 +77,9 @@
             // 
             // btnCiudades
             // 
-            btnCiudades.Location = new Point(719, 44);
+            btnCiudades.Location = new Point(581, 276);
             btnCiudades.Name = "btnCiudades";
-            btnCiudades.Size = new Size(94, 59);
+            btnCiudades.Size = new Size(103, 59);
             btnCiudades.TabIndex = 3;
             btnCiudades.Text = "Ciudades";
             btnCiudades.UseVisualStyleBackColor = true;
@@ -97,7 +97,7 @@
             // 
             // btnMediosDePagos
             // 
-            btnMediosDePagos.Location = new Point(526, 398);
+            btnMediosDePagos.Location = new Point(552, 398);
             btnMediosDePagos.Name = "btnMediosDePagos";
             btnMediosDePagos.Size = new Size(182, 59);
             btnMediosDePagos.TabIndex = 5;
@@ -107,7 +107,7 @@
             // 
             // btnMarcas
             // 
-            btnMarcas.Location = new Point(510, 149);
+            btnMarcas.Location = new Point(581, 149);
             btnMarcas.Name = "btnMarcas";
             btnMarcas.Size = new Size(103, 59);
             btnMarcas.TabIndex = 6;
@@ -117,7 +117,7 @@
             // 
             // btnCompras
             // 
-            btnCompras.Location = new Point(46, 149);
+            btnCompras.Location = new Point(85, 149);
             btnCompras.Name = "btnCompras";
             btnCompras.Size = new Size(102, 59);
             btnCompras.TabIndex = 7;
@@ -127,7 +127,7 @@
             // 
             // btnRubros
             // 
-            btnRubros.Location = new Point(295, 276);
+            btnRubros.Location = new Point(338, 276);
             btnRubros.Name = "btnRubros";
             btnRubros.Size = new Size(103, 59);
             btnRubros.TabIndex = 8;
@@ -137,7 +137,7 @@
             // 
             // btnVentas
             // 
-            btnVentas.Location = new Point(46, 276);
+            btnVentas.Location = new Point(85, 276);
             btnVentas.Name = "btnVentas";
             btnVentas.Size = new Size(103, 59);
             btnVentas.TabIndex = 9;
@@ -147,9 +147,9 @@
             // 
             // btnCierres
             // 
-            btnCierres.Location = new Point(296, 149);
+            btnCierres.Location = new Point(338, 149);
             btnCierres.Name = "btnCierres";
-            btnCierres.Size = new Size(102, 59);
+            btnCierres.Size = new Size(103, 59);
             btnCierres.TabIndex = 10;
             btnCierres.Text = "Cierres";
             btnCierres.UseVisualStyleBackColor = true;
@@ -157,7 +157,7 @@
             // 
             // btnAdministradores
             // 
-            btnAdministradores.Location = new Point(295, 398);
+            btnAdministradores.Location = new Point(311, 398);
             btnAdministradores.Name = "btnAdministradores";
             btnAdministradores.Size = new Size(162, 59);
             btnAdministradores.TabIndex = 11;

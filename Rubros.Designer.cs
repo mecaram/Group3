@@ -28,12 +28,124 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Rubros";
+            lblIdRubro = new Label();
+            lblNombre = new Label();
+            txtIdRubro = new TextBox();
+            txtNombre = new TextBox();
+            textBox1 = new TextBox();
+            dataGridView1 = new DataGridView();
+            btnModificar = new Button();
+            btnEliminar = new Button();
+            btnAgregar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
+            // 
+            // lblIdRubro
+            // 
+            lblIdRubro.AutoSize = true;
+            lblIdRubro.Location = new Point(32, 96);
+            lblIdRubro.Name = "lblIdRubro";
+            lblIdRubro.Size = new Size(69, 20);
+            lblIdRubro.TabIndex = 0;
+            lblIdRubro.Text = "Id Rubro:\r\n";
+            // 
+            // lblNombre
+            // 
+            lblNombre.AutoSize = true;
+            lblNombre.Location = new Point(32, 184);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(67, 20);
+            lblNombre.TabIndex = 1;
+            lblNombre.Text = "Nombre:";
+            // 
+            // txtIdRubro
+            // 
+            txtIdRubro.Location = new Point(127, 100);
+            txtIdRubro.Name = "txtIdRubro";
+            txtIdRubro.Size = new Size(125, 27);
+            txtIdRubro.TabIndex = 2;
+            // 
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(123, 187);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(125, 27);
+            txtNombre.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(410, 93);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(374, 27);
+            textBox1.TabIndex = 4;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(410, 162);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(374, 188);
+            dataGridView1.TabIndex = 5;
+            // 
+            // btnModificar
+            // 
+            btnModificar.Location = new Point(32, 386);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(94, 29);
+            btnModificar.TabIndex = 6;
+            btnModificar.Text = "Modificar";
+            btnModificar.UseVisualStyleBackColor = true;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(142, 386);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.TabIndex = 7;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnAgregar
+            // 
+            btnAgregar.Location = new Point(254, 386);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(94, 29);
+            btnAgregar.TabIndex = 8;
+            btnAgregar.Text = "Agregar";
+            btnAgregar.UseVisualStyleBackColor = true;
+            // 
+            // Rubros
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(978, 499);
+            Controls.Add(btnAgregar);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnModificar);
+            Controls.Add(dataGridView1);
+            Controls.Add(textBox1);
+            Controls.Add(txtNombre);
+            Controls.Add(txtIdRubro);
+            Controls.Add(lblNombre);
+            Controls.Add(lblIdRubro);
+            Name = "Rubros";
+            Text = "Rubros";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblIdRubro;
+        private Label lblNombre;
+        private TextBox txtIdRubro;
+        private TextBox txtNombre;
+        private TextBox textBox1;
+        private DataGridView dataGridView1;
+        private Button btnModificar;
+        private Button btnEliminar;
+        private Button btnAgregar;
     }
 }

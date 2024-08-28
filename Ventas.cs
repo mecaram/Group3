@@ -16,5 +16,10 @@ namespace Gestion
         {
             InitializeComponent();
         }
+
+        private void lblTotal_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
