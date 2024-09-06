@@ -149,10 +149,11 @@
             // 
             // txtBuscarCliente
             // 
-            txtBuscarCliente.Location = new Point(253, 9);
+            txtBuscarCliente.Location = new Point(255, 12);
             txtBuscarCliente.Name = "txtBuscarCliente";
-            txtBuscarCliente.Size = new Size(500, 23);
+            txtBuscarCliente.Size = new Size(498, 23);
             txtBuscarCliente.TabIndex = 13;
+            txtBuscarCliente.TextChanged += txtBuscarCliente_TextChanged;
             // 
             // gridCliente
             // 
@@ -161,7 +162,7 @@
             gridCliente.Name = "gridCliente";
             gridCliente.RowHeadersWidth = 51;
             gridCliente.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridCliente.Size = new Size(498, 230);
+            gridCliente.Size = new Size(613, 230);
             gridCliente.TabIndex = 14;
             gridCliente.SelectionChanged += gridCliente_SelectionChanged;
             // 
@@ -198,7 +199,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(987, 450);
             Controls.Add(cboCiudadCliente);
             Controls.Add(btnEliminarCliente);
             Controls.Add(btnModificarCliente);
