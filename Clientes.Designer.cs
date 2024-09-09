@@ -157,9 +157,13 @@
             // 
             // gridCliente
             // 
+            gridCliente.AllowUserToAddRows = false;
+            gridCliente.AllowUserToDeleteRows = false;
+            gridCliente.AllowUserToOrderColumns = true;
             gridCliente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gridCliente.Location = new Point(255, 49);
             gridCliente.Name = "gridCliente";
+            gridCliente.ReadOnly = true;
             gridCliente.RowHeadersWidth = 51;
             gridCliente.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridCliente.Size = new Size(613, 230);

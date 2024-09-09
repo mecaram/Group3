@@ -84,7 +84,7 @@ namespace Gestion
                 cboCiudadCliente.DataSource = null;
             }
 
-            gridCliente.ClearSelection();
+          ////  gridCliente.ClearSelection();
         }
 
         public void gridCliente_SelectionChanged(object sender, EventArgs e)
