@@ -45,7 +45,7 @@
             btnModificarCliente = new Button();
             btnEliminarCliente = new Button();
             cboCiudadCliente = new ComboBox();
-            btnAgregar = new Button();
+            btnLimpiarCampos = new Button();
             ((System.ComponentModel.ISupportInitialize)gridCliente).BeginInit();
             SuspendLayout();
             // 
@@ -200,22 +200,22 @@
             cboCiudadCliente.Size = new Size(98, 23);
             cboCiudadCliente.TabIndex = 17;
             // 
-            // btnAgregar
+            // btnLimpiarCampos
             // 
-            btnAgregar.Location = new Point(93, 274);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(75, 23);
-            btnAgregar.TabIndex = 18;
-            btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
-            btnAgregar.Click += btnAgregar_Click;
+            btnLimpiarCampos.Location = new Point(93, 274);
+            btnLimpiarCampos.Name = "btnLimpiarCampos";
+            btnLimpiarCampos.Size = new Size(75, 23);
+            btnLimpiarCampos.TabIndex = 18;
+            btnLimpiarCampos.Text = "Limpiar";
+            btnLimpiarCampos.UseVisualStyleBackColor = true;
+            btnLimpiarCampos.Click += btnLimpiarCampos_Click;
             // 
             // Clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(987, 450);
-            Controls.Add(btnAgregar);
+            Controls.Add(btnLimpiarCampos);
             Controls.Add(cboCiudadCliente);
             Controls.Add(btnEliminarCliente);
             Controls.Add(btnModificarCliente);
@@ -260,6 +260,6 @@
         private Button btnModificarCliente;
         private Button btnEliminarCliente;
         private ComboBox cboCiudadCliente;
-        private Button btnAgregar;
+        private Button btnLimpiarCampos;
     }
 }

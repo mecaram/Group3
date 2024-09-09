@@ -294,7 +294,7 @@ namespace Gestion
             }
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnLimpiarCampos_Click(object sender, EventArgs e)
         {
             LimpiarTextBox();
         }
