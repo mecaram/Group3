@@ -25,6 +25,7 @@ namespace Gestion
             txtIdCliente.Enabled = false;     // Deshabilitar el campo id
 
             // Conectar a la base de datos
+            // creamos un constructor
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 // Cargar clientes
