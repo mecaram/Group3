@@ -29,7 +29,12 @@ namespace Gestion
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 // Cargar clientes
-                MySqlDataAdapter daClientes = new MySqlDataAdapter("Select * From clientes", conexionBD);
+                MySqlDataAdapter daClientes = new MySqlDataAdapter(
+    @"SELECT c.id_cliente, c.nombre, c.apellido, c.dni, c.direccion, ciu.ciudad 
+      FROM clientes c
+      JOIN ciudades ciu ON c.id_ciudad = ciu.id_ciudad",
+    conexionBD);
+
                 DataTable dtClientes = new DataTable();
                 int registrosClientes = daClientes.Fill(dtClientes);
 
@@ -62,19 +67,18 @@ namespace Gestion
 
         public void gridCliente_SelectionChanged(object sender, EventArgs e)
         {
-            // Verificar que haya una fila seleccionada y que no sea una fila vacía
             if (gridCliente.SelectedRows.Count > 0 && gridCliente.CurrentRow != null && gridCliente.CurrentRow.Cells["id_cliente"].Value != null)
             {
-                // Cargar datos en los TextBox solo si los valores no son nulos
                 txtIdCliente.Text = gridCliente.CurrentRow.Cells["id_cliente"].Value.ToString();
                 txtNombreCliente.Text = gridCliente.CurrentRow.Cells["nombre"].Value.ToString();
                 txtApellidoCliente.Text = gridCliente.CurrentRow.Cells["apellido"].Value.ToString();
                 txtDniCliente.Text = gridCliente.CurrentRow.Cells["dni"].Value.ToString();
                 txtDireccionCliente.Text = gridCliente.CurrentRow.Cells["direccion"].Value.ToString();
 
-                if (gridCliente.CurrentRow.Cells["id_ciudad"].Value != null && !string.IsNullOrEmpty(gridCliente.CurrentRow.Cells["id_ciudad"].Value.ToString()))
+                // Ahora puedes acceder al nombre de la ciudad
+                if (gridCliente.CurrentRow.Cells["ciudad"].Value != null && !string.IsNullOrEmpty(gridCliente.CurrentRow.Cells["ciudad"].Value.ToString()))
                 {
-                    cboCiudadCliente.SelectedValue = Convert.ToInt32(gridCliente.CurrentRow.Cells["id_ciudad"].Value);
+                    cboCiudadCliente.Text = gridCliente.CurrentRow.Cells["ciudad"].Value.ToString();  // Muestra el nombre de la ciudad
                 }
                 else
                 {
@@ -85,6 +89,7 @@ namespace Gestion
             {
                 LimpiarTextBox();  // Limpiar campos si no hay selección válida
             }
+
         }
 
         // Método para limpiar los TextBox
@@ -278,11 +283,16 @@ namespace Gestion
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
-                string sentencia = @"SELECT * FROM clientes WHERE 
-                                    nombre LIKE @filtro OR 
-                                    apellido LIKE @filtro OR 
-                                    dni LIKE @filtro OR 
-                                    direccion LIKE @filtro";
+                string sentencia = @"SELECT c.id_cliente, c.nombre, c.apellido, c.dni, c.direccion, ciu.ciudad 
+                     FROM clientes c
+                     JOIN ciudades ciu ON c.id_ciudad = ciu.id_ciudad
+                     WHERE c.nombre LIKE @filtro OR 
+                           c.apellido LIKE @filtro OR 
+                           c.dni LIKE @filtro OR 
+                           c.direccion LIKE @filtro OR 
+                           ciu.ciudad LIKE @filtro";
+
+
 
                 MySqlCommand cmdBuscar = new MySqlCommand(sentencia, conexion);
                 cmdBuscar.Parameters.AddWithValue("@filtro", "%" + txtBuscarCliente.Text + "%");
