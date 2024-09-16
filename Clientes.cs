@@ -315,5 +315,14 @@ namespace Gestion
             }
         }
 
+        //agregar una ciudad desde clientes
+        private void btnAgregarCiudad_Click(object sender, EventArgs e)
+        {
+            // Crea una nueva instancia del formulario Ciudades
+            Ciudades ciudadesForm = new Ciudades();
+
+            // Muestra el formulario Ciudades
+            ciudadesForm.Show();
+        }
     }
 }

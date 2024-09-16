@@ -21,5 +21,10 @@ namespace Gestion
         {
 
         }
+
+        private void Ciudades_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

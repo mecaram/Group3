@@ -44,27 +44,30 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(52, 380);
+            btnModificar.Location = new Point(46, 285);
+            btnModificar.Margin = new Padding(3, 2, 3, 2);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(94, 29);
+            btnModificar.Size = new Size(82, 22);
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(152, 380);
+            btnEliminar.Location = new Point(133, 285);
+            btnEliminar.Margin = new Padding(3, 2, 3, 2);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.Size = new Size(82, 22);
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(263, 382);
+            btnAgregar.Location = new Point(230, 286);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(94, 29);
+            btnAgregar.Size = new Size(82, 22);
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -72,73 +75,78 @@
             // lblIdCiudades
             // 
             lblIdCiudades.AutoSize = true;
-            lblIdCiudades.Location = new Point(62, 102);
+            lblIdCiudades.Location = new Point(54, 76);
             lblIdCiudades.Name = "lblIdCiudades";
-            lblIdCiudades.Size = new Size(76, 20);
+            lblIdCiudades.Size = new Size(61, 15);
             lblIdCiudades.TabIndex = 3;
             lblIdCiudades.Text = "Id Ciudad:";
             // 
             // lblCiudad
             // 
             lblCiudad.AutoSize = true;
-            lblCiudad.Location = new Point(62, 195);
+            lblCiudad.Location = new Point(54, 146);
             lblCiudad.Name = "lblCiudad";
-            lblCiudad.Size = new Size(59, 20);
+            lblCiudad.Size = new Size(48, 15);
             lblCiudad.TabIndex = 4;
             lblCiudad.Text = "Ciudad:\r\n";
             // 
             // lblCodPostal
             // 
             lblCodPostal.AutoSize = true;
-            lblCodPostal.Location = new Point(62, 273);
+            lblCodPostal.Location = new Point(54, 205);
             lblCodPostal.Name = "lblCodPostal";
-            lblCodPostal.Size = new Size(104, 20);
+            lblCodPostal.Size = new Size(84, 15);
             lblCodPostal.TabIndex = 5;
             lblCodPostal.Text = "Codigo Postal:";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(356, 147);
+            dataGridView1.Location = new Point(312, 110);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(411, 207);
+            dataGridView1.Size = new Size(360, 155);
             dataGridView1.TabIndex = 6;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // txtIdCiudad
             // 
-            txtIdCiudad.Location = new Point(154, 103);
+            txtIdCiudad.Location = new Point(135, 77);
+            txtIdCiudad.Margin = new Padding(3, 2, 3, 2);
             txtIdCiudad.Name = "txtIdCiudad";
-            txtIdCiudad.Size = new Size(125, 27);
+            txtIdCiudad.Size = new Size(110, 23);
             txtIdCiudad.TabIndex = 7;
             // 
             // txtCiudad
             // 
-            txtCiudad.Location = new Point(141, 195);
+            txtCiudad.Location = new Point(123, 146);
+            txtCiudad.Margin = new Padding(3, 2, 3, 2);
             txtCiudad.Name = "txtCiudad";
-            txtCiudad.Size = new Size(125, 27);
+            txtCiudad.Size = new Size(110, 23);
             txtCiudad.TabIndex = 8;
             // 
             // txtCodPostal
             // 
-            txtCodPostal.Location = new Point(172, 270);
+            txtCodPostal.Location = new Point(150, 202);
+            txtCodPostal.Margin = new Padding(3, 2, 3, 2);
             txtCodPostal.Name = "txtCodPostal";
-            txtCodPostal.Size = new Size(125, 27);
+            txtCodPostal.Size = new Size(110, 23);
             txtCodPostal.TabIndex = 9;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(356, 97);
+            textBox1.Location = new Point(312, 73);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(411, 27);
+            textBox1.Size = new Size(360, 23);
             textBox1.TabIndex = 10;
             // 
             // Ciudades
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(textBox1);
             Controls.Add(txtCodPostal);
             Controls.Add(txtCiudad);
@@ -150,8 +158,10 @@
             Controls.Add(btnAgregar);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Ciudades";
             Text = "Ciudades";
+            Load += Ciudades_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
