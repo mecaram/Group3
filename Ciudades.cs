@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Gestion
 {
     public partial class Ciudades : Form
     {
+        string conexionBD = ConfigurationManager.ConnectionStrings["conexionBD"].ToString();
+
         public Ciudades()
         {
             InitializeComponent();
