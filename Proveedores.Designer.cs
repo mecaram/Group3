@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            grdiProveedor = new DataGridView();
+            gridProveedor = new DataGridView();
             txtBuscarProveedor = new TextBox();
             txtDireccionProveedor = new TextBox();
             txtTelefonoProveedor = new TextBox();
-            txtIdCiudadProveedor = new TextBox();
             txtCuitProveedor = new TextBox();
             txtRazonSocialProveedor = new TextBox();
             txtIdProveedor = new TextBox();
@@ -45,16 +44,18 @@
             label1 = new Label();
             txtEliminarProveedor = new Button();
             btnModificarProveedor = new Button();
-            ((System.ComponentModel.ISupportInitialize)grdiProveedor).BeginInit();
+            cboCiudades = new ComboBox();
+            ((System.ComponentModel.ISupportInitialize)gridProveedor).BeginInit();
             SuspendLayout();
             // 
-            // grdiProveedor
+            // gridProveedor
             // 
-            grdiProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grdiProveedor.Location = new Point(273, 130);
-            grdiProveedor.Name = "grdiProveedor";
-            grdiProveedor.Size = new Size(498, 230);
-            grdiProveedor.TabIndex = 29;
+            gridProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridProveedor.Location = new Point(273, 130);
+            gridProveedor.Name = "gridProveedor";
+            gridProveedor.Size = new Size(498, 230);
+            gridProveedor.TabIndex = 29;
+            gridProveedor.CellContentClick += gridProveedor_CellContentClick;
             // 
             // txtBuscarProveedor
             // 
@@ -76,13 +77,6 @@
             txtTelefonoProveedor.Name = "txtTelefonoProveedor";
             txtTelefonoProveedor.Size = new Size(100, 23);
             txtTelefonoProveedor.TabIndex = 26;
-            // 
-            // txtIdCiudadProveedor
-            // 
-            txtIdCiudadProveedor.Location = new Point(92, 120);
-            txtIdCiudadProveedor.Name = "txtIdCiudadProveedor";
-            txtIdCiudadProveedor.Size = new Size(100, 23);
-            txtIdCiudadProveedor.TabIndex = 25;
             // 
             // txtCuitProveedor
             // 
@@ -146,9 +140,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(31, 156);
             label3.Name = "label3";
-            label3.Size = new Size(45, 15);
+            label3.Size = new Size(52, 15);
             label3.TabIndex = 17;
-            label3.Text = "Ciudad";
+            label3.Text = "Telefono";
             // 
             // label2
             // 
@@ -186,18 +180,26 @@
             btnModificarProveedor.Text = "Modificar";
             btnModificarProveedor.UseVisualStyleBackColor = true;
             // 
+            // cboCiudades
+            // 
+            cboCiudades.FormattingEnabled = true;
+            cboCiudades.Location = new Point(92, 122);
+            cboCiudades.Name = "cboCiudades";
+            cboCiudades.Size = new Size(121, 23);
+            cboCiudades.TabIndex = 32;
+            // 
             // Proveedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cboCiudades);
             Controls.Add(btnModificarProveedor);
             Controls.Add(txtEliminarProveedor);
-            Controls.Add(grdiProveedor);
+            Controls.Add(gridProveedor);
             Controls.Add(txtBuscarProveedor);
             Controls.Add(txtDireccionProveedor);
             Controls.Add(txtTelefonoProveedor);
-            Controls.Add(txtIdCiudadProveedor);
             Controls.Add(txtCuitProveedor);
             Controls.Add(txtRazonSocialProveedor);
             Controls.Add(txtIdProveedor);
@@ -210,18 +212,18 @@
             Controls.Add(label1);
             Name = "Proveedores";
             Text = "Proveedores";
-            ((System.ComponentModel.ISupportInitialize)grdiProveedor).EndInit();
+            Load += Proveedores_Load;
+            ((System.ComponentModel.ISupportInitialize)gridProveedor).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView grdiProveedor;
+        private DataGridView gridProveedor;
         private TextBox txtBuscarProveedor;
         private TextBox txtDireccionProveedor;
         private TextBox txtTelefonoProveedor;
-        private TextBox txtIdCiudadProveedor;
         private TextBox txtCuitProveedor;
         private TextBox txtRazonSocialProveedor;
         private TextBox txtIdProveedor;
@@ -234,5 +236,6 @@
         private Label label1;
         private Button txtEliminarProveedor;
         private Button btnModificarProveedor;
+        private ComboBox cboCiudades;
     }
 }
