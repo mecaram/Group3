@@ -34,12 +34,12 @@
             lblIdCiudades = new Label();
             lblCiudad = new Label();
             lblCodPostal = new Label();
-            dataGridView1 = new DataGridView();
+            gridCiudades = new DataGridView();
             txtIdCiudad = new TextBox();
             txtCiudad = new TextBox();
             txtCodPostal = new TextBox();
             textBox1 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridCiudades).BeginInit();
             SuspendLayout();
             // 
             // btnModificar
@@ -50,6 +50,7 @@
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnEliminar
             // 
@@ -59,6 +60,7 @@
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAgregar
             // 
@@ -68,6 +70,7 @@
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // lblIdCiudades
             // 
@@ -96,15 +99,15 @@
             lblCodPostal.TabIndex = 5;
             lblCodPostal.Text = "Codigo Postal:";
             // 
-            // dataGridView1
+            // gridCiudades
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(357, 147);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(411, 207);
-            dataGridView1.TabIndex = 6;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            gridCiudades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridCiudades.Location = new Point(357, 147);
+            gridCiudades.Name = "gridCiudades";
+            gridCiudades.RowHeadersWidth = 51;
+            gridCiudades.Size = new Size(411, 207);
+            gridCiudades.TabIndex = 6;
+            gridCiudades.CellContentClick += dataGridView1_CellContentClick;
             // 
             // txtIdCiudad
             // 
@@ -112,6 +115,7 @@
             txtIdCiudad.Name = "txtIdCiudad";
             txtIdCiudad.Size = new Size(125, 27);
             txtIdCiudad.TabIndex = 7;
+            txtIdCiudad.TextChanged += txtIdCiudad_TextChanged;
             // 
             // txtCiudad
             // 
@@ -119,6 +123,7 @@
             txtCiudad.Name = "txtCiudad";
             txtCiudad.Size = new Size(125, 27);
             txtCiudad.TabIndex = 8;
+            txtCiudad.TextChanged += txtCiudad_TextChanged;
             // 
             // txtCodPostal
             // 
@@ -126,6 +131,7 @@
             txtCodPostal.Name = "txtCodPostal";
             txtCodPostal.Size = new Size(125, 27);
             txtCodPostal.TabIndex = 9;
+            txtCodPostal.TextChanged += txtCodPostal_TextChanged;
             // 
             // textBox1
             // 
@@ -133,6 +139,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(411, 27);
             textBox1.TabIndex = 10;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // Ciudades
             // 
@@ -143,7 +150,7 @@
             Controls.Add(txtCodPostal);
             Controls.Add(txtCiudad);
             Controls.Add(txtIdCiudad);
-            Controls.Add(dataGridView1);
+            Controls.Add(gridCiudades);
             Controls.Add(lblCodPostal);
             Controls.Add(lblCiudad);
             Controls.Add(lblIdCiudades);
@@ -153,7 +160,7 @@
             Name = "Ciudades";
             Text = "Ciudades";
             Load += Ciudades_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridCiudades).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -166,7 +173,7 @@
         private Label lblIdCiudades;
         private Label lblCiudad;
         private Label lblCodPostal;
-        private DataGridView dataGridView1;
+        private DataGridView gridCiudades;
         private TextBox txtIdCiudad;
         private TextBox txtCiudad;
         private TextBox txtCodPostal;
