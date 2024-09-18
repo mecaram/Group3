@@ -319,11 +319,11 @@ namespace Gestion
         private void btnAgregarCiudad_Click(object sender, EventArgs e)
         {
             //crea una nueva instancia del formulario Ciudades
-            Ciudades ciudadesForm = new Ciudades();
+            //Ciudades ciudadesForm = new Ciudades();
 
-            //nueva linea
-            //cuestra el formulario Ciudades
-            ciudadesForm.Show();
+            ////nueva linea
+            ////cuestra el formulario Ciudades
+            //ciudadesForm.Show();
         }
     }
 }

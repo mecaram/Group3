@@ -34,12 +34,13 @@
             lblIdAdministradores = new Label();
             lblNombre = new Label();
             lblContraseña = new Label();
-            dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
+            gridAdministradores = new DataGridView();
+            txtBuscar = new TextBox();
             txtIdAdministradores = new TextBox();
             txtNombre = new TextBox();
-            txtContraseña = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            txtContrasenia = new TextBox();
+            txtLimpiar = new Button();
+            ((System.ComponentModel.ISupportInitialize)gridAdministradores).BeginInit();
             SuspendLayout();
             // 
             // btnModificar
@@ -77,7 +78,6 @@
             lblIdAdministradores.Size = new Size(138, 20);
             lblIdAdministradores.TabIndex = 3;
             lblIdAdministradores.Text = "Id Administradores:";
-            lblIdAdministradores.Click += label1_Click;
             // 
             // lblNombre
             // 
@@ -97,21 +97,21 @@
             lblContraseña.TabIndex = 5;
             lblContraseña.Text = "Contraseña:";
             // 
-            // dataGridView1
+            // gridAdministradores
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(392, 135);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(429, 232);
-            dataGridView1.TabIndex = 6;
+            gridAdministradores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridAdministradores.Location = new Point(392, 135);
+            gridAdministradores.Name = "gridAdministradores";
+            gridAdministradores.RowHeadersWidth = 51;
+            gridAdministradores.Size = new Size(429, 232);
+            gridAdministradores.TabIndex = 6;
             // 
-            // textBox1
+            // txtBuscar
             // 
-            textBox1.Location = new Point(392, 89);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(429, 27);
-            textBox1.TabIndex = 7;
+            txtBuscar.Location = new Point(392, 89);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(429, 27);
+            txtBuscar.TabIndex = 7;
             // 
             // txtIdAdministradores
             // 
@@ -127,23 +127,34 @@
             txtNombre.Size = new Size(125, 27);
             txtNombre.TabIndex = 9;
             // 
-            // txtContraseña
+            // txtContrasenia
             // 
-            txtContraseña.Location = new Point(133, 297);
-            txtContraseña.Name = "txtContraseña";
-            txtContraseña.Size = new Size(125, 27);
-            txtContraseña.TabIndex = 10;
+            txtContrasenia.Location = new Point(133, 297);
+            txtContrasenia.Name = "txtContrasenia";
+            txtContrasenia.Size = new Size(125, 27);
+            txtContrasenia.TabIndex = 10;
+            // 
+            // txtLimpiar
+            // 
+            txtLimpiar.Location = new Point(392, 393);
+            txtLimpiar.Name = "txtLimpiar";
+            txtLimpiar.Size = new Size(94, 29);
+            txtLimpiar.TabIndex = 11;
+            txtLimpiar.Text = "Limpiar";
+            txtLimpiar.UseVisualStyleBackColor = true;
+            txtLimpiar.Click += txtLimpiar_Click;
             // 
             // Administradores
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(852, 450);
-            Controls.Add(txtContraseña);
+            Controls.Add(txtLimpiar);
+            Controls.Add(txtContrasenia);
             Controls.Add(txtNombre);
             Controls.Add(txtIdAdministradores);
-            Controls.Add(textBox1);
-            Controls.Add(dataGridView1);
+            Controls.Add(txtBuscar);
+            Controls.Add(gridAdministradores);
             Controls.Add(lblContraseña);
             Controls.Add(lblNombre);
             Controls.Add(lblIdAdministradores);
@@ -152,7 +163,8 @@
             Controls.Add(btnModificar);
             Name = "Administradores";
             Text = "Administradores";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += Administradores_Load;
+            ((System.ComponentModel.ISupportInitialize)gridAdministradores).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -165,10 +177,11 @@
         private Label lblIdAdministradores;
         private Label lblNombre;
         private Label lblContraseña;
-        private DataGridView dataGridView1;
-        private TextBox textBox1;
+        private DataGridView gridAdministradores;
+        private TextBox txtBuscar;
         private TextBox txtIdAdministradores;
         private TextBox txtNombre;
-        private TextBox txtContraseña;
+        private TextBox txtContrasenia;
+        private Button txtLimpiar;
     }
 }
