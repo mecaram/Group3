@@ -44,8 +44,8 @@ namespace Gestion
 
         private void btnCiudades_Click(object sender, EventArgs e)
         {
-            //Ciudades ciudades = new Ciudades();
-            //ciudades.ShowDialog();
+            Ciudades ciudades = new Ciudades();
+            ciudades.ShowDialog();
         }
 
         private void btnMediosDePagos_Click(object sender, EventArgs e)
