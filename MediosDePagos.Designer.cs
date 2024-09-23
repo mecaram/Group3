@@ -33,11 +33,11 @@
             btnAgregar = new Button();
             lblMediosDePagos = new Label();
             lblIdMedios = new Label();
-            dataGridView1 = new DataGridView();
+            gridMediosDePagos = new DataGridView();
             textBox1 = new TextBox();
             txtIdMedios = new TextBox();
-            textBox3 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            txtMediosdePagos = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)gridMediosDePagos).BeginInit();
             SuspendLayout();
             // 
             // btnModificar
@@ -48,6 +48,7 @@
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnEliminar
             // 
@@ -57,6 +58,7 @@
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAgregar
             // 
@@ -66,6 +68,7 @@
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // lblMediosDePagos
             // 
@@ -85,14 +88,17 @@
             lblIdMedios.TabIndex = 4;
             lblIdMedios.Text = "Id Medios:";
             // 
-            // dataGridView1
+            // gridMediosDePagos
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(420, 174);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(375, 188);
-            dataGridView1.TabIndex = 5;
+            gridMediosDePagos.AllowUserToAddRows = false;
+            gridMediosDePagos.AllowUserToDeleteRows = false;
+            gridMediosDePagos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridMediosDePagos.Location = new Point(420, 174);
+            gridMediosDePagos.Name = "gridMediosDePagos";
+            gridMediosDePagos.ReadOnly = true;
+            gridMediosDePagos.RowHeadersWidth = 51;
+            gridMediosDePagos.Size = new Size(375, 188);
+            gridMediosDePagos.TabIndex = 5;
             // 
             // textBox1
             // 
@@ -108,22 +114,22 @@
             txtIdMedios.Size = new Size(125, 27);
             txtIdMedios.TabIndex = 7;
             // 
-            // textBox3
+            // txtMediosdePagos
             // 
-            textBox3.Location = new Point(166, 237);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 8;
+            txtMediosdePagos.Location = new Point(166, 237);
+            txtMediosdePagos.Name = "txtMediosdePagos";
+            txtMediosdePagos.Size = new Size(125, 27);
+            txtMediosdePagos.TabIndex = 8;
             // 
             // MediosDePagos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(876, 450);
-            Controls.Add(textBox3);
+            Controls.Add(txtMediosdePagos);
             Controls.Add(txtIdMedios);
             Controls.Add(textBox1);
-            Controls.Add(dataGridView1);
+            Controls.Add(gridMediosDePagos);
             Controls.Add(lblIdMedios);
             Controls.Add(lblMediosDePagos);
             Controls.Add(btnAgregar);
@@ -131,7 +137,8 @@
             Controls.Add(btnModificar);
             Name = "MediosDePagos";
             Text = "MediosDePagos";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += MediosDePagos_Load;
+            ((System.ComponentModel.ISupportInitialize)gridMediosDePagos).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -143,9 +150,9 @@
         private Button btnAgregar;
         private Label lblMediosDePagos;
         private Label lblIdMedios;
-        private DataGridView dataGridView1;
+        private DataGridView gridMediosDePagos;
         private TextBox textBox1;
         private TextBox txtIdMedios;
-        private TextBox textBox3;
+        private TextBox txtMediosdePagos;
     }
 }

@@ -1,21 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Configuration;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Gestion
 {
     public partial class MediosDePagos : Form
     {
-        private List<MedioDePago> mediosDePagos = new List<MedioDePago>();
-        private int currentId = 1;
+        private string conexionBD = ConfigurationManager.ConnectionStrings["conexionBD"].ToString();
+        private DataTable dtMediosDePagos;
 
         public MediosDePagos()
         {
             InitializeComponent();
-            ActualizarGrid();
+            txtIdMedios.Enabled = false; // Deshabilitar el campo ID
+            this.Load += new EventHandler(this.MediosDePagos_Load);
+            this.gridMediosDePagos.SelectionChanged += new EventHandler(this.gridMediosDePagos_SelectionChanged);
         }
 
+        // Método que se ejecuta al cargar el formulario
+        private void MediosDePagos_Load(object sender, EventArgs e)
+        {
+            CargarMediosDePagos(); // Cargar medios de pago al iniciar el formulario
+            ConfigurarGrilla(); // Configura la grilla de medios de pago
+        }
+
+        // Configuración de la grilla
+        private void ConfigurarGrilla()
+        {
+            gridMediosDePagos.ReadOnly = true;
+            gridMediosDePagos.MultiSelect = false;
+            gridMediosDePagos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+        // Cargar datos en la grilla
+        private void CargarMediosDePagos()
+        {
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                MySqlDataAdapter daMedios = new MySqlDataAdapter("SELECT * FROM medios_de_pagos", conexion);
+                dtMediosDePagos = new DataTable();
+                daMedios.Fill(dtMediosDePagos);
+                gridMediosDePagos.DataSource = dtMediosDePagos;
+            }
+        }
+
+        // Método que se ejecuta al seleccionar un registro de la grilla
+        private void gridMediosDePagos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (gridMediosDePagos.SelectedRows.Count > 0)
+            {
+                DataRowView rowView = (DataRowView)gridMediosDePagos.SelectedRows[0].DataBoundItem;
+                txtIdMedios.Text = rowView["id_medio"].ToString(); // ID del medio de pago
+                txtMediosdePagos.Text = rowView["medios_de_pago"].ToString(); // Nombre del medio de pago
+            }
+            else
+            {
+                LimpiarTextBoxes(); // Limpiar campos si no hay selección válida
+            }
+        }
+
+        // Botón Agregar nuevo medio de pago
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtMediosdePagos.Text))
@@ -24,33 +70,39 @@ namespace Gestion
                 return;
             }
 
-            var nuevoMedio = new MedioDePago
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
-                Id = currentId++,
-                Nombre = txtMediosdePagos.Text
-            };
+                conexion.Open();
+                string query = "INSERT INTO medios_de_pagos (medios_de_pago) VALUES (@medios_de_pago)";
+                using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@medios_de_pago", txtMediosdePagos.Text);
+                    cmd.ExecuteNonQuery();
+                }
+            }
 
-            mediosDePagos.Add(nuevoMedio);
-            ActualizarGrid();
-            txtMediosdePagos.Clear();
+            CargarMediosDePagos(); // Refrescar la grilla
+            LimpiarTextBoxes(); // Limpiar los campos
         }
 
+        // Botón Modificar medio de pago seleccionado
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (int.TryParse(txtIdMedios.Text, out int id) && !string.IsNullOrWhiteSpace(txtMediosdePagos.Text))
             {
-                var medio = mediosDePagos.FirstOrDefault(m => m.Id == id);
-                if (medio != null)
+                using (MySqlConnection conexion = new MySqlConnection(conexionBD))
                 {
-                    medio.Nombre = txtMediosdePagos.Text;
-                    ActualizarGrid();
-                    txtMediosdePagos.Clear();
-                    txtIdMedios.Clear();
+                    conexion.Open();
+                    string query = "UPDATE medios_de_pagos SET medios_de_pago = @medios_de_pago WHERE id_medio = @id_medio";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@medios_de_pago", txtMediosdePagos.Text);
+                        cmd.Parameters.AddWithValue("@id_medio", id);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Medio de pago no encontrado.");
-                }
+                CargarMediosDePagos(); // Refrescar la grilla
+                LimpiarTextBoxes(); // Limpiar los campos
             }
             else
             {
@@ -58,21 +110,27 @@ namespace Gestion
             }
         }
 
+        // Botón Eliminar medio de pago seleccionado
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (int.TryParse(txtIdMedios.Text, out int id))
             {
-                var medio = mediosDePagos.FirstOrDefault(m => m.Id == id);
-                if (medio != null)
+                // Mensaje de confirmación para eliminar
+                if (MessageBox.Show("¿Desea realmente eliminar este medio de pago?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    mediosDePagos.Remove(medio);
-                    ActualizarGrid();
-                    txtMediosdePagos.Clear();
-                    txtIdMedios.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("Medio de pago no encontrado.");
+                    using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+                    {
+                        conexion.Open();
+                        string query = "DELETE FROM medios_de_pagos WHERE id_medio = @id_medio";
+                        using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                        {
+                            // Corregimos el valor que se envía al parámetro
+                            cmd.Parameters.AddWithValue("@id_medio", id);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    CargarMediosDePagos(); // Refrescar la grilla
+                    LimpiarTextBoxes(); // Limpiar los campos
                 }
             }
             else
@@ -81,18 +139,12 @@ namespace Gestion
             }
         }
 
-        private void ActualizarGrid()
+
+        // Método para limpiar los TextBox
+        private void LimpiarTextBoxes()
         {
-            gridMediosDePagos.DataSource = null;
-            gridMediosDePagos.DataSource = mediosDePagos;
+            txtMediosdePagos.Clear();
+            txtIdMedios.Clear(); // Limpiar el campo ID, aunque esté deshabilitado
         }
-
-     
-    }
-
-    public class MedioDePago
-    {
-        public int Id { get; set; }
-        public required string Nombre { get; set; }
     }
 }
