@@ -30,7 +30,7 @@
         {
             btnModificar = new Button();
             btnEliminar = new Button();
-            btnAgregar = new Button();
+            btnAgregarAdministrador = new Button();
             lblIdAdministradores = new Label();
             lblNombre = new Label();
             lblContraseña = new Label();
@@ -38,7 +38,7 @@
             txtBuscar = new TextBox();
             txtIdAdministradores = new TextBox();
             txtNombre = new TextBox();
-            txtContrasenia = new TextBox();
+            txtContrasena = new TextBox();
             txtLimpiar = new Button();
             ((System.ComponentModel.ISupportInitialize)gridAdministradores).BeginInit();
             SuspendLayout();
@@ -54,26 +54,27 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(164, 393);
+            btnEliminar.Location = new Point(165, 393);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(94, 29);
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // btnAgregar
+            // btnAgregarAdministrador
             // 
-            btnAgregar.Location = new Point(282, 393);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(94, 29);
-            btnAgregar.TabIndex = 2;
-            btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregarAdministrador.Location = new Point(282, 393);
+            btnAgregarAdministrador.Name = "btnAgregarAdministrador";
+            btnAgregarAdministrador.Size = new Size(94, 29);
+            btnAgregarAdministrador.TabIndex = 2;
+            btnAgregarAdministrador.Text = "Agregar";
+            btnAgregarAdministrador.UseVisualStyleBackColor = true;
+            btnAgregarAdministrador.Click += btnAgregarAdministrador_Click;
             // 
             // lblIdAdministradores
             // 
             lblIdAdministradores.AutoSize = true;
-            lblIdAdministradores.Location = new Point(43, 147);
+            lblIdAdministradores.Location = new Point(12, 54);
             lblIdAdministradores.Name = "lblIdAdministradores";
             lblIdAdministradores.Size = new Size(138, 20);
             lblIdAdministradores.TabIndex = 3;
@@ -82,7 +83,7 @@
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(43, 230);
+            lblNombre.Location = new Point(70, 106);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(67, 20);
             lblNombre.TabIndex = 4;
@@ -91,7 +92,7 @@
             // lblContraseña
             // 
             lblContraseña.AutoSize = true;
-            lblContraseña.Location = new Point(43, 300);
+            lblContraseña.Location = new Point(64, 161);
             lblContraseña.Name = "lblContraseña";
             lblContraseña.Size = new Size(86, 20);
             lblContraseña.TabIndex = 5;
@@ -105,6 +106,7 @@
             gridAdministradores.RowHeadersWidth = 51;
             gridAdministradores.Size = new Size(429, 232);
             gridAdministradores.TabIndex = 6;
+            gridAdministradores.CellContentClick += gridAdministradores_CellContentClick;
             // 
             // txtBuscar
             // 
@@ -115,24 +117,24 @@
             // 
             // txtIdAdministradores
             // 
-            txtIdAdministradores.Location = new Point(193, 140);
+            txtIdAdministradores.Location = new Point(156, 51);
             txtIdAdministradores.Name = "txtIdAdministradores";
             txtIdAdministradores.Size = new Size(125, 27);
             txtIdAdministradores.TabIndex = 8;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(116, 223);
+            txtNombre.Location = new Point(156, 99);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(125, 27);
             txtNombre.TabIndex = 9;
             // 
-            // txtContrasenia
+            // txtContrasena
             // 
-            txtContrasenia.Location = new Point(133, 297);
-            txtContrasenia.Name = "txtContrasenia";
-            txtContrasenia.Size = new Size(125, 27);
-            txtContrasenia.TabIndex = 10;
+            txtContrasena.Location = new Point(156, 154);
+            txtContrasena.Name = "txtContrasena";
+            txtContrasena.Size = new Size(125, 27);
+            txtContrasena.TabIndex = 10;
             // 
             // txtLimpiar
             // 
@@ -148,9 +150,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(852, 450);
+            ClientSize = new Size(853, 451);
             Controls.Add(txtLimpiar);
-            Controls.Add(txtContrasenia);
+            Controls.Add(txtContrasena);
             Controls.Add(txtNombre);
             Controls.Add(txtIdAdministradores);
             Controls.Add(txtBuscar);
@@ -158,7 +160,7 @@
             Controls.Add(lblContraseña);
             Controls.Add(lblNombre);
             Controls.Add(lblIdAdministradores);
-            Controls.Add(btnAgregar);
+            Controls.Add(btnAgregarAdministrador);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
             Name = "Administradores";
@@ -173,7 +175,7 @@
 
         private Button btnModificar;
         private Button btnEliminar;
-        private Button btnAgregar;
+        private Button btnAgregarAdministrador;
         private Label lblIdAdministradores;
         private Label lblNombre;
         private Label lblContraseña;
@@ -181,7 +183,7 @@
         private TextBox txtBuscar;
         private TextBox txtIdAdministradores;
         private TextBox txtNombre;
-        private TextBox txtContrasenia;
+        private TextBox txtContrasena;
         private Button txtLimpiar;
     }
 }
