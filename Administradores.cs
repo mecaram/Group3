@@ -50,7 +50,7 @@ namespace Gestion
                 FROM administradores c",
                 conexionBD);
 
-                //instancia tabla clientes, y un int con la cantidad de filas de registros existentes
+                //instancia tabla administrador, y un int con la cantidad de filas de registros existentes
                 DataTable dtAdministradores = new DataTable();
                 int registrosAdministradores = daAdministradores.Fill(dtAdministradores);
 
@@ -181,7 +181,7 @@ namespace Gestion
 
         }
         //boton modificar cliente
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void btnModificar_Click_1(object sender, EventArgs e)
         {
             // Validaciones de campos
             if (string.IsNullOrEmpty(txtNombre.Text))
@@ -203,8 +203,8 @@ namespace Gestion
                 {
                     conexion.Open();
 
-                    string modificarAdministrador = @"UPDATE `supermercadodb`.`Administradores` 
-                                                SET `nombre` = @nombre, `@contrasena`  
+                    string modificarAdministrador = @"UPDATE `supermercadodb`.`administradores` 
+                                                SET `nombre` = @nombre, `contrasena` = `@contrasena`  
                                                 WHERE `id_admin` = @id_admin;";
 
                     using (MySqlCommand cmdModificar = new MySqlCommand(modificarAdministrador, conexion))
@@ -232,7 +232,7 @@ namespace Gestion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error al modificar el cliente: " + ex.Message);
+                MessageBox.Show("Ocurrió un error al modificar el Administrador: " + ex.Message);
             }
         }
 
@@ -251,7 +251,7 @@ namespace Gestion
                 using (MySqlConnection conexion = new MySqlConnection(conexionBD))
                 {
                     conexion.Open();
-                    string sentencia = $"DELETE FROM clientes WHERE id_cliente = {txtIdAdministradores.Text.Trim()}";
+                    string sentencia = $"DELETE FROM administradores WHERE id_admin = {txtIdAdministradores.Text.Trim()}";
                     MySqlCommand cmdEliminar = new MySqlCommand(sentencia, conexion);
                     cmdEliminar.ExecuteNonQuery();
                     Administradores_Load(sender, e);
@@ -260,6 +260,7 @@ namespace Gestion
             }
         }
 
+      
         
     }
 }

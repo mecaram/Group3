@@ -52,6 +52,7 @@ namespace Gestion
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click_1;
             // 
             // btnEliminar
             // 
@@ -107,7 +108,7 @@ namespace Gestion
             gridAdministradores.RowHeadersWidth = 51;
             gridAdministradores.Size = new Size(429, 232);
             gridAdministradores.TabIndex = 6;
-            gridAdministradores.CellClick += gridAdministradores_CellClick;           
+            gridAdministradores.CellClick += gridAdministradores_CellClick;
             // 
             // txtBuscar
             // 
@@ -172,7 +173,7 @@ namespace Gestion
             PerformLayout();
         }
 
-       
+
 
         #endregion
 
