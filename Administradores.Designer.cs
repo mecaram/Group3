@@ -1,4 +1,5 @@
-﻿namespace Gestion
+﻿
+namespace Gestion
 {
     partial class Administradores
     {
@@ -106,7 +107,7 @@
             gridAdministradores.RowHeadersWidth = 51;
             gridAdministradores.Size = new Size(429, 232);
             gridAdministradores.TabIndex = 6;
-            gridAdministradores.CellContentClick += gridAdministradores_CellContentClick;
+            gridAdministradores.CellClick += gridAdministradores_CellClick;           
             // 
             // txtBuscar
             // 
@@ -170,6 +171,8 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
+       
 
         #endregion
 
