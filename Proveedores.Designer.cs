@@ -55,7 +55,7 @@
             gridProveedor.Name = "gridProveedor";
             gridProveedor.Size = new Size(498, 230);
             gridProveedor.TabIndex = 29;
-            gridProveedor.CellContentClick += gridProveedor_CellContentClick;
+            gridProveedor.CellClick += gridProveedor_CellClick;
             // 
             // txtBuscarProveedor
             // 
