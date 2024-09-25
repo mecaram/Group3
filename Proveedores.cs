@@ -137,7 +137,7 @@ namespace Gestion
         }
 
         // Registrar proveedor
-        private void btnCargarProveedor_Click(object sender, EventArgs e)
+        private void btnCargarProveedor_Click_1(object sender, EventArgs e)
         {
             if (!Regex.IsMatch(txtRazonSocialProveedor.Text, @"^[a-zA-Z\s]+$"))
             {
@@ -317,6 +317,11 @@ namespace Gestion
             {
                 MessageBox.Show("Ocurrió un error al eliminar el proveedor: " + ex.Message);
             }
+        }
+
+        private void txtLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarTextBox();
         }
 
 

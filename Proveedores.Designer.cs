@@ -35,7 +35,7 @@
             txtCuitProveedor = new TextBox();
             txtRazonSocialProveedor = new TextBox();
             txtIdProveedor = new TextBox();
-            btnCargarCliente = new Button();
+            btnCargarProveedor = new Button();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
@@ -45,6 +45,7 @@
             txtEliminarProveedor = new Button();
             btnModificarProveedor = new Button();
             cboCiudades = new ComboBox();
+            txtLimpiar = new Button();
             ((System.ComponentModel.ISupportInitialize)gridProveedor).BeginInit();
             SuspendLayout();
             // 
@@ -99,14 +100,15 @@
             txtIdProveedor.Size = new Size(100, 23);
             txtIdProveedor.TabIndex = 22;
             // 
-            // btnCargarCliente
+            // btnCargarProveedor
             // 
-            btnCargarCliente.Location = new Point(12, 315);
-            btnCargarCliente.Name = "btnCargarCliente";
-            btnCargarCliente.Size = new Size(75, 23);
-            btnCargarCliente.TabIndex = 21;
-            btnCargarCliente.Text = "Cargar";
-            btnCargarCliente.UseVisualStyleBackColor = true;
+            btnCargarProveedor.Location = new Point(12, 315);
+            btnCargarProveedor.Name = "btnCargarProveedor";
+            btnCargarProveedor.Size = new Size(75, 23);
+            btnCargarProveedor.TabIndex = 21;
+            btnCargarProveedor.Text = "Cargar";
+            btnCargarProveedor.UseVisualStyleBackColor = true;
+            btnCargarProveedor.Click += btnCargarProveedor_Click_1;
             // 
             // label6
             // 
@@ -179,6 +181,7 @@
             btnModificarProveedor.TabIndex = 31;
             btnModificarProveedor.Text = "Modificar";
             btnModificarProveedor.UseVisualStyleBackColor = true;
+            btnModificarProveedor.Click += btnModificarProveedor_Click;
             // 
             // cboCiudades
             // 
@@ -188,11 +191,22 @@
             cboCiudades.Size = new Size(121, 23);
             cboCiudades.TabIndex = 32;
             // 
+            // txtLimpiar
+            // 
+            txtLimpiar.Location = new Point(92, 286);
+            txtLimpiar.Name = "txtLimpiar";
+            txtLimpiar.Size = new Size(75, 23);
+            txtLimpiar.TabIndex = 33;
+            txtLimpiar.Text = "Limpiar";
+            txtLimpiar.UseVisualStyleBackColor = true;
+            txtLimpiar.Click += txtLimpiar_Click;
+            // 
             // Proveedores
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtLimpiar);
             Controls.Add(cboCiudades);
             Controls.Add(btnModificarProveedor);
             Controls.Add(txtEliminarProveedor);
@@ -203,7 +217,7 @@
             Controls.Add(txtCuitProveedor);
             Controls.Add(txtRazonSocialProveedor);
             Controls.Add(txtIdProveedor);
-            Controls.Add(btnCargarCliente);
+            Controls.Add(btnCargarProveedor);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -227,7 +241,7 @@
         private TextBox txtCuitProveedor;
         private TextBox txtRazonSocialProveedor;
         private TextBox txtIdProveedor;
-        private Button btnCargarCliente;
+        private Button btnCargarProveedor;
         private Label label6;
         private Label label5;
         private Label label4;
@@ -237,5 +251,6 @@
         private Button txtEliminarProveedor;
         private Button btnModificarProveedor;
         private ComboBox cboCiudades;
+        private Button txtLimpiar;
     }
 }
