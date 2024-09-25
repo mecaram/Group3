@@ -38,25 +38,27 @@ namespace Gestion
             gridAdministradores.CurrentCell = null;   // Deshabilitar el resaltado de la fila actual
             txtIdAdministradores.Enabled = false;     // Deshabilitar el campo id
 
+            gridAdministradores.RowHeadersVisible = false;
+            gridAdministradores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // Conectar a la base de datos
             // creamos la instancia conexion, llamando a la variable conexionDB en App.config
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
-                // Cargar clientes
-                MySqlDataAdapter daClientes = new MySqlDataAdapter(
+                // Cargar administradores
+                MySqlDataAdapter daAdministradores = new MySqlDataAdapter(
                 @"SELECT c.id_admin, c.nombre, c.contrasena
                 FROM administradores c",
                 conexionBD);
 
                 //instancia tabla clientes, y un int con la cantidad de filas de registros existentes
-                DataTable dtClientes = new DataTable();
-                int registrosClientes = daClientes.Fill(dtClientes);
+                DataTable dtAdministradores = new DataTable();
+                int registrosAdministradores = daAdministradores.Fill(dtAdministradores);
 
                 //si existe almenos 1 registro, mostrará la cabecera con las columnas correspondientes
                 //si hay 0 registros, devuelve una grid vacia
-                if (registrosClientes > 0)
+                if (registrosAdministradores > 0)
                 {
-                    gridAdministradores.DataSource = dtClientes;
+                    gridAdministradores.DataSource = dtAdministradores;
                 }
                 else
                 {
@@ -65,17 +67,17 @@ namespace Gestion
             }
         }
         //grilla Administradores
-        public void gridAdministradores_CellContentClick(object sender, EventArgs e)
+        private void gridAdministradores_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //si se selecciona un registro, los datos de este se cargaran en los textbox
-            if (gridAdministradores.SelectedRows.Count > 0 && gridAdministradores.CurrentRow != null && gridAdministradores.CurrentRow.Cells["id_cliente"].Value != null)
+            if (gridAdministradores.SelectedRows.Count > 0 && gridAdministradores.CurrentRow != null && gridAdministradores.CurrentRow.Cells["id_admin"].Value != null)
             {
                 txtIdAdministradores.Text = gridAdministradores.CurrentRow.Cells["id_admin"].Value.ToString();
                 txtNombre.Text = gridAdministradores.CurrentRow.Cells["nombre"].Value.ToString();
                 txtContrasena.Text = gridAdministradores.CurrentRow.Cells["contrasena"].Value.ToString();
 
-                // Acceso al nombre de la ciudad
-                //    if (gridCliente.CurrentRow.Cells["ciudad"].Value != null && !string.IsNullOrEmpty(gridCliente.CurrentRow.Cells["ciudad"].Value.ToString()))
+                // Acceso al nombre del administrador
+                //   if (grid.CurrentRow.Cells["ciudad"].Value != null && !string.IsNullOrEmpty(gridCliente.CurrentRow.Cells["ciudad"].Value.ToString()))
                 //    {
                 //        cboCiudadCliente.Text = gridCliente.CurrentRow.Cells["ciudad"].Value.ToString();  // Muestra el nombre de la ciudad
                 //    }
@@ -179,7 +181,7 @@ namespace Gestion
 
         }
         //boton modificar cliente
-        private void btnModificarCliente_Click(object sender, EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e)
         {
             // Validaciones de campos
             if (string.IsNullOrEmpty(txtNombre.Text))
@@ -201,11 +203,11 @@ namespace Gestion
                 {
                     conexion.Open();
 
-                    string modificarCliente = @"UPDATE `supermercadodb`.`Administradores` 
+                    string modificarAdministrador = @"UPDATE `supermercadodb`.`Administradores` 
                                                 SET `nombre` = @nombre, `@contrasena`  
                                                 WHERE `id_admin` = @id_admin;";
 
-                    using (MySqlCommand cmdModificar = new MySqlCommand(modificarCliente, conexion))
+                    using (MySqlCommand cmdModificar = new MySqlCommand(modificarAdministrador, conexion))
                     {
                         cmdModificar.Parameters.AddWithValue("@nombre", txtNombre.Text);
 
@@ -234,6 +236,30 @@ namespace Gestion
             }
         }
 
-       
+        //eliminar administrador
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtIdAdministradores.Text))
+            {
+                MessageBox.Show("No se seleccionó un Administrador.");
+                return;
+            }
+
+            //mensaje de advertencia
+            if (MessageBox.Show("Desea realmente eliminar este Administrador?", "Solicitud del Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+                {
+                    conexion.Open();
+                    string sentencia = $"DELETE FROM clientes WHERE id_cliente = {txtIdAdministradores.Text.Trim()}";
+                    MySqlCommand cmdEliminar = new MySqlCommand(sentencia, conexion);
+                    cmdEliminar.ExecuteNonQuery();
+                    Administradores_Load(sender, e);
+                    LimpiarTextBox();
+                }
+            }
+        }
+
+        
     }
 }
