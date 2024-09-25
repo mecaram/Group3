@@ -64,6 +64,7 @@
             txtBuscarProveedor.Name = "txtBuscarProveedor";
             txtBuscarProveedor.Size = new Size(500, 23);
             txtBuscarProveedor.TabIndex = 28;
+            txtBuscarProveedor.TextChanged += txtBuscarProveedor_TextChanged_1;
             // 
             // txtDireccionProveedor
             // 
@@ -172,6 +173,7 @@
             txtEliminarProveedor.TabIndex = 30;
             txtEliminarProveedor.Text = "Eliminar";
             txtEliminarProveedor.UseVisualStyleBackColor = true;
+            txtEliminarProveedor.Click += txtEliminarProveedor_Click;
             // 
             // btnModificarProveedor
             // 

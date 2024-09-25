@@ -105,7 +105,7 @@ namespace Gestion
 
 
         // Búsqueda en tiempo real de proveedores
-        private void txtBuscarProveedor_TextChanged(object sender, EventArgs e)
+        private void txtBuscarProveedor_TextChanged_1(object sender, EventArgs e)
         {
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
@@ -277,7 +277,7 @@ namespace Gestion
         }
 
         // Eliminar proveedor
-        private void btnEliminarProveedor_Click(object sender, EventArgs e)
+        private void txtEliminarProveedor_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtIdProveedor.Text))
             {
@@ -324,6 +324,6 @@ namespace Gestion
             LimpiarTextBox();
         }
 
-
+        
     }
 }
