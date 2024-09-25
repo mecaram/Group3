@@ -35,9 +35,9 @@
             lblNombre = new Label();
             txtIdMarca = new TextBox();
             txtNombre = new TextBox();
-            textBox3 = new TextBox();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            txtbuscar = new TextBox();
+            gridMarcas = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)gridMarcas).BeginInit();
             SuspendLayout();
             // 
             // btnModificar
@@ -48,6 +48,7 @@
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnEliminar
             // 
@@ -57,6 +58,7 @@
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAgregar
             // 
@@ -66,6 +68,7 @@
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // lblIdMarcas
             // 
@@ -91,6 +94,7 @@
             txtIdMarca.Name = "txtIdMarca";
             txtIdMarca.Size = new Size(125, 27);
             txtIdMarca.TabIndex = 5;
+          
             // 
             // txtNombre
             // 
@@ -98,30 +102,33 @@
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(125, 27);
             txtNombre.TabIndex = 6;
+         
             // 
-            // textBox3
+            // txtbuscar
             // 
-            textBox3.Location = new Point(463, 73);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(473, 27);
-            textBox3.TabIndex = 7;
+            txtbuscar.Location = new Point(463, 73);
+            txtbuscar.Name = "txtbuscar";
+            txtbuscar.Size = new Size(473, 27);
+            txtbuscar.TabIndex = 7;
+        
             // 
-            // dataGridView1
+            // gridMarcas
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(470, 123);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(466, 322);
-            dataGridView1.TabIndex = 8;
+            gridMarcas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridMarcas.Location = new Point(470, 123);
+            gridMarcas.Name = "gridMarcas";
+            gridMarcas.RowHeadersWidth = 51;
+            gridMarcas.Size = new Size(466, 322);
+            gridMarcas.TabIndex = 8;
+           
             // 
             // Marcas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1027, 472);
-            Controls.Add(dataGridView1);
-            Controls.Add(textBox3);
+            Controls.Add(gridMarcas);
+            Controls.Add(txtbuscar);
             Controls.Add(txtNombre);
             Controls.Add(txtIdMarca);
             Controls.Add(lblNombre);
@@ -132,7 +139,7 @@
             Name = "Marcas";
             Text = "Marcas";
             Load += Marcas_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridMarcas).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -146,7 +153,7 @@
         private Label lblNombre;
         private TextBox txtIdMarca;
         private TextBox txtNombre;
-        private TextBox textBox3;
-        private DataGridView dataGridView1;
+        private TextBox txtbuscar;
+        private DataGridView gridMarcas;
     }
 }
