@@ -32,8 +32,6 @@
             txtBuscarProductos = new TextBox();
             txtIdRubroProducto = new TextBox();
             txtCodigoBarraProducto = new TextBox();
-            txtIdProveedorProducto = new TextBox();
-            txtMarcaProducto = new TextBox();
             txtNombreProducto = new TextBox();
             txtIdProducto = new TextBox();
             btnCargarProducto = new Button();
@@ -53,17 +51,22 @@
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
+            lblPorcentajeGanancia = new Label();
+            lblPreciodeVenta = new Label();
+            cboMarca = new ComboBox();
+            cboProveedor = new ComboBox();
+            cboRubro = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)gridProductos).BeginInit();
             SuspendLayout();
             // 
             // gridProductos
             // 
             gridProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridProductos.Location = new Point(353, 160);
+            gridProductos.Location = new Point(375, 129);
+            gridProductos.Margin = new Padding(3, 4, 3, 4);
             gridProductos.Name = "gridProductos";
-            gridProductos.Size = new Size(498, 230);
+            gridProductos.RowHeadersWidth = 51;
+            gridProductos.Size = new Size(569, 307);
             gridProductos.TabIndex = 29;
             // 
             // txtBuscarProductos
@@ -82,7 +85,8 @@
             // 
             // txtCodigoBarraProducto
             // 
-            txtCodigoBarraProducto.Location = new Point(167, 157);
+            txtCodigoBarraProducto.Location = new Point(198, 213);
+            txtCodigoBarraProducto.Margin = new Padding(3, 4, 3, 4);
             txtCodigoBarraProducto.Name = "txtCodigoBarraProducto";
             txtCodigoBarraProducto.Size = new Size(100, 23);
             txtCodigoBarraProducto.TabIndex = 26;
@@ -103,7 +107,8 @@
             // 
             // txtNombreProducto
             // 
-            txtNombreProducto.Location = new Point(167, 71);
+            txtNombreProducto.Location = new Point(199, 110);
+            txtNombreProducto.Margin = new Padding(3, 4, 3, 4);
             txtNombreProducto.Name = "txtNombreProducto";
             txtNombreProducto.Size = new Size(100, 23);
             txtNombreProducto.TabIndex = 23;
@@ -113,8 +118,9 @@
             txtIdProducto.Enabled = false;
             txtIdProducto.Location = new Point(167, 42);
             txtIdProducto.Name = "txtIdProducto";
-            txtIdProducto.Size = new Size(100, 23);
+            txtIdProducto.Size = new Size(114, 27);
             txtIdProducto.TabIndex = 22;
+          
             // 
             // btnCargarProducto
             // 
@@ -125,14 +131,14 @@
             btnCargarProducto.Text = "Cargar";
             btnCargarProducto.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // lblNombre
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(105, 79);
-            label6.Name = "label6";
-            label6.Size = new Size(51, 15);
-            label6.TabIndex = 20;
-            label6.Text = "Nombre";
+            lblNombre.AutoSize = true;
+            lblNombre.Location = new Point(120, 105);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(64, 20);
+            lblNombre.TabIndex = 20;
+            lblNombre.Text = "Nombre";
             // 
             // label5
             // 
@@ -154,12 +160,12 @@
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(100, 165);
-            label3.Name = "label3";
-            label3.Size = new Size(62, 15);
-            label3.TabIndex = 17;
-            label3.Text = "Cod. Barra";
+            lblCodBarra.AutoSize = true;
+            lblCodBarra.Location = new Point(105, 216);
+            lblCodBarra.Name = "lblCodBarra";
+            lblCodBarra.Size = new Size(81, 20);
+            lblCodBarra.TabIndex = 17;
+            lblCodBarra.Text = "Cod. Barra:";
             // 
             // label2
             // 
@@ -181,9 +187,10 @@
             // 
             // btnModificarProducto
             // 
-            btnModificarProducto.Location = new Point(173, 367);
+            btnModificarProducto.Location = new Point(172, 534);
+            btnModificarProducto.Margin = new Padding(3, 4, 3, 4);
             btnModificarProducto.Name = "btnModificarProducto";
-            btnModificarProducto.Size = new Size(75, 23);
+            btnModificarProducto.Size = new Size(86, 31);
             btnModificarProducto.TabIndex = 30;
             btnModificarProducto.Text = "Modificar";
             btnModificarProducto.UseVisualStyleBackColor = true;
@@ -327,11 +334,11 @@
         private TextBox txtNombreProducto;
         private TextBox txtIdProducto;
         private Button btnCargarProducto;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
+        private Label lblNombre;
+        private Label lblMarca;
+        private Label lblProveedor;
+        private Label lblCodBarra;
+        private Label lblRubro;
         private Label label1;
         private Button btnModificarProducto;
         private TextBox txtStockActualProducto;
