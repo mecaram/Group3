@@ -35,16 +35,17 @@
             lblNombre = new Label();
             txtIdMarca = new TextBox();
             txtNombre = new TextBox();
-            txtbuscar = new TextBox();
+            txtBuscar = new TextBox();
             gridMarcas = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)gridMarcas).BeginInit();
             SuspendLayout();
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(56, 416);
+            btnModificar.Location = new Point(49, 312);
+            btnModificar.Margin = new Padding(3, 2, 3, 2);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(94, 29);
+            btnModificar.Size = new Size(82, 22);
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
@@ -52,9 +53,10 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(163, 416);
+            btnEliminar.Location = new Point(143, 312);
+            btnEliminar.Margin = new Padding(3, 2, 3, 2);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.Size = new Size(82, 22);
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -62,9 +64,10 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(286, 416);
+            btnAgregar.Location = new Point(250, 312);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(94, 29);
+            btnAgregar.Size = new Size(82, 22);
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -73,62 +76,63 @@
             // lblIdMarcas
             // 
             lblIdMarcas.AutoSize = true;
-            lblIdMarcas.Location = new Point(56, 138);
+            lblIdMarcas.Location = new Point(49, 104);
             lblIdMarcas.Name = "lblIdMarcas";
-            lblIdMarcas.Size = new Size(70, 20);
+            lblIdMarcas.Size = new Size(56, 15);
             lblIdMarcas.TabIndex = 3;
             lblIdMarcas.Text = "Id Marca:";
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(56, 274);
+            lblNombre.Location = new Point(49, 206);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(67, 20);
+            lblNombre.Size = new Size(54, 15);
             lblNombre.TabIndex = 4;
             lblNombre.Text = "Nombre:";
             // 
             // txtIdMarca
             // 
-            txtIdMarca.Location = new Point(132, 138);
+            txtIdMarca.Location = new Point(116, 104);
+            txtIdMarca.Margin = new Padding(3, 2, 3, 2);
             txtIdMarca.Name = "txtIdMarca";
-            txtIdMarca.Size = new Size(125, 27);
+            txtIdMarca.Size = new Size(110, 23);
             txtIdMarca.TabIndex = 5;
-          
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(132, 274);
+            txtNombre.Location = new Point(116, 206);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(125, 27);
+            txtNombre.Size = new Size(110, 23);
             txtNombre.TabIndex = 6;
-         
             // 
-            // txtbuscar
+            // txtBuscar
             // 
-            txtbuscar.Location = new Point(463, 73);
-            txtbuscar.Name = "txtbuscar";
-            txtbuscar.Size = new Size(473, 27);
-            txtbuscar.TabIndex = 7;
-        
+            txtBuscar.Location = new Point(405, 55);
+            txtBuscar.Margin = new Padding(3, 2, 3, 2);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(414, 23);
+            txtBuscar.TabIndex = 7;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // gridMarcas
             // 
             gridMarcas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridMarcas.Location = new Point(470, 123);
+            gridMarcas.Location = new Point(411, 92);
+            gridMarcas.Margin = new Padding(3, 2, 3, 2);
             gridMarcas.Name = "gridMarcas";
             gridMarcas.RowHeadersWidth = 51;
-            gridMarcas.Size = new Size(466, 322);
+            gridMarcas.Size = new Size(408, 242);
             gridMarcas.TabIndex = 8;
-           
             // 
             // Marcas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1027, 472);
+            ClientSize = new Size(899, 354);
             Controls.Add(gridMarcas);
-            Controls.Add(txtbuscar);
+            Controls.Add(txtBuscar);
             Controls.Add(txtNombre);
             Controls.Add(txtIdMarca);
             Controls.Add(lblNombre);
@@ -136,6 +140,7 @@
             Controls.Add(btnAgregar);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Marcas";
             Text = "Marcas";
             Load += Marcas_Load;
@@ -153,7 +158,7 @@
         private Label lblNombre;
         private TextBox txtIdMarca;
         private TextBox txtNombre;
-        private TextBox txtbuscar;
+        private TextBox txtBuscar;
         private DataGridView gridMarcas;
     }
 }

@@ -214,5 +214,27 @@ namespace Gestion
                 MessageBox.Show("Error al modificar la marca: " + ex.Message);
             }
         }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                conexion.Open();
+                string sentencia = @"SELECT m.id_marca, m.nombre
+                                     FROM marcas m
+                                     WHERE m.id_marca LIKE @filtro OR 
+                                           m.nombre LIKE @filtro";
+
+                MySqlCommand cmdBuscar = new MySqlCommand(sentencia, conexion);
+                cmdBuscar.Parameters.AddWithValue("@filtro", "%" + txtBuscar.Text + "%");
+
+                MySqlDataAdapter daBuscar = new MySqlDataAdapter(cmdBuscar);
+                DataTable dtBuscar = new DataTable();
+                daBuscar.Fill(dtBuscar);
+
+                gridMarcas.DataSource = dtBuscar.Rows.Count > 0 ? dtBuscar : null;
+            }
+        }
+
     }
 }
