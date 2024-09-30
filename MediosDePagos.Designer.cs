@@ -34,7 +34,7 @@
             lblMediosDePagos = new Label();
             lblIdMedios = new Label();
             gridMediosDePagos = new DataGridView();
-            textBox1 = new TextBox();
+            txtBuscar = new TextBox();
             txtIdMedios = new TextBox();
             txtMediosdePagos = new TextBox();
             ((System.ComponentModel.ISupportInitialize)gridMediosDePagos).BeginInit();
@@ -42,9 +42,10 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(35, 401);
+            btnModificar.Location = new Point(31, 301);
+            btnModificar.Margin = new Padding(3, 2, 3, 2);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(94, 29);
+            btnModificar.Size = new Size(82, 22);
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
@@ -52,9 +53,10 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(152, 399);
+            btnEliminar.Location = new Point(133, 299);
+            btnEliminar.Margin = new Padding(3, 2, 3, 2);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.Size = new Size(82, 22);
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -62,9 +64,10 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(266, 399);
+            btnAgregar.Location = new Point(233, 299);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(94, 29);
+            btnAgregar.Size = new Size(82, 22);
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
@@ -73,18 +76,18 @@
             // lblMediosDePagos
             // 
             lblMediosDePagos.AutoSize = true;
-            lblMediosDePagos.Location = new Point(35, 244);
+            lblMediosDePagos.Location = new Point(31, 183);
             lblMediosDePagos.Name = "lblMediosDePagos";
-            lblMediosDePagos.Size = new Size(125, 20);
+            lblMediosDePagos.Size = new Size(100, 15);
             lblMediosDePagos.TabIndex = 3;
             lblMediosDePagos.Text = "Medios de Pagos:";
             // 
             // lblIdMedios
             // 
             lblIdMedios.AutoSize = true;
-            lblIdMedios.Location = new Point(51, 124);
+            lblIdMedios.Location = new Point(45, 93);
             lblIdMedios.Name = "lblIdMedios";
-            lblIdMedios.Size = new Size(78, 20);
+            lblIdMedios.Size = new Size(62, 15);
             lblIdMedios.TabIndex = 4;
             lblIdMedios.Text = "Id Medios:";
             // 
@@ -93,48 +96,54 @@
             gridMediosDePagos.AllowUserToAddRows = false;
             gridMediosDePagos.AllowUserToDeleteRows = false;
             gridMediosDePagos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridMediosDePagos.Location = new Point(420, 174);
+            gridMediosDePagos.Location = new Point(368, 130);
+            gridMediosDePagos.Margin = new Padding(3, 2, 3, 2);
             gridMediosDePagos.Name = "gridMediosDePagos";
             gridMediosDePagos.ReadOnly = true;
             gridMediosDePagos.RowHeadersWidth = 51;
-            gridMediosDePagos.Size = new Size(375, 188);
+            gridMediosDePagos.Size = new Size(328, 141);
             gridMediosDePagos.TabIndex = 5;
             // 
-            // textBox1
+            // txtBuscar
             // 
-            textBox1.Location = new Point(420, 120);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(375, 27);
-            textBox1.TabIndex = 6;
+            txtBuscar.Location = new Point(368, 90);
+            txtBuscar.Margin = new Padding(3, 2, 3, 2);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(329, 23);
+            txtBuscar.TabIndex = 6;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // txtIdMedios
             // 
-            txtIdMedios.Location = new Point(152, 117);
+            txtIdMedios.Location = new Point(133, 88);
+            txtIdMedios.Margin = new Padding(3, 2, 3, 2);
             txtIdMedios.Name = "txtIdMedios";
-            txtIdMedios.Size = new Size(125, 27);
+            txtIdMedios.Size = new Size(110, 23);
             txtIdMedios.TabIndex = 7;
             // 
             // txtMediosdePagos
             // 
-            txtMediosdePagos.Location = new Point(166, 237);
+            txtMediosdePagos.Location = new Point(145, 178);
+            txtMediosdePagos.Margin = new Padding(3, 2, 3, 2);
             txtMediosdePagos.Name = "txtMediosdePagos";
-            txtMediosdePagos.Size = new Size(125, 27);
+            txtMediosdePagos.Size = new Size(110, 23);
             txtMediosdePagos.TabIndex = 8;
             // 
             // MediosDePagos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(876, 450);
+            ClientSize = new Size(766, 338);
             Controls.Add(txtMediosdePagos);
             Controls.Add(txtIdMedios);
-            Controls.Add(textBox1);
+            Controls.Add(txtBuscar);
             Controls.Add(gridMediosDePagos);
             Controls.Add(lblIdMedios);
             Controls.Add(lblMediosDePagos);
             Controls.Add(btnAgregar);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "MediosDePagos";
             Text = "MediosDePagos";
             Load += MediosDePagos_Load;
@@ -151,7 +160,7 @@
         private Label lblMediosDePagos;
         private Label lblIdMedios;
         private DataGridView gridMediosDePagos;
-        private TextBox textBox1;
+        private TextBox txtBuscar;
         private TextBox txtIdMedios;
         private TextBox txtMediosdePagos;
     }

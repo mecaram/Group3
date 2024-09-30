@@ -146,5 +146,26 @@ namespace Gestion
             txtMediosdePagos.Clear();
             txtIdMedios.Clear(); // Limpiar el campo ID, aunque esté deshabilitado
         }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                conexion.Open();
+                string sentencia = @"SELECT m.id_medio, m.medios_de_pago
+                                     FROM medios_de_pagos m
+                                     WHERE m.id_medio LIKE @filtro OR 
+                                           m.medios_de_pago LIKE @filtro";
+
+                MySqlCommand cmdBuscar = new MySqlCommand(sentencia, conexion);
+                cmdBuscar.Parameters.AddWithValue("@filtro", "%" + txtBuscar.Text + "%");
+
+                MySqlDataAdapter daBuscar = new MySqlDataAdapter(cmdBuscar);
+                DataTable dtBuscar = new DataTable();
+                daBuscar.Fill(dtBuscar);
+
+                gridMediosDePagos.DataSource = dtBuscar.Rows.Count > 0 ? dtBuscar : null;
+            }
+        }
     }
 }
