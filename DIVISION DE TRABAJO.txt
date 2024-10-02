@@ -1,0 +1,12 @@
+﻿rubros hacer (hace chino)
+adminsitradores (preguntar a roddy)
+cierre hacer
+productos hacer
+compras hacer
+unificar ventas y detalles de ventas
+
+cierre:
+
+al ejecutar el programa, buscar si cierre en la bd está false
+si está true, reanudar la sesion
+sino encuentra, un registro que contenga cerrado = false, se genera un nuevo cierre (sesion/registro)
