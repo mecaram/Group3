@@ -223,5 +223,10 @@ namespace Gestion
         {
             LimpiarTextBox();
         }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

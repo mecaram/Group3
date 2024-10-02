@@ -78,6 +78,7 @@
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(374, 27);
             txtBuscar.TabIndex = 4;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // btnModificar
             // 
