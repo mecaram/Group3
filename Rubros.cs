@@ -27,9 +27,9 @@ namespace Gestion
         private void Rubros_Load(object sender, EventArgs e)
         {
             // Configurar la grilla
-            grdRubros.ReadOnly = true;  // La grilla no es editable
-            grdRubros.MultiSelect = false;  // Deshabilitar la selección múltiple
-            grdRubros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;  // Seleccionar filas completas
+            //grdRubros.ReadOnly = true;  // La grilla no es editable
+            //grdRubros.MultiSelect = false;  // Deshabilitar la selección múltiple
+            //grdRubros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;  // Seleccionar filas completas
 
             // Desactivar el campo txtIdRubro para que no se pueda editar
             txtIdRubro.Enabled = false;
@@ -68,13 +68,14 @@ namespace Gestion
         }
 
         // Evento que se ejecuta cuando se selecciona un registro en la grilla
-        private void gridRubro_SelectionChanged(object sender, EventArgs e)
+        private void grdRubros_SelectionChanged(object sender, EventArgs e)
         {
             // Si hay una fila seleccionada y válida, se cargan los datos en los TextBox
-            if (gridRubro.SelectedRows.Count > 0 && gridRubro.CurrentRow != null && gridRubro.CurrentRow.Cells["id_rubro"].Value != null)
+            if (grdRubros.SelectedRows.Count > 0 && grdRubros.CurrentRow != null)
             {
-                txtIdRubro.Text = gridRubro.CurrentRow.Cells["id_rubro"].Value.ToString();
-                txtNombre.Text = gridRubro.CurrentRow.Cells["nombre"].Value.ToString();
+                txtIdRubro.Text = grdRubros.CurrentRow.Cells["id_rubro"].Value.ToString();
+                txtNombre.Text = grdRubros.CurrentRow.Cells["nombre"].Value.ToString();
+               
             }
             else
             {
@@ -224,9 +225,49 @@ namespace Gestion
             LimpiarTextBox();
         }
 
+        private object GetDataSource()
+        {
+            return grdRubros.DataSource;
+        }
+
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
+            string textoBusqueda = txtBuscar.Text.Trim(); // Tomar el texto ingresado en el cuadro de búsqueda
 
+            // Realizar la búsqueda en la base de datos
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                try
+                {
+                    conexion.Open();
+
+                    // Consulta SQL que busca coincidencias en id_rubro o nombre usando LIKE
+                    string consulta = "SELECT id_rubro, nombre FROM rubros WHERE id_rubro LIKE @busqueda OR nombre LIKE @busqueda;";
+                    MySqlDataAdapter daRubros = new MySqlDataAdapter(consulta, conexion);
+
+                    // Parametrizar la búsqueda para evitar inyección SQL
+                    daRubros.SelectCommand.Parameters.AddWithValue("@busqueda", "%" + textoBusqueda + "%");
+
+                    var cons = daRubros.SelectCommand.CommandText;
+                    var cons2 = daRubros.SelectCommand.Parameters[0].Value.ToString();
+
+                    DataTable dtRubros = new DataTable();
+                    daRubros.Fill(dtRubros);
+
+                    if (dtRubros.Rows.Count <= 0)
+                    {
+                        grdRubros.DataSource = null; // Limpiar la grilla si no hay resultados
+                    }
+                    else
+                    {
+                        grdRubros.DataSource = dtRubros; // Actualizar la grilla con los resultados filtrados
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al filtrar los rubros: " + ex.Message);
+                }
+            }
         }
     }
 }

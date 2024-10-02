@@ -121,6 +121,7 @@
             grdRubros.RowHeadersWidth = 51;
             grdRubros.Size = new Size(300, 188);
             grdRubros.TabIndex = 9;
+            grdRubros.SelectionChanged += grdRubros_SelectionChanged;
             // 
             // Rubros
             // 
@@ -151,7 +152,6 @@
         private TextBox txtIdRubro;
         private TextBox txtNombre;
         private TextBox txtBuscar;
-        private DataGridView gridRubro;
         private Button btnModificar;
         private Button btnEliminar;
         private Button btnAgregar;
