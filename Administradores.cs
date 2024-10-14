@@ -108,7 +108,6 @@ namespace Gestion
                            c.contrasena LIKE @filtro";
 
 
-
                 MySqlCommand cmdBuscar = new MySqlCommand(sentencia, conexion);
                 cmdBuscar.Parameters.AddWithValue("@filtro", "%" + txtBuscar.Text + "%");
 

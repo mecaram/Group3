@@ -135,7 +135,7 @@ namespace Gestion
             // 
             // txtContrasena
             // 
-            txtContrasena.Location = new Point(156, 154);
+            txtContrasena.Location = new Point(156, 153);
             txtContrasena.Name = "txtContrasena";
             txtContrasena.Size = new Size(125, 27);
             txtContrasena.TabIndex = 10;
