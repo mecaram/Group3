@@ -1,7 +1,5 @@
-﻿rubros hacer (hace chino)
-productos hacer (chino)
-adminsitradores (roddy)
-compras hacer
+﻿productos hacer (roddy)
+compras hacer (chino)
 unificar ventas y detalles de ventas
 cierre hacer
 
