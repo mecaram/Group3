@@ -174,6 +174,7 @@
             btnModificarProducto.TabIndex = 30;
             btnModificarProducto.Text = "Modificar";
             btnModificarProducto.UseVisualStyleBackColor = true;
+            btnModificarProducto.Click += btnModificarProducto_Click_1;
             // 
             // txtStockActualProducto
             // 

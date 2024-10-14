@@ -62,6 +62,7 @@ namespace Gestion
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click_1;
             // 
             // btnAgregarAdministrador
             // 
@@ -116,6 +117,7 @@ namespace Gestion
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(429, 27);
             txtBuscar.TabIndex = 7;
+            txtBuscar.TextChanged += txtBuscar_TextChanged_1;
             // 
             // txtIdAdministradores
             // 

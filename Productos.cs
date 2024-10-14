@@ -139,7 +139,7 @@ namespace Gestion
         }
 
         // Evento para el botón Modificar Producto
-        private void btnModificarProducto_Click(object sender, EventArgs e)
+        private void btnModificarProducto_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtIdProducto.Text))
             {
@@ -217,5 +217,7 @@ namespace Gestion
                 }
             }
         }
+
+        
     }
 }

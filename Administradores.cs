@@ -94,17 +94,18 @@ namespace Gestion
             }
         }
 
-        //textbox buscar Administradores en grilla
-        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        //textbox buscar cliente en grilla
+        private void txtBuscar_TextChanged_1(object sender, EventArgs e)
         {
             //busqueda dinamica en tiempo real
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
-                string sentencia = @"SELECT c.nombre
+                string sentencia = @"SELECT c.id_admin, c.nombre, c.contrasena
                      FROM administradores c
-                  
-                     WHERE c.nombre LIKE @filtro OR";
+                     WHERE c.id_admin LIKE @filtro OR 
+                           c.nombre LIKE @filtro OR
+                           c.contrasena LIKE @filtro";
 
 
 
@@ -204,7 +205,7 @@ namespace Gestion
                     conexion.Open();
 
                     string modificarAdministrador = @"UPDATE `supermercadodb`.`administradores` 
-                                                SET `nombre` = @nombre, `contrasena` = `@contrasena`  
+                                                SET `nombre` = @nombre, `contrasena` = @contrasena  
                                                 WHERE `id_admin` = @id_admin;";
 
                     using (MySqlCommand cmdModificar = new MySqlCommand(modificarAdministrador, conexion))
@@ -212,6 +213,8 @@ namespace Gestion
                         cmdModificar.Parameters.AddWithValue("@nombre", txtNombre.Text);
 
                         cmdModificar.Parameters.AddWithValue("@contrasena", txtContrasena.Text);
+
+                        cmdModificar.Parameters.AddWithValue("@id_admin", Convert.ToInt32(txtIdAdministradores.Text));
 
                         int filasAfectadas = cmdModificar.ExecuteNonQuery();
 
@@ -237,7 +240,7 @@ namespace Gestion
         }
 
         //eliminar administrador
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnEliminar_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtIdAdministradores.Text))
             {
@@ -260,7 +263,5 @@ namespace Gestion
             }
         }
 
-      
-        
     }
 }
