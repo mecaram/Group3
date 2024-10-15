@@ -34,20 +34,20 @@
             lblIdCompra = new Label();
             lblIdProducto = new Label();
             lblIdProveedor = new Label();
-            lblFechaDeCompra = new Label();
-            lblPrecioFinal = new Label();
+            lblPrecioCompra = new Label();
             lblCantidadDeCompra = new Label();
             lblIdCierre = new Label();
             txtIdCompra = new TextBox();
-            txtIdProducto = new TextBox();
-            txtIdProveedor = new TextBox();
-            txtFechaDeCompra = new TextBox();
-            txtPrecioFinal = new TextBox();
+            txtPrecioCompra = new TextBox();
             txtCantidadDeCompra = new TextBox();
             txtIdCierre = new TextBox();
-            textBox1 = new TextBox();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            txtBuscador = new TextBox();
+            gridCompras = new DataGridView();
+            cboIdProducto = new ComboBox();
+            cboIdProveedor = new ComboBox();
+            dateTimePicker1 = new DateTimePicker();
+            txtFechaCompra = new Label();
+            ((System.ComponentModel.ISupportInitialize)gridCompras).BeginInit();
             SuspendLayout();
             // 
             // btnModificar
@@ -58,6 +58,7 @@
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar\r\n";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnEliminar
             // 
@@ -67,6 +68,7 @@
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAgregar
             // 
@@ -76,6 +78,7 @@
             btnAgregar.TabIndex = 2;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // lblIdCompra
             // 
@@ -104,23 +107,14 @@
             lblIdProveedor.TabIndex = 5;
             lblIdProveedor.Text = "Id Proveedor:";
             // 
-            // lblFechaDeCompra
+            // lblPrecioCompra
             // 
-            lblFechaDeCompra.AutoSize = true;
-            lblFechaDeCompra.Location = new Point(37, 200);
-            lblFechaDeCompra.Name = "lblFechaDeCompra";
-            lblFechaDeCompra.Size = new Size(128, 20);
-            lblFechaDeCompra.TabIndex = 6;
-            lblFechaDeCompra.Text = "Fecha de Compra:";
-            // 
-            // lblPrecioFinal
-            // 
-            lblPrecioFinal.AutoSize = true;
-            lblPrecioFinal.Location = new Point(37, 249);
-            lblPrecioFinal.Name = "lblPrecioFinal";
-            lblPrecioFinal.Size = new Size(88, 20);
-            lblPrecioFinal.TabIndex = 7;
-            lblPrecioFinal.Text = "Precio Final:";
+            lblPrecioCompra.AutoSize = true;
+            lblPrecioCompra.Location = new Point(37, 249);
+            lblPrecioCompra.Name = "lblPrecioCompra";
+            lblPrecioCompra.Size = new Size(110, 20);
+            lblPrecioCompra.TabIndex = 7;
+            lblPrecioCompra.Text = "Precio Compra:";
             // 
             // lblCantidadDeCompra
             // 
@@ -134,7 +128,7 @@
             // lblIdCierre
             // 
             lblIdCierre.AutoSize = true;
-            lblIdCierre.Location = new Point(37, 366);
+            lblIdCierre.Location = new Point(37, 192);
             lblIdCierre.Name = "lblIdCierre";
             lblIdCierre.Size = new Size(68, 20);
             lblIdCierre.TabIndex = 9;
@@ -146,83 +140,102 @@
             txtIdCompra.Name = "txtIdCompra";
             txtIdCompra.Size = new Size(125, 27);
             txtIdCompra.TabIndex = 10;
+            txtIdCompra.TextChanged += txtIdCompra_TextChanged;
             // 
-            // txtIdProducto
+            // txtPrecioCompra
             // 
-            txtIdProducto.Location = new Point(132, 80);
-            txtIdProducto.Name = "txtIdProducto";
-            txtIdProducto.Size = new Size(125, 27);
-            txtIdProducto.TabIndex = 11;
-            // 
-            // txtIdProveedor
-            // 
-            txtIdProveedor.Location = new Point(139, 136);
-            txtIdProveedor.Name = "txtIdProveedor";
-            txtIdProveedor.Size = new Size(125, 27);
-            txtIdProveedor.TabIndex = 12;
-            // 
-            // txtFechaDeCompra
-            // 
-            txtFechaDeCompra.Location = new Point(171, 193);
-            txtFechaDeCompra.Name = "txtFechaDeCompra";
-            txtFechaDeCompra.Size = new Size(125, 27);
-            txtFechaDeCompra.TabIndex = 13;
-            // 
-            // txtPrecioFinal
-            // 
-            txtPrecioFinal.Location = new Point(132, 249);
-            txtPrecioFinal.Name = "txtPrecioFinal";
-            txtPrecioFinal.Size = new Size(125, 27);
-            txtPrecioFinal.TabIndex = 14;
+            txtPrecioCompra.Location = new Point(153, 246);
+            txtPrecioCompra.Name = "txtPrecioCompra";
+            txtPrecioCompra.Size = new Size(125, 27);
+            txtPrecioCompra.TabIndex = 14;
+            txtPrecioCompra.TextChanged += txtPrecioCompra_TextChanged;
             // 
             // txtCantidadDeCompra
             // 
-            txtCantidadDeCompra.Location = new Point(190, 306);
+            txtCantidadDeCompra.Location = new Point(193, 307);
             txtCantidadDeCompra.Name = "txtCantidadDeCompra";
             txtCantidadDeCompra.Size = new Size(125, 27);
             txtCantidadDeCompra.TabIndex = 15;
+            txtCantidadDeCompra.TextChanged += txtCantidadDeCompra_TextChanged;
             // 
             // txtIdCierre
             // 
-            txtIdCierre.Location = new Point(111, 366);
+            txtIdCierre.Location = new Point(111, 189);
             txtIdCierre.Name = "txtIdCierre";
             txtIdCierre.Size = new Size(125, 27);
             txtIdCierre.TabIndex = 16;
+            txtIdCierre.TextChanged += txtIdCierre_TextChanged;
             // 
-            // textBox1
+            // txtBuscador
             // 
-            textBox1.Location = new Point(445, 80);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(430, 27);
-            textBox1.TabIndex = 17;
+            txtBuscador.Location = new Point(467, 83);
+            txtBuscador.Name = "txtBuscador";
+            txtBuscador.Size = new Size(432, 27);
+            txtBuscador.TabIndex = 17;
+            txtBuscador.TextChanged += txtBuscador_TextChanged;
             // 
-            // dataGridView1
+            // gridCompras
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(447, 122);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(432, 271);
-            dataGridView1.TabIndex = 18;
+            gridCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridCompras.Location = new Point(467, 155);
+            gridCompras.Name = "gridCompras";
+            gridCompras.RowHeadersWidth = 51;
+            gridCompras.Size = new Size(432, 271);
+            gridCompras.TabIndex = 18;
+            gridCompras.SelectionChanged += gridCompras_SelectionChanged;
+            // 
+            // cboIdProducto
+            // 
+            cboIdProducto.FormattingEnabled = true;
+            cboIdProducto.Location = new Point(144, 82);
+            cboIdProducto.Name = "cboIdProducto";
+            cboIdProducto.Size = new Size(151, 28);
+            cboIdProducto.TabIndex = 19;
+            cboIdProducto.SelectedIndexChanged += cboIdProducto_SelectedIndexChanged;
+            // 
+            // cboIdProveedor
+            // 
+            cboIdProveedor.FormattingEnabled = true;
+            cboIdProveedor.Location = new Point(144, 140);
+            cboIdProveedor.Name = "cboIdProveedor";
+            cboIdProveedor.Size = new Size(151, 28);
+            cboIdProveedor.TabIndex = 20;
+            cboIdProveedor.SelectedIndexChanged += cboIdProveedor_SelectedIndexChanged;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(171, 366);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(281, 27);
+            dateTimePicker1.TabIndex = 21;
+            // 
+            // txtFechaCompra
+            // 
+            txtFechaCompra.AutoSize = true;
+            txtFechaCompra.Location = new Point(37, 366);
+            txtFechaCompra.Name = "txtFechaCompra";
+            txtFechaCompra.Size = new Size(128, 20);
+            txtFechaCompra.TabIndex = 22;
+            txtFechaCompra.Text = "Fecha de Compra:";
             // 
             // Compras
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(942, 509);
-            Controls.Add(dataGridView1);
-            Controls.Add(textBox1);
+            Controls.Add(txtFechaCompra);
+            Controls.Add(dateTimePicker1);
+            Controls.Add(cboIdProveedor);
+            Controls.Add(cboIdProducto);
+            Controls.Add(gridCompras);
+            Controls.Add(txtBuscador);
             Controls.Add(txtIdCierre);
             Controls.Add(txtCantidadDeCompra);
-            Controls.Add(txtPrecioFinal);
-            Controls.Add(txtFechaDeCompra);
-            Controls.Add(txtIdProveedor);
-            Controls.Add(txtIdProducto);
+            Controls.Add(txtPrecioCompra);
             Controls.Add(txtIdCompra);
             Controls.Add(lblIdCierre);
             Controls.Add(lblCantidadDeCompra);
-            Controls.Add(lblPrecioFinal);
-            Controls.Add(lblFechaDeCompra);
+            Controls.Add(lblPrecioCompra);
             Controls.Add(lblIdProveedor);
             Controls.Add(lblIdProducto);
             Controls.Add(lblIdCompra);
@@ -231,7 +244,8 @@
             Controls.Add(btnModificar);
             Name = "Compras";
             Text = "Compras";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += Compras_Load;
+            ((System.ComponentModel.ISupportInitialize)gridCompras).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -245,17 +259,18 @@
         private Label lblIdProducto;
         private Label lblIdProveedor;
         private Label lblFechaDeCompra;
-        private Label lblPrecioFinal;
+        private Label lblPrecioCompra;
         private Label lblCantidadDeCompra;
         private Label lblIdCierre;
         private TextBox txtIdCompra;
-        private TextBox txtIdProducto;
-        private TextBox txtIdProveedor;
-        private TextBox txtFechaDeCompra;
-        private TextBox txtPrecioFinal;
+        private TextBox txtPrecioCompra;
         private TextBox txtCantidadDeCompra;
         private TextBox txtIdCierre;
-        private TextBox textBox1;
-        private DataGridView dataGridView1;
+        private TextBox txtBuscador;
+        private DataGridView gridCompras;
+        private ComboBox cboIdProducto;
+        private ComboBox cboIdProveedor;
+        private DateTimePicker dateTimePicker1;
+        private Label txtFechaCompra;
     }
 }
