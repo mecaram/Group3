@@ -47,6 +47,7 @@
             cboIdProveedor = new ComboBox();
             dateTimePicker1 = new DateTimePicker();
             txtFechaCompra = new Label();
+            btnLimpiar = new Button();
             ((System.ComponentModel.ISupportInitialize)gridCompras).BeginInit();
             SuspendLayout();
             // 
@@ -218,11 +219,22 @@
             txtFechaCompra.TabIndex = 22;
             txtFechaCompra.Text = "Fecha de Compra:";
             // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Location = new Point(393, 450);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(94, 29);
+            btnLimpiar.TabIndex = 23;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
+            // 
             // Compras
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(942, 509);
+            Controls.Add(btnLimpiar);
             Controls.Add(txtFechaCompra);
             Controls.Add(dateTimePicker1);
             Controls.Add(cboIdProveedor);
@@ -272,5 +284,6 @@
         private ComboBox cboIdProveedor;
         private DateTimePicker dateTimePicker1;
         private Label txtFechaCompra;
+        private Button btnLimpiar;
     }
 }

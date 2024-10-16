@@ -21,8 +21,11 @@ namespace Gestion
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
-                MySqlDataAdapter daCompras = new MySqlDataAdapter("Select id_compra, id_producto, id_proveedor, fecha_compra, precio_total, cantidad_compra FROM compras",
-                    conexion);
+                MySqlDataAdapter daCompras = new MySqlDataAdapter("Select c.id_compra, c.id_producto, productos.nombre as producto, " +
+                    "                                              c.id_proveedor, proveedores.razon_social, c.fecha_compra, c.precio_total, " +
+                    "                                              c.cantidad_compra From compras c " +
+                    "Left Join productos on c.id_producto = productos.id_producto " +
+                    "Left join proveedores on c.id_proveedor = proveedores.id_proveedor order by c.id_compra desc", conexion);
 
                 DataTable dtCompras = new DataTable();
                 daCompras.Fill(dtCompras);
@@ -53,10 +56,10 @@ namespace Gestion
 
         private void CargarProveedor()
         {
-            using (MySqlConnection conxion  = new MySqlConnection (conexionBD))
+            using (MySqlConnection conxion = new MySqlConnection(conexionBD))
             {
                 conxion.Open();
-                MySqlDataAdapter daProveedor = new MySqlDataAdapter ("Select * From Proveedores Order By razon_social", conxion);
+                MySqlDataAdapter daProveedor = new MySqlDataAdapter("Select * From Proveedores Order By razon_social", conxion);
                 DataTable dtProveedor = new DataTable();
                 var registros = daProveedor.Fill(dtProveedor);
                 if (registros > 0)
@@ -66,7 +69,7 @@ namespace Gestion
                     cboIdProveedor.DisplayMember = "razon_social";
                 }
                 else
-                    cboIdProveedor.DataSource= null;    
+                    cboIdProveedor.DataSource = null;
             }
         }
 
@@ -77,6 +80,7 @@ namespace Gestion
             //desactivamos los textbox
             txtIdCompra.Enabled = false;
             txtIdCierre.Enabled = false;
+            dateTimePicker1.Enabled = false;
 
             CargarProveedor();
             CargarProductos();
@@ -176,8 +180,14 @@ namespace Gestion
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
-                string query = "SELECT id_compra, id_producto, id_proveedor, fecha_compra, precio_total, cantidad_compra " +
-                               "FROM compras WHERE id_compra LIKE @filtro OR id_producto LIKE @filtro";
+                string query = "Select c.id_compra, c.id_producto, productos.nombre as producto," +
+                               "       c.id_proveedor, proveedores.razon_social, c.fecha_compra," +
+                               "       c.precio_total, c.cantidad_compra " +
+                               "From compras c" +
+                               "Left Join productos on c.id_producto = productos.id_producto " +
+                               "Left join proveedores on c.id_proveedor = proveedores.id_proveedor" +
+                               "Where id_compra LIKE " +
+                               "      OR id_producto LIKE @filtro";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conexion))
                 {
@@ -222,6 +232,9 @@ namespace Gestion
         private void txtCantidadDeCompra_TextChanged(object sender, EventArgs e) { }
         private void txtIdCierre_TextChanged(object sender, EventArgs e) { }
 
-        
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
     }
 }
