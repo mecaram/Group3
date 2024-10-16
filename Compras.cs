@@ -21,8 +21,7 @@ namespace Gestion
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
-                MySqlDataAdapter daCompras = new MySqlDataAdapter(
-                    "SELECT id_compra, id_producto, id_proveedor, fecha_compra, precio_total, cantidad_compra FROM compras",
+                MySqlDataAdapter daCompras = new MySqlDataAdapter("Select id_compra, id_producto, id_proveedor, fecha_compra, precio_total, cantidad_compra FROM compras",
                     conexion);
 
                 DataTable dtCompras = new DataTable();
@@ -32,6 +31,46 @@ namespace Gestion
             }
         }
 
+        private void CargarProductos()
+        {
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                conexion.Open();
+                MySqlDataAdapter daProductos = new MySqlDataAdapter("Select * From Productos Order By Nombre", conexion);
+                DataTable dtProductos = new DataTable();
+                var registros = daProductos.Fill(dtProductos);
+                if (registros > 0)
+                {
+                    cboIdProducto.DataSource = dtProductos;
+                    cboIdProducto.ValueMember = "Id_Producto";
+                    cboIdProducto.DisplayMember = "Nombre";
+                }
+                else
+                    cboIdProducto.DataSource = null;
+            }
+
+        }
+
+        private void CargarProveedor()
+        {
+            using (MySqlConnection conxion  = new MySqlConnection (conexionBD))
+            {
+                conxion.Open();
+                MySqlDataAdapter daProveedor = new MySqlDataAdapter ("Select * From Proveedores Order By razon_social", conxion);
+                DataTable dtProveedor = new DataTable();
+                var registros = daProveedor.Fill(dtProveedor);
+                if (registros > 0)
+                {
+                    cboIdProveedor.DataSource = dtProveedor;
+                    cboIdProveedor.ValueMember = "Id_Proveedor";
+                    cboIdProveedor.DisplayMember = "razon_social";
+                }
+                else
+                    cboIdProveedor.DataSource= null;    
+            }
+        }
+
+
         // Método que se ejecuta cuando el formulario carga
         private void Compras_Load(object sender, EventArgs e)
         {
@@ -39,8 +78,8 @@ namespace Gestion
             txtIdCompra.Enabled = false;
             txtIdCierre.Enabled = false;
 
-
-
+            CargarProveedor();
+            CargarProductos();
             CargarCompras();
         }
 
