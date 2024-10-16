@@ -110,6 +110,7 @@
             btnCargarProducto.TabIndex = 21;
             btnCargarProducto.Text = "Cargar";
             btnCargarProducto.UseVisualStyleBackColor = true;
+            btnCargarProducto.Click += btnCargarProducto_Click_1;
             // 
             // lblNombre
             // 

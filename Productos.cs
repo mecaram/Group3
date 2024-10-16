@@ -23,7 +23,8 @@ namespace Gestion
 
             // Deshabilitar el campo de ID
             txtIdProducto.Enabled = false;
-
+            txtStockActualProducto.Enabled = false;
+            txtPrecioDeVentaProducto.Enabled = false;
             // Cargar datos iniciales
             CargarCombos();
             CargarProductos();
@@ -103,26 +104,47 @@ namespace Gestion
         }
 
         // Evento para el botón Cargar Producto
-        private void btnCargarProducto_Click(object sender, EventArgs e)
+        private void btnCargarProducto_Click_1(object sender, EventArgs e)
         {
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
 
                 string insertProducto = @"INSERT INTO productos 
-                                          (nombre, id_marca, id_rubro, id_proveedor, stock_actual, stock_minimo, precio_costo, precio_ganancia, precio_venta)
-                                          VALUES (@nombre, @id_marca, @id_rubro, @id_proveedor, @stock_actual, @stock_minimo, @precio_costo, @precio_ganancia, @precio_venta)";
+                                          (nombre, id_marca, id_rubro, id_proveedor, stock_actual, stock_minimo, precio_de_costo, precio_ganancia, precio_venta)
+                                          VALUES (@nombre, @id_marca, @id_rubro, @id_proveedor, @stock_actual, @stock_minimo, @precio_de_costo, @precio_ganancia, @precio_venta)";
 
                 MySqlCommand cmd = new MySqlCommand(insertProducto, conexion);
                 cmd.Parameters.AddWithValue("@nombre", txtNombreProducto.Text);
                 cmd.Parameters.AddWithValue("@id_marca", cboMarca.SelectedValue);
                 cmd.Parameters.AddWithValue("@id_rubro", cboRubro.SelectedValue);
                 cmd.Parameters.AddWithValue("@id_proveedor", cboProveedor.SelectedValue);
-                cmd.Parameters.AddWithValue("@stock_actual", txtStockActualProducto.Text);
-                cmd.Parameters.AddWithValue("@stock_minimo", txtStockMinimoProducto.Text);
-                cmd.Parameters.AddWithValue("@precio_costo", txtPrecioDeCostoProducto.Text);
-                cmd.Parameters.AddWithValue("@precio_ganancia", txtPorcentajeGananciaProducto.Text);
-                cmd.Parameters.AddWithValue("@precio_venta", txtPrecioDeVentaProducto.Text);
+
+                if (txtStockActualProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@stock_actual", Convert.ToDouble(txtStockActualProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("@stock_actual",0);
+
+                if (txtStockMinimoProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@stock_minimo", Convert.ToDouble(txtStockMinimoProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("@stock_minimo", 0);
+
+                if (txtPrecioDeCostoProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@precio_de_costo", Convert.ToDouble(txtPrecioDeCostoProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("precio_de_costo", 0);
+
+                if (txtPorcentajeGananciaProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@precio_ganancia", Convert.ToDouble(txtPorcentajeGananciaProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("@precio_ganancia", 0);
+
+                if (txtPrecioDeVentaProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@precio_venta", Convert.ToDouble(txtPrecioDeVentaProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("@precio_venta", 0);
+
 
                 int filasAfectadas = cmd.ExecuteNonQuery();
 
@@ -217,6 +239,9 @@ namespace Gestion
                 }
             }
         }
+
+        
+        
 
         
     }
