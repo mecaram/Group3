@@ -232,9 +232,13 @@ namespace Gestion
         private void txtCantidadDeCompra_TextChanged(object sender, EventArgs e) { }
         private void txtIdCierre_TextChanged(object sender, EventArgs e) { }
 
+<<<<<<< HEAD
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
         }
+=======
+      
+>>>>>>> avm diseñados
     }
 }

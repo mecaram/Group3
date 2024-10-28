@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             btnModificar = new Button();
             btnEliminar = new Button();
             btngAgregar = new Button();
@@ -48,132 +53,188 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(31, 406);
+            btnModificar.BackColor = Color.Silver;
+            btnModificar.Location = new Point(31, 365);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(94, 29);
+            btnModificar.Size = new Size(94, 26);
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar";
-            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.UseVisualStyleBackColor = false;
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(136, 406);
+            btnEliminar.BackColor = Color.Silver;
+            btnEliminar.Location = new Point(136, 365);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.Size = new Size(94, 26);
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.UseVisualStyleBackColor = false;
             // 
             // btngAgregar
             // 
-            btngAgregar.Location = new Point(236, 406);
+            btngAgregar.BackColor = Color.Silver;
+            btngAgregar.Location = new Point(236, 365);
             btngAgregar.Name = "btngAgregar";
-            btngAgregar.Size = new Size(94, 29);
+            btngAgregar.Size = new Size(94, 26);
             btngAgregar.TabIndex = 2;
             btngAgregar.Text = "Agregar";
-            btngAgregar.UseVisualStyleBackColor = true;
+            btngAgregar.UseVisualStyleBackColor = false;
             // 
             // dataGridView1
             // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.BackgroundColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(394, 113);
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridView1.Location = new Point(394, 102);
             dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(511, 276);
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridView1.Size = new Size(511, 248);
             dataGridView1.TabIndex = 3;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(394, 51);
+            textBox1.BackColor = Color.Silver;
+            textBox1.Location = new Point(394, 46);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(511, 27);
+            textBox1.Size = new Size(511, 26);
             textBox1.TabIndex = 4;
             // 
             // lblIdVenta
             // 
             lblIdVenta.AutoSize = true;
-            lblIdVenta.Location = new Point(37, 69);
+            lblIdVenta.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblIdVenta.Location = new Point(81, 65);
             lblIdVenta.Name = "lblIdVenta";
-            lblIdVenta.Size = new Size(66, 20);
+            lblIdVenta.Size = new Size(64, 18);
             lblIdVenta.TabIndex = 5;
             lblIdVenta.Text = "Id Venta:";
             // 
             // lblIdProducto
             // 
             lblIdProducto.AutoSize = true;
-            lblIdProducto.Location = new Point(37, 136);
+            lblIdProducto.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblIdProducto.Location = new Point(58, 120);
             lblIdProducto.Name = "lblIdProducto";
-            lblIdProducto.Size = new Size(89, 20);
+            lblIdProducto.Size = new Size(86, 18);
             lblIdProducto.TabIndex = 6;
             lblIdProducto.Text = "Id Producto:";
             // 
             // lblPrecioUnitario
             // 
             lblPrecioUnitario.AutoSize = true;
-            lblPrecioUnitario.Location = new Point(37, 200);
+            lblPrecioUnitario.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrecioUnitario.Location = new Point(37, 180);
             lblPrecioUnitario.Name = "lblPrecioUnitario";
-            lblPrecioUnitario.Size = new Size(110, 20);
+            lblPrecioUnitario.Size = new Size(110, 18);
             lblPrecioUnitario.TabIndex = 7;
             lblPrecioUnitario.Text = "Precio Unitario:";
             // 
             // lblCantidad
             // 
             lblCantidad.AutoSize = true;
-            lblCantidad.Location = new Point(36, 260);
+            lblCantidad.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCantidad.Location = new Point(75, 234);
             lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new Size(72, 20);
+            lblCantidad.Size = new Size(69, 18);
             lblCantidad.TabIndex = 8;
             lblCantidad.Text = "Cantidad:";
             // 
             // lblSubTotal
             // 
             lblSubTotal.AutoSize = true;
-            lblSubTotal.Location = new Point(36, 325);
+            lblSubTotal.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSubTotal.Location = new Point(75, 286);
             lblSubTotal.Name = "lblSubTotal";
-            lblSubTotal.Size = new Size(71, 20);
+            lblSubTotal.Size = new Size(70, 18);
             lblSubTotal.TabIndex = 9;
-            lblSubTotal.Text = "SubTotal ";
+            lblSubTotal.Text = "SubTotal :";
             // 
             // txtIdVenta
             // 
-            txtIdVenta.Location = new Point(109, 62);
+            txtIdVenta.BackColor = Color.Silver;
+            txtIdVenta.Location = new Point(153, 62);
             txtIdVenta.Name = "txtIdVenta";
-            txtIdVenta.Size = new Size(125, 27);
+            txtIdVenta.Size = new Size(125, 26);
             txtIdVenta.TabIndex = 10;
             // 
             // txtIdProducto
             // 
-            txtIdProducto.Location = new Point(132, 129);
+            txtIdProducto.BackColor = Color.Silver;
+            txtIdProducto.Location = new Point(153, 120);
             txtIdProducto.Name = "txtIdProducto";
-            txtIdProducto.Size = new Size(125, 27);
+            txtIdProducto.Size = new Size(125, 26);
             txtIdProducto.TabIndex = 11;
             // 
             // txtPrecioUnitario
             // 
-            txtPrecioUnitario.Location = new Point(153, 193);
+            txtPrecioUnitario.BackColor = Color.Silver;
+            txtPrecioUnitario.Location = new Point(153, 174);
             txtPrecioUnitario.Name = "txtPrecioUnitario";
-            txtPrecioUnitario.Size = new Size(125, 27);
+            txtPrecioUnitario.Size = new Size(125, 26);
             txtPrecioUnitario.TabIndex = 12;
             // 
             // txtCantidad
             // 
-            txtCantidad.Location = new Point(114, 260);
+            txtCantidad.BackColor = Color.Silver;
+            txtCantidad.Location = new Point(153, 234);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new Size(125, 27);
+            txtCantidad.Size = new Size(125, 26);
             txtCantidad.TabIndex = 13;
             // 
             // txtSubTotal
             // 
-            txtSubTotal.Location = new Point(114, 318);
+            txtSubTotal.BackColor = Color.Silver;
+            txtSubTotal.Location = new Point(153, 286);
             txtSubTotal.Name = "txtSubTotal";
-            txtSubTotal.Size = new Size(125, 27);
+            txtSubTotal.Size = new Size(125, 26);
             txtSubTotal.TabIndex = 14;
             // 
             // DetallesDeVentas
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(954, 468);
+            BackColor = SystemColors.ControlDarkDark;
+            ClientSize = new Size(954, 421);
             Controls.Add(txtSubTotal);
             Controls.Add(txtCantidad);
             Controls.Add(txtPrecioUnitario);
@@ -189,6 +250,7 @@
             Controls.Add(btngAgregar);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
+            Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Name = "DetallesDeVentas";
             Text = "DetallesDeVentas";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
