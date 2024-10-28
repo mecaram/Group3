@@ -67,6 +67,7 @@
             gridProductos.RowHeadersWidth = 51;
             gridProductos.Size = new Size(569, 307);
             gridProductos.TabIndex = 29;
+            gridProductos.SelectionChanged += gridProductos_SelectionChanged_1;
             // 
             // txtBuscarProductos
             // 
@@ -200,6 +201,7 @@
             txtPrecioDeCostoProducto.Name = "txtPrecioDeCostoProducto";
             txtPrecioDeCostoProducto.Size = new Size(114, 27);
             txtPrecioDeCostoProducto.TabIndex = 33;
+            txtPrecioDeCostoProducto.Leave += txtPrecioDeCostoProducto_Leave;
             // 
             // txtPorcentajeGananciaProducto
             // 
@@ -208,6 +210,7 @@
             txtPorcentajeGananciaProducto.Name = "txtPorcentajeGananciaProducto";
             txtPorcentajeGananciaProducto.Size = new Size(114, 27);
             txtPorcentajeGananciaProducto.TabIndex = 34;
+            txtPorcentajeGananciaProducto.Leave += txtPorcentajeGananciaProducto_Leave;
             // 
             // txtPrecioDeVentaProducto
             // 
@@ -226,6 +229,7 @@
             btnEliminarProducto.TabIndex = 36;
             btnEliminarProducto.Text = "Eliminar";
             btnEliminarProducto.UseVisualStyleBackColor = true;
+            btnEliminarProducto.Click += btnEliminarProducto_Click_1;
             // 
             // label7
             // 
