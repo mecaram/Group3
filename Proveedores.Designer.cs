@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             gridProveedor = new DataGridView();
             txtBuscarProveedor = new TextBox();
             txtDireccionProveedor = new TextBox();
@@ -51,163 +56,245 @@
             // 
             // gridProveedor
             // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            gridProveedor.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            gridProveedor.BackgroundColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            gridProveedor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             gridProveedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridProveedor.Location = new Point(273, 130);
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            gridProveedor.DefaultCellStyle = dataGridViewCellStyle3;
+            gridProveedor.Location = new Point(312, 120);
+            gridProveedor.Margin = new Padding(3, 4, 3, 4);
             gridProveedor.Name = "gridProveedor";
-            gridProveedor.Size = new Size(498, 230);
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            gridProveedor.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            gridProveedor.RowHeadersWidth = 51;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Bahnschrift SemiBold SemiConden", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            gridProveedor.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            gridProveedor.Size = new Size(569, 307);
             gridProveedor.TabIndex = 29;
             gridProveedor.CellClick += gridProveedor_CellClick;
             // 
             // txtBuscarProveedor
             // 
-            txtBuscarProveedor.Location = new Point(271, 90);
+            txtBuscarProveedor.BackColor = Color.Silver;
+            txtBuscarProveedor.Location = new Point(310, 56);
+            txtBuscarProveedor.Margin = new Padding(3, 4, 3, 4);
             txtBuscarProveedor.Name = "txtBuscarProveedor";
-            txtBuscarProveedor.Size = new Size(500, 23);
+            txtBuscarProveedor.Size = new Size(571, 27);
             txtBuscarProveedor.TabIndex = 28;
             txtBuscarProveedor.TextChanged += txtBuscarProveedor_TextChanged_1;
             // 
             // txtDireccionProveedor
             // 
-            txtDireccionProveedor.Location = new Point(92, 189);
+            txtDireccionProveedor.BackColor = Color.Silver;
+            txtDireccionProveedor.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtDireccionProveedor.Location = new Point(117, 298);
+            txtDireccionProveedor.Margin = new Padding(3, 4, 3, 4);
             txtDireccionProveedor.Name = "txtDireccionProveedor";
-            txtDireccionProveedor.Size = new Size(100, 23);
+            txtDireccionProveedor.Size = new Size(114, 26);
             txtDireccionProveedor.TabIndex = 27;
             // 
             // txtTelefonoProveedor
             // 
-            txtTelefonoProveedor.Location = new Point(92, 151);
+            txtTelefonoProveedor.BackColor = Color.Silver;
+            txtTelefonoProveedor.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtTelefonoProveedor.Location = new Point(117, 250);
+            txtTelefonoProveedor.Margin = new Padding(3, 4, 3, 4);
             txtTelefonoProveedor.Name = "txtTelefonoProveedor";
-            txtTelefonoProveedor.Size = new Size(100, 23);
+            txtTelefonoProveedor.Size = new Size(114, 26);
             txtTelefonoProveedor.TabIndex = 26;
             // 
             // txtCuitProveedor
             // 
-            txtCuitProveedor.Location = new Point(92, 92);
+            txtCuitProveedor.BackColor = Color.Silver;
+            txtCuitProveedor.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtCuitProveedor.Location = new Point(117, 150);
+            txtCuitProveedor.Margin = new Padding(3, 4, 3, 4);
             txtCuitProveedor.Name = "txtCuitProveedor";
-            txtCuitProveedor.Size = new Size(100, 23);
+            txtCuitProveedor.Size = new Size(114, 26);
             txtCuitProveedor.TabIndex = 24;
             // 
             // txtRazonSocialProveedor
             // 
-            txtRazonSocialProveedor.Location = new Point(92, 65);
+            txtRazonSocialProveedor.BackColor = Color.Silver;
+            txtRazonSocialProveedor.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtRazonSocialProveedor.Location = new Point(117, 103);
+            txtRazonSocialProveedor.Margin = new Padding(3, 4, 3, 4);
             txtRazonSocialProveedor.Name = "txtRazonSocialProveedor";
-            txtRazonSocialProveedor.Size = new Size(100, 23);
+            txtRazonSocialProveedor.Size = new Size(114, 26);
             txtRazonSocialProveedor.TabIndex = 23;
             // 
             // txtIdProveedor
             // 
-            txtIdProveedor.Location = new Point(92, 36);
+            txtIdProveedor.BackColor = Color.Silver;
+            txtIdProveedor.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtIdProveedor.Location = new Point(117, 52);
+            txtIdProveedor.Margin = new Padding(3, 4, 3, 4);
             txtIdProveedor.Name = "txtIdProveedor";
-            txtIdProveedor.Size = new Size(100, 23);
+            txtIdProveedor.Size = new Size(114, 26);
             txtIdProveedor.TabIndex = 22;
             // 
             // btnCargarProveedor
             // 
-            btnCargarProveedor.Location = new Point(12, 315);
+            btnCargarProveedor.BackColor = Color.Silver;
+            btnCargarProveedor.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCargarProveedor.Location = new Point(14, 420);
+            btnCargarProveedor.Margin = new Padding(3, 4, 3, 4);
             btnCargarProveedor.Name = "btnCargarProveedor";
-            btnCargarProveedor.Size = new Size(75, 23);
+            btnCargarProveedor.Size = new Size(86, 31);
             btnCargarProveedor.TabIndex = 21;
             btnCargarProveedor.Text = "Cargar";
-            btnCargarProveedor.UseVisualStyleBackColor = true;
+            btnCargarProveedor.UseVisualStyleBackColor = false;
             btnCargarProveedor.Click += btnCargarProveedor_Click_1;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(15, 68);
+            label6.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(14, 103);
             label6.Name = "label6";
-            label6.Size = new Size(73, 15);
+            label6.Size = new Size(96, 18);
             label6.TabIndex = 20;
-            label6.Text = "Razon Social";
+            label6.Text = "Razon Social:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(31, 96);
+            label5.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(67, 153);
             label5.Name = "label5";
-            label5.Size = new Size(32, 15);
+            label5.Size = new Size(41, 18);
             label5.TabIndex = 19;
-            label5.Text = "CUIT";
+            label5.Text = "CUIT:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(31, 125);
+            label4.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(51, 200);
             label4.Name = "label4";
-            label4.Size = new Size(45, 15);
+            label4.Size = new Size(56, 18);
             label4.TabIndex = 18;
-            label4.Text = "Ciudad";
+            label4.Text = "Ciudad:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(31, 156);
+            label3.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(40, 250);
             label3.Name = "label3";
-            label3.Size = new Size(52, 15);
+            label3.Size = new Size(66, 18);
             label3.TabIndex = 17;
-            label3.Text = "Telefono";
+            label3.Text = "Telefono:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(31, 190);
+            label2.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(35, 298);
             label2.Name = "label2";
-            label2.Size = new Size(57, 15);
+            label2.Size = new Size(73, 18);
             label2.TabIndex = 16;
-            label2.Text = "Direccion";
+            label2.Text = "Direccion:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(56, 39);
+            label1.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(78, 56);
             label1.Name = "label1";
-            label1.Size = new Size(18, 15);
+            label1.Size = new Size(25, 18);
             label1.TabIndex = 15;
-            label1.Text = "ID";
+            label1.Text = "ID:";
             // 
             // txtEliminarProveedor
             // 
-            txtEliminarProveedor.Location = new Point(173, 315);
+            txtEliminarProveedor.BackColor = Color.Silver;
+            txtEliminarProveedor.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtEliminarProveedor.Location = new Point(198, 420);
+            txtEliminarProveedor.Margin = new Padding(3, 4, 3, 4);
             txtEliminarProveedor.Name = "txtEliminarProveedor";
-            txtEliminarProveedor.Size = new Size(75, 23);
+            txtEliminarProveedor.Size = new Size(86, 31);
             txtEliminarProveedor.TabIndex = 30;
             txtEliminarProveedor.Text = "Eliminar";
-            txtEliminarProveedor.UseVisualStyleBackColor = true;
+            txtEliminarProveedor.UseVisualStyleBackColor = false;
             txtEliminarProveedor.Click += txtEliminarProveedor_Click;
             // 
             // btnModificarProveedor
             // 
-            btnModificarProveedor.Location = new Point(92, 315);
+            btnModificarProveedor.BackColor = Color.Silver;
+            btnModificarProveedor.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificarProveedor.Location = new Point(105, 420);
+            btnModificarProveedor.Margin = new Padding(3, 4, 3, 4);
             btnModificarProveedor.Name = "btnModificarProveedor";
-            btnModificarProveedor.Size = new Size(75, 23);
+            btnModificarProveedor.Size = new Size(86, 31);
             btnModificarProveedor.TabIndex = 31;
             btnModificarProveedor.Text = "Modificar";
-            btnModificarProveedor.UseVisualStyleBackColor = true;
+            btnModificarProveedor.UseVisualStyleBackColor = false;
             btnModificarProveedor.Click += btnModificarProveedor_Click;
             // 
             // cboCiudades
             // 
+            cboCiudades.BackColor = Color.Silver;
+            cboCiudades.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cboCiudades.FormattingEnabled = true;
-            cboCiudades.Location = new Point(92, 122);
+            cboCiudades.Location = new Point(117, 200);
+            cboCiudades.Margin = new Padding(3, 4, 3, 4);
             cboCiudades.Name = "cboCiudades";
-            cboCiudades.Size = new Size(121, 23);
+            cboCiudades.Size = new Size(138, 26);
             cboCiudades.TabIndex = 32;
             // 
             // txtLimpiar
             // 
-            txtLimpiar.Location = new Point(92, 286);
+            txtLimpiar.BackColor = Color.Silver;
+            txtLimpiar.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtLimpiar.Location = new Point(105, 381);
+            txtLimpiar.Margin = new Padding(3, 4, 3, 4);
             txtLimpiar.Name = "txtLimpiar";
-            txtLimpiar.Size = new Size(75, 23);
+            txtLimpiar.Size = new Size(86, 31);
             txtLimpiar.TabIndex = 33;
             txtLimpiar.Text = "Limpiar";
-            txtLimpiar.UseVisualStyleBackColor = true;
+            txtLimpiar.UseVisualStyleBackColor = false;
             txtLimpiar.Click += txtLimpiar_Click;
             // 
             // Proveedores
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = SystemColors.ControlDarkDark;
+            ClientSize = new Size(914, 600);
             Controls.Add(txtLimpiar);
             Controls.Add(cboCiudades);
             Controls.Add(btnModificarProveedor);
@@ -226,6 +313,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Proveedores";
             Text = "Proveedores";
             Load += Proveedores_Load;

@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             lblIdRubro = new Label();
             lblNombre = new Label();
             txtIdRubro = new TextBox();
@@ -43,91 +48,146 @@
             // lblIdRubro
             // 
             lblIdRubro.AutoSize = true;
-            lblIdRubro.Location = new Point(32, 96);
+            lblIdRubro.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblIdRubro.Location = new Point(80, 130);
             lblIdRubro.Name = "lblIdRubro";
-            lblIdRubro.Size = new Size(69, 20);
+            lblIdRubro.Size = new Size(67, 18);
             lblIdRubro.TabIndex = 0;
             lblIdRubro.Text = "Id Rubro:\r\n";
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(32, 184);
+            lblNombre.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNombre.Location = new Point(80, 204);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(67, 20);
+            lblNombre.Size = new Size(65, 18);
             lblNombre.TabIndex = 1;
             lblNombre.Text = "Nombre:";
             // 
             // txtIdRubro
             // 
-            txtIdRubro.Location = new Point(107, 96);
+            txtIdRubro.BackColor = Color.Silver;
+            txtIdRubro.Location = new Point(163, 130);
             txtIdRubro.Name = "txtIdRubro";
-            txtIdRubro.Size = new Size(125, 27);
+            txtIdRubro.Size = new Size(125, 26);
             txtIdRubro.TabIndex = 2;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(107, 184);
+            txtNombre.BackColor = Color.Silver;
+            txtNombre.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtNombre.Location = new Point(163, 204);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(125, 27);
+            txtNombre.Size = new Size(125, 26);
             txtNombre.TabIndex = 3;
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(410, 93);
+            txtBuscar.BackColor = Color.Silver;
+            txtBuscar.Location = new Point(418, 84);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(374, 27);
+            txtBuscar.Size = new Size(446, 26);
             txtBuscar.TabIndex = 4;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(32, 386);
+            btnModificar.BackColor = Color.Silver;
+            btnModificar.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModificar.Location = new Point(32, 347);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(94, 29);
+            btnModificar.Size = new Size(94, 26);
             btnModificar.TabIndex = 6;
             btnModificar.Text = "Modificar";
-            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.UseVisualStyleBackColor = false;
             btnModificar.Click += btnModificar_Click;
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(142, 386);
+            btnEliminar.BackColor = Color.Silver;
+            btnEliminar.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEliminar.Location = new Point(142, 347);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.Size = new Size(94, 26);
             btnEliminar.TabIndex = 7;
             btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(254, 386);
+            btnAgregar.BackColor = Color.Silver;
+            btnAgregar.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregar.Location = new Point(254, 347);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(94, 29);
+            btnAgregar.Size = new Size(94, 26);
             btnAgregar.TabIndex = 8;
             btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.UseVisualStyleBackColor = false;
             btnAgregar.Click += btnAgregar_Click;
             // 
             // grdRubros
             // 
             grdRubros.AllowUserToAddRows = false;
             grdRubros.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            grdRubros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            grdRubros.BackgroundColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            grdRubros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             grdRubros.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grdRubros.Location = new Point(414, 158);
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            grdRubros.DefaultCellStyle = dataGridViewCellStyle3;
+            grdRubros.GridColor = Color.Gray;
+            grdRubros.Location = new Point(418, 130);
             grdRubros.Name = "grdRubros";
             grdRubros.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            grdRubros.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             grdRubros.RowHeadersWidth = 51;
-            grdRubros.Size = new Size(300, 188);
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.Black;
+            dataGridViewCellStyle5.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            grdRubros.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            grdRubros.Size = new Size(446, 204);
             grdRubros.TabIndex = 9;
             grdRubros.SelectionChanged += grdRubros_SelectionChanged;
             // 
             // Rubros
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(978, 499);
+            BackColor = SystemColors.ControlDarkDark;
+            ClientSize = new Size(978, 449);
             Controls.Add(grdRubros);
             Controls.Add(btnAgregar);
             Controls.Add(btnEliminar);
@@ -137,6 +197,7 @@
             Controls.Add(txtIdRubro);
             Controls.Add(lblNombre);
             Controls.Add(lblIdRubro);
+            Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Name = "Rubros";
             Text = "Rubros";
             Load += Rubros_Load;

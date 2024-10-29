@@ -20,14 +20,21 @@ namespace Gestion
             // Deshabilitar edición en la grilla y selección múltiple
             gridProductos.ReadOnly = true;
             gridProductos.MultiSelect = false;
+            gridProductos.CurrentCell = null; // Deshabilitar el resaltado de la fila actual
+
+            // Configurar para que al seleccionar una celda, se seleccione toda la fila
+            gridProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             // Deshabilitar el campo de ID
             txtIdProducto.Enabled = false;
+            txtStockActualProducto.Enabled = false;
+            txtPrecioDeVentaProducto.Enabled = false;
 
             // Cargar datos iniciales
             CargarCombos();
             CargarProductos();
         }
+
 
         // Método para cargar los datos en la grilla de productos
         private void CargarProductos()
@@ -82,7 +89,7 @@ namespace Gestion
         }
 
         // Evento para seleccionar un producto en la grilla
-        private void gridProductos_SelectionChanged(object sender, EventArgs e)
+        private void gridProductos_SelectionChanged_1(object sender, EventArgs e)
         {
             if (gridProductos.SelectedRows.Count > 0 && gridProductos.CurrentRow != null)
             {
@@ -91,7 +98,7 @@ namespace Gestion
                 txtNombreProducto.Text = gridProductos.CurrentRow.Cells["nombre"].Value.ToString();
                 txtStockActualProducto.Text = gridProductos.CurrentRow.Cells["stock_actual"].Value.ToString();
                 txtStockMinimoProducto.Text = gridProductos.CurrentRow.Cells["stock_minimo"].Value.ToString();
-                txtPrecioDeCostoProducto.Text = gridProductos.CurrentRow.Cells["precio_costo"].Value.ToString();
+                txtPrecioDeCostoProducto.Text = gridProductos.CurrentRow.Cells["precio_de_costo"].Value.ToString();
                 txtPorcentajeGananciaProducto.Text = gridProductos.CurrentRow.Cells["precio_ganancia"].Value.ToString();
                 txtPrecioDeVentaProducto.Text = gridProductos.CurrentRow.Cells["precio_venta"].Value.ToString();
 
@@ -103,26 +110,47 @@ namespace Gestion
         }
 
         // Evento para el botón Cargar Producto
-        private void btnCargarProducto_Click(object sender, EventArgs e)
+        private void btnCargarProducto_Click_1(object sender, EventArgs e)
         {
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
 
                 string insertProducto = @"INSERT INTO productos 
-                                          (nombre, id_marca, id_rubro, id_proveedor, stock_actual, stock_minimo, precio_costo, precio_ganancia, precio_venta)
-                                          VALUES (@nombre, @id_marca, @id_rubro, @id_proveedor, @stock_actual, @stock_minimo, @precio_costo, @precio_ganancia, @precio_venta)";
+                                          (nombre, id_marca, id_rubro, id_proveedor, stock_actual, stock_minimo, precio_de_costo, precio_ganancia, precio_venta)
+                                          VALUES (@nombre, @id_marca, @id_rubro, @id_proveedor, @stock_actual, @stock_minimo, @precio_de_costo, @precio_ganancia, @precio_venta)";
 
                 MySqlCommand cmd = new MySqlCommand(insertProducto, conexion);
                 cmd.Parameters.AddWithValue("@nombre", txtNombreProducto.Text);
                 cmd.Parameters.AddWithValue("@id_marca", cboMarca.SelectedValue);
                 cmd.Parameters.AddWithValue("@id_rubro", cboRubro.SelectedValue);
                 cmd.Parameters.AddWithValue("@id_proveedor", cboProveedor.SelectedValue);
-                cmd.Parameters.AddWithValue("@stock_actual", txtStockActualProducto.Text);
-                cmd.Parameters.AddWithValue("@stock_minimo", txtStockMinimoProducto.Text);
-                cmd.Parameters.AddWithValue("@precio_costo", txtPrecioDeCostoProducto.Text);
-                cmd.Parameters.AddWithValue("@precio_ganancia", txtPorcentajeGananciaProducto.Text);
-                cmd.Parameters.AddWithValue("@precio_venta", txtPrecioDeVentaProducto.Text);
+
+                if (txtStockActualProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@stock_actual", Convert.ToDouble(txtStockActualProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("@stock_actual", 0);
+
+                if (txtStockMinimoProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@stock_minimo", Convert.ToDouble(txtStockMinimoProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("@stock_minimo", 0);
+
+                if (txtPrecioDeCostoProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@precio_de_costo", Convert.ToDouble(txtPrecioDeCostoProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("precio_de_costo", 0);
+
+                if (txtPorcentajeGananciaProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@precio_ganancia", Convert.ToDouble(txtPorcentajeGananciaProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("@precio_ganancia", 0);
+
+                if (txtPrecioDeVentaProducto.Text.Length > 0)
+                    cmd.Parameters.AddWithValue("@precio_venta", Convert.ToDouble(txtPrecioDeVentaProducto.Text));
+                else
+                    cmd.Parameters.AddWithValue("@precio_venta", 0);
+
 
                 int filasAfectadas = cmd.ExecuteNonQuery();
 
@@ -154,7 +182,7 @@ namespace Gestion
                 string updateProducto = @"UPDATE productos 
                                           SET nombre = @nombre, id_marca = @id_marca, id_rubro = @id_rubro, 
                                               id_proveedor = @id_proveedor, stock_actual = @stock_actual, 
-                                              stock_minimo = @stock_minimo, precio_costo = @precio_costo, 
+                                              stock_minimo = @stock_minimo, precio_de_costo = @precio_de_costo, 
                                               precio_ganancia = @precio_ganancia, precio_venta = @precio_venta
                                           WHERE id_producto = @id_producto";
 
@@ -165,7 +193,7 @@ namespace Gestion
                 cmd.Parameters.AddWithValue("@id_proveedor", cboProveedor.SelectedValue);
                 cmd.Parameters.AddWithValue("@stock_actual", txtStockActualProducto.Text);
                 cmd.Parameters.AddWithValue("@stock_minimo", txtStockMinimoProducto.Text);
-                cmd.Parameters.AddWithValue("@precio_costo", txtPrecioDeCostoProducto.Text);
+                cmd.Parameters.AddWithValue("@precio_de_costo", txtPrecioDeCostoProducto.Text);
                 cmd.Parameters.AddWithValue("@precio_ganancia", txtPorcentajeGananciaProducto.Text);
                 cmd.Parameters.AddWithValue("@precio_venta", txtPrecioDeVentaProducto.Text);
                 cmd.Parameters.AddWithValue("@id_producto", txtIdProducto.Text);
@@ -185,7 +213,8 @@ namespace Gestion
         }
 
         // Evento para el botón Eliminar Producto
-        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        // Evento para el botón Eliminar Producto
+        private void btnEliminarProducto_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtIdProducto.Text))
             {
@@ -195,29 +224,65 @@ namespace Gestion
 
             if (MessageBox.Show("¿Está seguro de que desea eliminar este producto?", "Confirmación", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+                try
                 {
-                    conexion.Open();
-
-                    string deleteProducto = "DELETE FROM productos WHERE id_producto = @id_producto";
-                    MySqlCommand cmd = new MySqlCommand(deleteProducto, conexion);
-                    cmd.Parameters.AddWithValue("@id_producto", txtIdProducto.Text);
-
-                    int filasAfectadas = cmd.ExecuteNonQuery();
-
-                    if (filasAfectadas > 0)
+                    using (MySqlConnection conexion = new MySqlConnection(conexionBD))
                     {
-                        MessageBox.Show("Producto eliminado exitosamente.");
-                        CargarProductos();  // Recargar los datos de productos
+                        conexion.Open();
+
+                        string deleteProducto = "DELETE FROM productos WHERE id_producto = @id_producto";
+                        MySqlCommand cmd = new MySqlCommand(deleteProducto, conexion);
+                        cmd.Parameters.AddWithValue("@id_producto", txtIdProducto.Text);
+
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+
+                        if (filasAfectadas > 0)
+                        {
+                            MessageBox.Show("Producto eliminado exitosamente.");
+                            CargarProductos();  // Recargar los datos de productos
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo eliminar el producto.");
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    // Verificar si el error es de clave foránea (código de error de MySQL 1451)
+                    if (ex.Number == 1451)
+                    {
+                        //VER OTRAS FORMAS DE MANEJAR EL ERROR
+                        MessageBox.Show("No se puede eliminar el producto porque está asociado a una compra u otra operación.", "Error de restricción de clave foránea", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo eliminar el producto.");
+                        MessageBox.Show("Ocurrió un error al eliminar el producto: " + ex.Message);
                     }
                 }
             }
         }
 
-        
+        private void txtPrecioDeCostoProducto_Leave(object sender, EventArgs e)
+        {
+            decimal precioCosto = 0, porcGanancia = 0, precioVenta = 0;
+            try 
+            {
+                precioCosto = Convert.ToDecimal(txtPrecioDeCostoProducto.Text.Trim());
+                porcGanancia = Convert.ToDecimal(txtPorcentajeGananciaProducto.Text.Trim());
+            }
+            catch
+            {
+                
+            }
+
+            precioVenta = precioCosto + (precioCosto * porcGanancia / 100);
+            txtPrecioDeVentaProducto.Text = precioVenta.ToString();
+        }
+
+        private void txtPorcentajeGananciaProducto_Leave(object sender, EventArgs e)
+        {
+            txtPrecioDeCostoProducto_Leave(sender, e);
+        }
     }
 }

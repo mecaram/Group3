@@ -29,6 +29,11 @@ namespace Gestion
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             btnModificar = new Button();
             btnEliminar = new Button();
             btnAgregarAdministrador = new Button();
@@ -46,115 +51,165 @@ namespace Gestion
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(43, 393);
+            btnModificar.BackColor = Color.Silver;
+            btnModificar.Location = new Point(38, 331);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(94, 29);
+            btnModificar.Size = new Size(94, 26);
             btnModificar.TabIndex = 0;
             btnModificar.Text = "Modificar";
-            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.UseVisualStyleBackColor = false;
             btnModificar.Click += btnModificar_Click_1;
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(165, 393);
+            btnEliminar.BackColor = Color.Silver;
+            btnEliminar.Location = new Point(138, 331);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(94, 29);
+            btnEliminar.Size = new Size(94, 26);
             btnEliminar.TabIndex = 1;
             btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click_1;
             // 
             // btnAgregarAdministrador
             // 
-            btnAgregarAdministrador.Location = new Point(282, 393);
+            btnAgregarAdministrador.BackColor = Color.Silver;
+            btnAgregarAdministrador.Location = new Point(238, 331);
             btnAgregarAdministrador.Name = "btnAgregarAdministrador";
-            btnAgregarAdministrador.Size = new Size(94, 29);
+            btnAgregarAdministrador.Size = new Size(94, 26);
             btnAgregarAdministrador.TabIndex = 2;
             btnAgregarAdministrador.Text = "Agregar";
-            btnAgregarAdministrador.UseVisualStyleBackColor = true;
+            btnAgregarAdministrador.UseVisualStyleBackColor = false;
             btnAgregarAdministrador.Click += btnAgregarAdministrador_Click;
             // 
             // lblIdAdministradores
             // 
             lblIdAdministradores.AutoSize = true;
-            lblIdAdministradores.Location = new Point(12, 54);
+            lblIdAdministradores.Location = new Point(30, 120);
             lblIdAdministradores.Name = "lblIdAdministradores";
-            lblIdAdministradores.Size = new Size(138, 20);
+            lblIdAdministradores.Size = new Size(139, 18);
             lblIdAdministradores.TabIndex = 3;
             lblIdAdministradores.Text = "Id Administradores:";
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(70, 106);
+            lblNombre.Location = new Point(101, 180);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(67, 20);
+            lblNombre.Size = new Size(65, 18);
             lblNombre.TabIndex = 4;
             lblNombre.Text = "Nombre:";
             // 
             // lblContraseña
             // 
             lblContraseña.AutoSize = true;
-            lblContraseña.Location = new Point(64, 161);
+            lblContraseña.Location = new Point(82, 235);
             lblContraseña.Name = "lblContraseña";
-            lblContraseña.Size = new Size(86, 20);
+            lblContraseña.Size = new Size(87, 18);
             lblContraseña.TabIndex = 5;
             lblContraseña.Text = "Contraseña:";
             // 
             // gridAdministradores
             // 
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            gridAdministradores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            gridAdministradores.BackgroundColor = SystemColors.ScrollBar;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            gridAdministradores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             gridAdministradores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridAdministradores.Location = new Point(392, 135);
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            gridAdministradores.DefaultCellStyle = dataGridViewCellStyle3;
+            gridAdministradores.Location = new Point(392, 95);
             gridAdministradores.Name = "gridAdministradores";
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle4.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.ButtonFace;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            gridAdministradores.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             gridAdministradores.RowHeadersWidth = 51;
-            gridAdministradores.Size = new Size(429, 232);
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.ActiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            gridAdministradores.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            gridAdministradores.Size = new Size(429, 209);
             gridAdministradores.TabIndex = 6;
             gridAdministradores.CellClick += gridAdministradores_CellClick;
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(392, 89);
+            txtBuscar.BackColor = Color.Silver;
+            txtBuscar.Location = new Point(392, 49);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(429, 27);
+            txtBuscar.Size = new Size(429, 26);
             txtBuscar.TabIndex = 7;
             txtBuscar.TextChanged += txtBuscar_TextChanged_1;
             // 
             // txtIdAdministradores
             // 
-            txtIdAdministradores.Location = new Point(156, 51);
+            txtIdAdministradores.BackColor = Color.Silver;
+            txtIdAdministradores.Location = new Point(174, 113);
             txtIdAdministradores.Name = "txtIdAdministradores";
-            txtIdAdministradores.Size = new Size(125, 27);
+            txtIdAdministradores.Size = new Size(125, 26);
             txtIdAdministradores.TabIndex = 8;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(156, 99);
+            txtNombre.BackColor = Color.Silver;
+            txtNombre.Location = new Point(174, 174);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(125, 27);
+            txtNombre.Size = new Size(125, 26);
             txtNombre.TabIndex = 9;
             // 
             // txtContrasena
             // 
-            txtContrasena.Location = new Point(156, 153);
+            txtContrasena.BackColor = Color.Silver;
+            txtContrasena.Location = new Point(174, 232);
             txtContrasena.Name = "txtContrasena";
-            txtContrasena.Size = new Size(125, 27);
+            txtContrasena.Size = new Size(125, 26);
             txtContrasena.TabIndex = 10;
             // 
             // txtLimpiar
             // 
-            txtLimpiar.Location = new Point(392, 393);
+            txtLimpiar.BackColor = Color.Silver;
+            txtLimpiar.Location = new Point(138, 376);
             txtLimpiar.Name = "txtLimpiar";
-            txtLimpiar.Size = new Size(94, 29);
+            txtLimpiar.Size = new Size(94, 26);
             txtLimpiar.TabIndex = 11;
             txtLimpiar.Text = "Limpiar";
-            txtLimpiar.UseVisualStyleBackColor = true;
+            txtLimpiar.UseVisualStyleBackColor = false;
             txtLimpiar.Click += txtLimpiar_Click;
             // 
             // Administradores
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(8F, 18F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(853, 451);
+            BackColor = SystemColors.ControlDarkDark;
+            ClientSize = new Size(917, 448);
             Controls.Add(txtLimpiar);
             Controls.Add(txtContrasena);
             Controls.Add(txtNombre);
@@ -167,6 +222,7 @@ namespace Gestion
             Controls.Add(btnAgregarAdministrador);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
+            Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Name = "Administradores";
             Text = "Administradores";
             Load += Administradores_Load;
