@@ -322,7 +322,7 @@ namespace Gestion
             Ciudades ciudadesForm = new Ciudades();
 
             ////nueva linea
-            ////cuestra el formulario Ciudades
+            ////muestra el formulario Ciudades
             ciudadesForm.Show();
         }
     }

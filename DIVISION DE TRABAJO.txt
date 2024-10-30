@@ -1,7 +1,22 @@
-﻿productos hacer (roddy)
-compras hacer (chino)
-unificar ventas y detalles de ventas
+﻿productos hacer (roddy) (REVISAR)
+compras hacer (chino) HECHO 15/10 (REVISAR)
+unificar ventas y detalles de ventas (ventas) EN PROCESO 15/10
+(------------------------------------------------
+boton ... para cargar un cliente V
+btn limpiar
+al cargar un registro, debe llamarse a la funcion del btn limpar
+barra de busqueda de la grilla
+al agregar un producto y la cantidad, debe descontarse de la tabla productos
+hacer una sola factura de venta a un cliente que llevó uno o mas productos, podria cargar los productos en un registro INTERT (se guarda en detalle_de_ventas, esto es lo que se muestra en la factura) y tocar un boton para que me simule la impresion de un ticket o genere un pdf.
+
+)
+
 cierre hacer
+(constará de 3 botones,
+terminar cierre previo - habilitado o deshabilitado si ya está cerrado, esto por si algun dia se olvidan de cerrar y ya están en otro dia. el cerrado cambiará de 0 a 1
+empezar jornada - habilitado y deshabilitado una vez presionado, se crea un registro, se pone la fecha de apertura y el cerrado se inicializa en 0.
+terminar jornada - una vez presionado, se deshabilitará, el cerrado cambiará de 0 a 1.
+estructura de cierres en la tabla: id_cierre AUTOINCREMENT, apertura FECHA, cierre FECHA, cerrado 0-1)
 
 cierre:
 

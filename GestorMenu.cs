@@ -72,12 +72,6 @@ namespace Gestion
             ventas.ShowDialog();
         }
 
-        private void btnDetallesDeVentas_Click(object sender, EventArgs e)
-        {
-            DetallesDeVentas detallesDeVentas = new DetallesDeVentas();
-            detallesDeVentas.ShowDialog();
-        }
-
         private void btnAdministradores_Click(object sender, EventArgs e)
         {
             Administradores administradores = new Administradores();    
