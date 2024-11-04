@@ -68,7 +68,9 @@ namespace Gestion
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            Ventas ventas = new Ventas();
+            //FORM VIEJO
+            //Ventas ventas = new Ventas();
+            VentasC ventas = new VentasC();
             ventas.ShowDialog();
         }
 

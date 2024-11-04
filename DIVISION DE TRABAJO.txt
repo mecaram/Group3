@@ -23,3 +23,6 @@ cierre:
 al ejecutar el programa, buscar si cierre en la bd está false
 si está true, reanudar la sesion
 sino encuentra, un registro que contenga cerrado = false, se genera un nuevo cierre (sesion/registro)
+
+
+ventasC 4/11 8:36am
