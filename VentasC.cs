@@ -17,8 +17,10 @@ namespace Gestion
         {
             InitializeComponent();
             CargarVentas();
+            CargarComboBoxClientes();
+            CargarComboBoxMediosDePago();
 
-            // Asociar los eventos de los botones
+            // Asociar eventos
             btnBuscar.Click += btnBuscar_Click;
             btnEliminar.Click += btnEliminar_Click;
             btnComprobante.Click += btnComprobante_Click;
@@ -26,12 +28,20 @@ namespace Gestion
             dgvVentas.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "Eliminar", HeaderText = "Eliminar", Width = 50 });
         }
 
+
+
         private void CargarVentas()
         {
             using (conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
-                string query = "SELECT * FROM Ventas"; // Agregar filtro si se desea
+                // Cambia la consulta para incluir los nombres de cliente y medio de pago
+                string query = @"SELECT v.id_venta, c.nombre AS cliente_nombre, c.apellido AS cliente_apellido, 
+                                 v.fecha_venta, v.total, mp.medios_de_pago 
+                                 FROM Ventas v
+                                 JOIN Clientes c ON v.id_cliente = c.id_cliente
+                                 JOIN Medios_de_Pagos mp ON v.id_medio_de_pago = mp.id_medio";
+
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, conexion);
                 DataTable dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -42,12 +52,62 @@ namespace Gestion
             }
         }
 
+        private void CargarComboBoxClientes()
+        {
+            using (conexion = new MySqlConnection(conexionBD))
+            {
+                conexion.Open();
+                string query = "SELECT id_cliente, CONCAT(nombre, ' ', apellido) AS nombre_completo FROM Clientes";
+                MySqlCommand cmd = new MySqlCommand(query, conexion);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cboClientes.Items.Add(new
+                    {
+                        Value = reader["id_cliente"],
+                        Text = reader["nombre_completo"]
+                    });
+                }
+                cboClientes.DisplayMember = "Text";
+                cboClientes.ValueMember = "Value";
+            }
+        }
+
+        private void CargarComboBoxMediosDePago()
+        {
+            using (conexion = new MySqlConnection(conexionBD))
+            {
+                conexion.Open();
+                string query = "SELECT id_medio, medios_de_pago FROM Medios_de_Pagos";
+                MySqlCommand cmd = new MySqlCommand(query, conexion);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cboMedioPago.Items.Add(new
+                    {
+                        Value = reader["id_medio"],
+                        Text = reader["medios_de_pago"]
+                    });
+                }
+                cboMedioPago.DisplayMember = "Text";
+                cboMedioPago.ValueMember = "Value";
+            }
+        }
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             using (conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
-                string query = "SELECT * FROM Ventas WHERE fecha_venta BETWEEN @fechaInicio AND @fechaFin";
+                string query = @"SELECT v.id_venta, c.nombre AS cliente_nombre, c.apellido AS cliente_apellido, 
+                                 v.fecha_venta, v.total, mp.medios_de_pago 
+                                 FROM Ventas v
+                                 JOIN Clientes c ON v.id_cliente = c.id_cliente
+                                 JOIN Medios_de_Pagos mp ON v.id_medio_de_pago = mp.id_medio
+                                 WHERE v.fecha_venta BETWEEN @fechaInicio AND @fechaFin";
+
                 MySqlCommand cmd = new MySqlCommand(query, conexion);
                 cmd.Parameters.AddWithValue("@fechaInicio", dtpFechaInicio.Value);
                 cmd.Parameters.AddWithValue("@fechaFin", dtpFechaFin.Value);
@@ -70,7 +130,7 @@ namespace Gestion
                 {
                     if (Convert.ToBoolean(row.Cells["Eliminar"].Value))
                     {
-                        int idVenta = Convert.ToInt32(row.Cells["id_venta"].Value); // Asegúrate de que el ID de la venta está en la columna correspondiente
+                        int idVenta = Convert.ToInt32(row.Cells["id_venta"].Value);
                         using (conexion = new MySqlConnection(conexionBD))
                         {
                             conexion.Open();
@@ -95,11 +155,11 @@ namespace Gestion
             {
                 DataGridViewRow selectedRow = dgvVentas.SelectedRows[0];
                 int idVenta = Convert.ToInt32(selectedRow.Cells["id_venta"].Value);
-                string cliente = Convert.ToString(selectedRow.Cells["id_cliente"].Value);
+                string cliente = $"{selectedRow.Cells["cliente_nombre"].Value} {selectedRow.Cells["cliente_apellido"].Value}";
                 DateTime fecha = Convert.ToDateTime(selectedRow.Cells["fecha_venta"].Value);
                 double total = Convert.ToDouble(selectedRow.Cells["total"].Value);
 
-                // Aquí se puede implementar el código de impresión
+                // Código de impresión
                 PrintDocument printDocument = new PrintDocument();
                 printDocument.PrintPage += (s, ev) =>
                 {
