@@ -23,61 +23,16 @@ namespace Gestion
             gridVenta.MultiSelect = false;
             gridVenta.CurrentCell = null;
             txtIdVenta.Enabled = false;
+            txtFechaDeVenta.Enabled = false;
 
             // Conectar a la base de datos y cargar las ventas
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
-                // Cargar ventas
-                MySqlDataAdapter daVentas = new MySqlDataAdapter(
-                @"SELECT v.id_venta, v.total, v.fecha_venta, c.nombre AS cliente, m.medios_de_pago 
-                FROM ventas v
-                JOIN clientes c ON v.id_cliente = c.id_cliente
-                JOIN medios_de_pagos m ON v.id_medio_de_pago = m.id_medio",
-                conexionBD);
+                CargarVentasEnGrid();
+                CargarClientes(conexion);
+                CargarProductos(conexion);
+                CargarMediosPago(conexion);
 
-                DataTable dtVentas = new DataTable();
-                int registrosVentas = daVentas.Fill(dtVentas);
-
-                if (registrosVentas > 0)
-                {
-                    gridVenta.DataSource = dtVentas;
-                }
-                else
-                {
-                    gridVenta.DataSource = null;
-                }
-
-                // Cargar clientes
-                MySqlDataAdapter daClientes = new MySqlDataAdapter("SELECT * FROM clientes", conexionBD);
-                DataTable dtClientes = new DataTable();
-                int registrosClientes = daClientes.Fill(dtClientes);
-
-                if (registrosClientes > 0)
-                {
-                    cboClientes.DataSource = dtClientes;
-                    cboClientes.DisplayMember = "nombre";
-                    cboClientes.ValueMember = "id_cliente";
-                }
-                else
-                {
-                    cboClientes.DataSource = null;
-                }
-
-                // Cargar medios de pago
-                MySqlDataAdapter daMediosPago = new MySqlDataAdapter("SELECT * FROM medios_de_pagos", conexionBD);
-                DataTable dtMediosPago = new DataTable();
-                int registrosMediosPago = daMediosPago.Fill(dtMediosPago);
-
-                if (registrosMediosPago > 0)
-                {
-                    cboMedioPago.DataSource = dtMediosPago;
-                    cboMedioPago.DisplayMember = "medios_de_pago";
-                    cboMedioPago.ValueMember = "id_medio";
-                }
-                else
-                {
-                    cboMedioPago.DataSource = null;
-                }
             }
         }
 
@@ -263,20 +218,17 @@ namespace Gestion
                 {
                     conexion.Open();
                     string query = @"
-                SELECT 
-                    ventas.id_venta, 
-                    CONCAT(clientes.nombre, ' ', clientes.apellido) AS nombre_cliente,
-                    ventas.fecha_venta, 
-                    ventas.total, 
-                    medios_de_pagos.medios_de_pago AS medio_de_pago,
-                    productos.nombre AS producto,
-                    detalle_de_ventas.cantidad,
-                    ventas.id_cierre 
-                FROM ventas
-                LEFT JOIN clientes ON ventas.id_cliente = clientes.id_cliente
-                LEFT JOIN medios_de_pagos ON ventas.id_medio_de_pago = medios_de_pagos.id_medio
-                LEFT JOIN detalle_de_ventas ON ventas.id_venta = detalle_de_ventas.id_venta
-                LEFT JOIN productos ON detalle_de_ventas.id_producto = productos.id_producto";
+            SELECT 
+                detalle_de_ventas.id_venta, 
+                CONCAT(clientes.nombre, ' ', clientes.apellido) AS nombre_cliente,
+                productos.nombre AS producto,
+                detalle_de_ventas.cantidad,
+                detalle_de_ventas.precio_unitario,
+                detalle_de_ventas.subtotal
+            FROM detalle_de_ventas
+            LEFT JOIN ventas ON detalle_de_ventas.id_venta = ventas.id_venta
+            LEFT JOIN clientes ON ventas.id_cliente = clientes.id_cliente
+            LEFT JOIN productos ON detalle_de_ventas.id_producto = productos.id_producto";
 
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conexion);
                     DataTable dt = new DataTable();
@@ -286,9 +238,10 @@ namespace Gestion
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las ventas en la grilla: " + ex.Message);
+                MessageBox.Show("Error al cargar los detalles de ventas en la grilla: " + ex.Message);
             }
         }
+
 
         private void btnFormCliente_Click(object sender, EventArgs e)
         {
@@ -308,7 +261,9 @@ namespace Gestion
             txtTotal.Clear();
             cboClientes.SelectedIndex = -1;
             cboMedioPago.SelectedIndex = -1;
-            txtFechaDeVenta.Clear();
+            txtFechaDeVenta.Text = DateTime.Now.ToShortDateString();
+            
+
             // Otros campos adicionales...
         }
 
@@ -318,11 +273,11 @@ namespace Gestion
             if (gridVenta.SelectedRows.Count > 0 && gridVenta.CurrentRow != null && gridVenta.CurrentRow.Cells["id_venta"].Value != null)
             {
                 txtIdVenta.Text = gridVenta.CurrentRow.Cells["id_venta"].Value.ToString();
-                txtTotal.Text = gridVenta.CurrentRow.Cells["total"].Value.ToString();
+                txtTotal.Text = gridVenta.CurrentRow.Cells["subtotal"].Value.ToString();
                 txtFechaDeVenta.Text = gridVenta.CurrentRow.Cells["fecha_venta"].Value.ToString();
 
                 // Obtener el nombre del cliente y el medio de pago
-                if (gridVenta.CurrentRow.Cells["cliente"].Value != null && !string.IsNullOrEmpty(gridVenta.CurrentRow.Cells["cliente"].Value.ToString()))
+                if (gridVenta.CurrentRow.Cells["nombre_cliente"].Value != null && !string.IsNullOrEmpty(gridVenta.CurrentRow.Cells["nombre_cliente"].Value.ToString()))
                 {
                     cboClientes.Text = gridVenta.CurrentRow.Cells["cliente"].Value.ToString();
                 }
@@ -356,7 +311,8 @@ namespace Gestion
                 // Asigna los valores de la fila seleccionada a los TextBox correspondientes
                 txtIdVenta.Text = row.Cells["id_venta"].Value.ToString();
                 cboClientes.Text = row.Cells["nombre_cliente"].Value.ToString();
-                txtFechaDeVenta.Text = Convert.ToDateTime(row.Cells["fecha_venta"].Value).ToString("yyyy-MM-dd");
+                txtFechaDeVenta.Text = Convert.ToDateTime(row.Cells["fecha_venta"].Value).ToString("yyyy-MM-dd") + " " + DateTime.Now.ToString("HH:mm:ss");
+
                 txtTotal.Text = row.Cells["total"].Value.ToString();
                 cboMedioPago.Text = row.Cells["medio_de_pago"].Value.ToString();
                 cboProductoNombre.Text = row.Cells["producto"].Value.ToString();
