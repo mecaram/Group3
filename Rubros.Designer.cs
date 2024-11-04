@@ -136,7 +136,7 @@
             dataGridViewCellStyle1.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             grdRubros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             grdRubros.BackgroundColor = SystemColors.ScrollBar;
@@ -152,9 +152,9 @@
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
             dataGridViewCellStyle3.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.ForeColor = SystemColors.ActiveCaptionText;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.ActiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             grdRubros.DefaultCellStyle = dataGridViewCellStyle3;
             grdRubros.GridColor = Color.Gray;
@@ -166,16 +166,16 @@
             dataGridViewCellStyle4.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle4.ForeColor = Color.Black;
             dataGridViewCellStyle4.SelectionBackColor = SystemColors.ActiveCaption;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
             grdRubros.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             grdRubros.RowHeadersWidth = 51;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.Black;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
             dataGridViewCellStyle5.Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle5.ForeColor = Color.Black;
             dataGridViewCellStyle5.SelectionBackColor = SystemColors.ActiveCaption;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
             grdRubros.RowsDefaultCellStyle = dataGridViewCellStyle5;
             grdRubros.Size = new Size(446, 204);
@@ -198,6 +198,7 @@
             Controls.Add(lblNombre);
             Controls.Add(lblIdRubro);
             Font = new Font("Bahnschrift SemiBold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ForeColor = SystemColors.ActiveCaptionText;
             Name = "Rubros";
             Text = "Rubros";
             Load += Rubros_Load;
