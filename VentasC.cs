@@ -180,5 +180,12 @@ namespace Gestion
                 MessageBox.Show("Por favor, selecciona una venta para imprimir.");
             }
         }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+            //FORM VIEJO
+            Ventas ventas = new Ventas();
+            ventas.ShowDialog();
+        }
     }
 }

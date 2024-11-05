@@ -32,6 +32,7 @@
             cboMedioPago = new ComboBox();
             labelCliente = new Label();
             labelMedioPago = new Label();
+            btnVentas = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
             SuspendLayout();
             // 
@@ -166,11 +167,22 @@
             labelMedioPago.TabIndex = 13;
             labelMedioPago.Text = "Medio de Pago";
             // 
+            // btnVentas
+            // 
+            btnVentas.Location = new Point(692, 51);
+            btnVentas.Name = "btnVentas";
+            btnVentas.Size = new Size(75, 23);
+            btnVentas.TabIndex = 15;
+            btnVentas.Text = "Ventas";
+            btnVentas.UseVisualStyleBackColor = true;
+            btnVentas.Click += btnVentas_Click;
+            // 
             // VentasC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(840, 450);
+            Controls.Add(btnVentas);
             Controls.Add(lblTotalRegistros);
             Controls.Add(dgvVentas);
             Controls.Add(chkEliminar);
@@ -210,5 +222,6 @@
         private ComboBox cboMedioPago;
         private Label labelCliente;
         private Label labelMedioPago;
+        private Button btnVentas;
     }
 }
