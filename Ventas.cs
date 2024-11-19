@@ -79,15 +79,21 @@ namespace Gestion
             DataTable dtProductos = new DataTable();
             daProductos.Fill(dtProductos);
 
-            DataRow emptyRow = dtProductos.NewRow();
-            emptyRow["id_producto"] = DBNull.Value;
-            emptyRow["nombre"] = "Seleccione un producto";
-            dtProductos.Rows.InsertAt(emptyRow, 0);
+            // Agregar la opción "Seleccionar producto" como la primera fila
+            DataRow rowDefault = dtProductos.NewRow();
+            rowDefault["id_producto"] = 0; // ID ficticio para la opción por defecto
+            rowDefault["nombre"] = "Seleccionar producto";
+            rowDefault["precio_venta"] = 0; // Precio ficticio por defecto
+            dtProductos.Rows.InsertAt(rowDefault, 0);
 
             cboProductoNombre.DataSource = dtProductos;
             cboProductoNombre.DisplayMember = "nombre";
             cboProductoNombre.ValueMember = "id_producto";
+
+            // Seleccionar la opción por defecto
+            cboProductoNombre.SelectedIndex = 0;
         }
+
 
         private void CargarUltimoIdCierre(MySqlConnection conexion)
         {
@@ -146,6 +152,13 @@ namespace Gestion
         private void btnAgregar_Click(object sender, EventArgs e)
         {
 
+            // Validar si el subtotal es 0
+            if (decimal.TryParse(txtSubTotal.Text, out decimal subtotal) && subtotal == 0)
+            {
+                MessageBox.Show("El subtotal no puede ser 0. Verifique los datos ingresados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir del método
+            }
+
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
@@ -167,6 +180,10 @@ namespace Gestion
 
                 CargarVentasEnGrid();
                 txtTotal.Text = Convert.ToString(CalcularTotalVenta());
+
+                // Deshabilitar los ComboBox
+                cboClientes.Enabled = false;
+                cboMedioPago.Enabled = false;
 
             }
 
@@ -274,42 +291,9 @@ namespace Gestion
             txtFechaDeVenta.Text = DateTime.Now.ToShortDateString();
 
 
-            // Otros campos adicionales...
         }
 
-        // Evento de selección en la grilla de ventas
-        public void gridVenta_SelectionChanged(object sender, EventArgs e)
-        {
-            if (gridVenta.SelectedRows.Count > 0 && gridVenta.CurrentRow != null && gridVenta.CurrentRow.Cells["id_venta"].Value != null)
-            {
-                //txtIdVenta.Text = gridVenta.CurrentRow.Cells["id_venta"].Value.ToString();
-                //txtTotal.Text = gridVenta.CurrentRow.Cells["subtotal"].Value.ToString();
-                //txtFechaDeVenta.Text = gridVenta.CurrentRow.Cells["fecha_venta"].Value.ToString();
 
-                //// Obtener el nombre del cliente y el medio de pago
-                //if (gridVenta.CurrentRow.Cells["nombre_cliente"].Value != null && !string.IsNullOrEmpty(gridVenta.CurrentRow.Cells["nombre_cliente"].Value.ToString()))
-                //{
-                //    cboClientes.Text = gridVenta.CurrentRow.Cells["cliente"].Value.ToString();
-                //}
-                //else
-                //{
-                //    cboClientes.SelectedIndex = -1;
-                //}
-
-                //if (gridVenta.CurrentRow.Cells["medios_de_pago"].Value != null && !string.IsNullOrEmpty(gridVenta.CurrentRow.Cells["medios_de_pago"].Value.ToString()))
-                //{
-                //    cboMedioPago.Text = gridVenta.CurrentRow.Cells["medios_de_pago"].Value.ToString();
-                //}
-                //else
-                //{
-                //    cboMedioPago.SelectedIndex = -1;
-                //}
-            }
-            else
-            {
-                //LimpiarTextBox();
-            }
-        }
 
         private void gridVenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -369,5 +353,54 @@ namespace Gestion
             //cerrar form
             this.Close();
         }
+
+        private void btnCargarVenta_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                try
+                {
+                    conexion.Open();
+
+                    // Obtener el último id_cierre de la tabla cierres
+                    string queryUltimoCierre = "SELECT MAX(id_cierre) FROM cierres";
+                    int idUltimoCierre = 0;
+
+                    using (MySqlCommand cmdUltimoCierre = new MySqlCommand(queryUltimoCierre, conexion))
+                    {
+                        object resultado = cmdUltimoCierre.ExecuteScalar();
+                        idUltimoCierre = resultado != DBNull.Value ? Convert.ToInt32(resultado) : 1; // Si no hay registros, usa 1 por defecto
+                    }
+
+                    // Actualizar la tabla ventas con el id_cliente, total, id_medio_de_pago e id_cierre
+                    string queryUpdateVentas = @"UPDATE ventas 
+                                         SET id_cliente = @id_cliente, 
+                                             total = @total, 
+                                             id_medio_de_pago = @id_medio_pago, 
+                                             id_cierre = @id_cierre 
+                                         WHERE id_venta = @id_venta";
+
+                    using (MySqlCommand cmdUpdate = new MySqlCommand(queryUpdateVentas, conexion))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("@id_cliente", cboClientes.SelectedValue); // ID del cliente seleccionado
+                        cmdUpdate.Parameters.AddWithValue("@total", decimal.Parse(txtTotal.Text)); // Total calculado
+                        cmdUpdate.Parameters.AddWithValue("@id_medio_pago", cboMedioPago.SelectedValue); // ID del medio de pago seleccionado
+                        cmdUpdate.Parameters.AddWithValue("@id_cierre", idUltimoCierre); // Último ID de cierre obtenido
+                        cmdUpdate.Parameters.AddWithValue("@id_venta", txtIdVenta.Text); // ID de la venta actual
+
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Venta cargada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al cargar la venta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+
     }
 }

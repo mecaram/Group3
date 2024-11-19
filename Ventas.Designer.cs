@@ -147,7 +147,6 @@
             gridVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridVenta.Size = new Size(450, 215);
             gridVenta.TabIndex = 11;
-            gridVenta.SelectionChanged += gridVenta_SelectionChanged;
             // 
             // lblIdCierre
             // 
@@ -309,6 +308,7 @@
             btnCargarVenta.TabIndex = 33;
             btnCargarVenta.Text = "CARGAR";
             btnCargarVenta.UseVisualStyleBackColor = true;
+            btnCargarVenta.Click += btnCargarVenta_Click;
             // 
             // btnCancelarVenta
             // 

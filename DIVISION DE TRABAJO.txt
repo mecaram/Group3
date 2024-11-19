@@ -1,13 +1,18 @@
-﻿unificar ventas y detalles de ventas (ventas) EN PROCESO 15/10
-(------------------------------------------------
-boton ... para cargar un cliente V
-btn limpiar
-al cargar un registro, debe llamarse a la funcion del btn limpar
-barra de busqueda de la grilla
-al agregar un producto y la cantidad, debe descontarse de la tabla productos
-hacer una sola factura de venta a un cliente que llevó uno o mas productos, podria cargar los productos en un registro INTERT (se guarda en detalle_de_ventas, esto es lo que se muestra en la factura) y tocar un boton para que me simule la impresion de un ticket o genere un pdf.
+﻿SIN HACER en Ventas:
+*al presionar en cancelar, el programa eliminará todos los registros con el id_venta correspondiente en detalle_de_ventas y en la tabla ventas tambien mediante el id_venta
+*(ver si funciona correctamente el boton limpiar)
 
-)
+sacar/deshabilitar el marco de windows
+
+
+//cambios VentasC (SIN HACER)
+
+*al presionar en cancelar, el programa eliminará todos los registros con el id_venta correspondiente en detalle_de_ventas y en la tabla ventas tambien mediante el id_venta
+*btn reimprimir: darle funcionalidad al seleccionar una fila en la grid
+
+
+
+
 
 cierre hacer
 (constará de 3 botones,
@@ -22,25 +27,5 @@ al ejecutar el programa, buscar si cierre en la bd está false
 si está true, reanudar la sesion
 sino encuentra, un registro que contenga cerrado = false, se genera un nuevo cierre (sesion/registro)
 
-
-ventasC 4/11 8:36am
-
-VentasC line 113
-
-//
-Ventas form:
-agregar btn cancelar, este deberá 
-btnguardar (update tabla ventas. total del txtTotal, id_cliente, id_medios_de_pago, id_cierre). guardar deberá cargar todo en detalle de ventas, y la venta e imprimir el ticket
-llamar la funcion CargarNuevaVenta(); (revisar)
-al dejar de llamar la funcion CargarNuevaVenta(); donde estaba (linea 40), estoy abriendo form Ventas y este está esperando los datos de detalle de ventas, y no existen
-
-
-sacar/deshabilitar el marco de windows
-
-
-
-VentasC form:
-btnEliminar: al eliminar un registro, eliminar el detalle de venta y luego la venta
-btn reimprimir: darle funcionalidad al seleccionar una fila en la grid
 
 

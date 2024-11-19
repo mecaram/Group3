@@ -37,7 +37,8 @@ namespace Gestion
                                  v.fecha_venta, v.total, mp.medios_de_pago 
                                  FROM Ventas v
                                  JOIN Clientes c ON v.id_cliente = c.id_cliente
-                                 JOIN Medios_de_Pagos mp ON v.id_medio_de_pago = mp.id_medio";
+                                 JOIN Medios_de_Pagos mp ON v.id_medio_de_pago = mp.id_medio
+                                 order by v.id_venta desc";
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, conexion);
                 DataTable dataTable = new DataTable();
