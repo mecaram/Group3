@@ -22,10 +22,7 @@ namespace Gestion
 
             // Asociar eventos
             btnBuscar.Click += btnBuscar_Click;
-            btnEliminar.Click += btnEliminar_Click;
-            btnComprobante.Click += btnComprobante_Click;
 
-            dgvVentas.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "Eliminar", HeaderText = "Eliminar", Width = 50 });
         }
 
 
@@ -58,19 +55,19 @@ namespace Gestion
             {
                 conexion.Open();
                 string query = "SELECT id_cliente, CONCAT(nombre, ' ', apellido) AS nombre_completo FROM Clientes";
-                MySqlCommand cmd = new MySqlCommand(query, conexion);
-                MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlDataAdapter daClientes = new MySqlDataAdapter(query, conexion);
+                DataTable dtClientes = new DataTable();
+                daClientes.Fill(dtClientes);
 
-                while (reader.Read())
-                {
-                    cboClientes.Items.Add(new
-                    {
-                        Value = reader["id_cliente"],
-                        Text = reader["nombre_completo"]
-                    });
-                }
-                cboClientes.DisplayMember = "Text";
-                cboClientes.ValueMember = "Value";
+                // Agregar la opción "No aplica"
+                DataRow drNoAplica = dtClientes.NewRow();
+                drNoAplica["id_cliente"] = DBNull.Value; // o puedes usar un valor especial como 0 o -1
+                drNoAplica["nombre_completo"] = "No aplica";
+                dtClientes.Rows.InsertAt(drNoAplica, 0);
+
+                cboClientes.DataSource = dtClientes;
+                cboClientes.DisplayMember = "nombre_completo";
+                cboClientes.ValueMember = "id_cliente";
             }
         }
 
@@ -80,19 +77,19 @@ namespace Gestion
             {
                 conexion.Open();
                 string query = "SELECT id_medio, medios_de_pago FROM Medios_de_Pagos";
-                MySqlCommand cmd = new MySqlCommand(query, conexion);
-                MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlDataAdapter daMediosPago = new MySqlDataAdapter(query, conexion);
+                DataTable dtMediosPago = new DataTable();
+                daMediosPago.Fill(dtMediosPago);
 
-                while (reader.Read())
-                {
-                    cboMedioPago.Items.Add(new
-                    {
-                        Value = reader["id_medio"],
-                        Text = reader["medios_de_pago"]
-                    });
-                }
-                cboMedioPago.DisplayMember = "Text";
-                cboMedioPago.ValueMember = "Value";
+                // Agregar la opción "No aplica"
+                DataRow drNoAplica = dtMediosPago.NewRow();
+                drNoAplica["id_medio"] = DBNull.Value; // o puedes usar un valor especial como 0 o -1
+                drNoAplica["medios_de_pago"] = "No aplica";
+                dtMediosPago.Rows.InsertAt(drNoAplica, 0);
+
+                cboMedioPago.DataSource = dtMediosPago;
+                cboMedioPago.DisplayMember = "medios_de_pago";
+                cboMedioPago.ValueMember = "id_medio";
             }
         }
 
@@ -101,16 +98,54 @@ namespace Gestion
             using (conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
+
                 string query = @"SELECT v.id_venta, c.nombre AS cliente_nombre, c.apellido AS cliente_apellido, 
-                                 v.fecha_venta, v.total, mp.medios_de_pago 
-                                 FROM Ventas v
-                                 JOIN Clientes c ON v.id_cliente = c.id_cliente
-                                 JOIN Medios_de_Pagos mp ON v.id_medio_de_pago = mp.id_medio
-                                 WHERE v.fecha_venta BETWEEN @fechaInicio AND @fechaFin";
+                         v.fecha_venta, v.total, mp.medios_de_pago 
+                         FROM Ventas v
+                         LEFT JOIN Clientes c ON v.id_cliente = c.id_cliente
+                         LEFT JOIN Medios_de_Pagos mp ON v.id_medio_de_pago = mp.id_medio
+                         WHERE v.fecha_venta BETWEEN @fechaInicio AND @fechaFin";
+
+                // Si se seleccionó un cliente distinto a "No aplica"
+                if (cboClientes.SelectedValue != DBNull.Value && cboClientes.SelectedValue != null)
+                {
+                    query += " AND v.id_cliente = @idCliente";
+                }
+
+                // Si se seleccionó un medio de pago distinto a "No aplica"
+                if (cboMedioPago.SelectedValue != DBNull.Value && cboMedioPago.SelectedValue != null)
+                {
+                    query += " AND v.id_medio_de_pago = @idMedioPago";
+                }
 
                 MySqlCommand cmd = new MySqlCommand(query, conexion);
-                cmd.Parameters.AddWithValue("@fechaInicio", dtpFechaInicio.Value);
-                cmd.Parameters.AddWithValue("@fechaFin", dtpFechaFin.Value);
+
+                DateTime inicio = dtpFechaInicio.Value.Date;
+                DateTime fin = dtpFechaFin.Value.Date;
+
+                // Ajustar el rango de fecha
+                if (inicio == fin)
+                {
+                    cmd.Parameters.AddWithValue("@fechaInicio", inicio.ToString("yyyy-MM-dd 00:00:00"));
+                    cmd.Parameters.AddWithValue("@fechaFin", fin.ToString("yyyy-MM-dd 23:59:59"));
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@fechaInicio", inicio.ToString("yyyy-MM-dd 00:00:00"));
+                    cmd.Parameters.AddWithValue("@fechaFin", fin.ToString("yyyy-MM-dd 23:59:59"));
+                }
+
+                // Parámetro opcional para el cliente
+                if (cboClientes.SelectedValue != DBNull.Value && cboClientes.SelectedValue != null)
+                {
+                    cmd.Parameters.AddWithValue("@idCliente", cboClientes.SelectedValue);
+                }
+
+                // Parámetro opcional para el medio de pago
+                if (cboMedioPago.SelectedValue != DBNull.Value && cboMedioPago.SelectedValue != null)
+                {
+                    cmd.Parameters.AddWithValue("@idMedioPago", cboMedioPago.SelectedValue);
+                }
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
@@ -122,32 +157,11 @@ namespace Gestion
             }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (chkEliminar.Checked)
-            {
-                foreach (DataGridViewRow row in dgvVentas.Rows)
-                {
-                    if (Convert.ToBoolean(row.Cells["Eliminar"].Value))
-                    {
-                        int idVenta = Convert.ToInt32(row.Cells["id_venta"].Value);
-                        using (conexion = new MySqlConnection(conexionBD))
-                        {
-                            conexion.Open();
-                            string query = "DELETE FROM Ventas WHERE id_venta = @idVenta";
-                            MySqlCommand cmd = new MySqlCommand(query, conexion);
-                            cmd.Parameters.AddWithValue("@idVenta", idVenta);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                }
-                CargarVentas(); // Actualiza la grid después de eliminar
-            }
-            else
-            {
-                MessageBox.Show("Selecciona las ventas que deseas eliminar.");
-            }
-        }
+
+
+
+
+
 
         private void btnComprobante_Click(object sender, EventArgs e)
         {
@@ -186,6 +200,7 @@ namespace Gestion
             //FORM VIEJO
             Ventas ventas = new Ventas();
             ventas.ShowDialog();
+            btnBuscar_Click(sender, e);
         }
     }
 }

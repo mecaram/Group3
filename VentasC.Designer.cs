@@ -23,9 +23,7 @@
             label2 = new Label();
             btnBuscar = new Button();
             btnEliminar = new Button();
-            btnComprobante = new Button();
             btnImprimir = new Button();
-            chkEliminar = new CheckBox();
             dgvVentas = new DataGridView();
             lblTotalRegistros = new Label();
             cboClientes = new ComboBox();
@@ -88,33 +86,14 @@
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // btnComprobante
-            // 
-            btnComprobante.Location = new Point(417, 44);
-            btnComprobante.Name = "btnComprobante";
-            btnComprobante.Size = new Size(95, 23);
-            btnComprobante.TabIndex = 6;
-            btnComprobante.Text = "Comprobante";
-            btnComprobante.UseVisualStyleBackColor = true;
-            // 
             // btnImprimir
             // 
             btnImprimir.Location = new Point(536, 44);
             btnImprimir.Name = "btnImprimir";
-            btnImprimir.Size = new Size(75, 23);
+            btnImprimir.Size = new Size(81, 23);
             btnImprimir.TabIndex = 7;
-            btnImprimir.Text = "Imprimir";
+            btnImprimir.Text = "Re-Imprimir";
             btnImprimir.UseVisualStyleBackColor = true;
-            // 
-            // chkEliminar
-            // 
-            chkEliminar.AutoSize = true;
-            chkEliminar.Location = new Point(18, 120);
-            chkEliminar.Name = "chkEliminar";
-            chkEliminar.Size = new Size(69, 19);
-            chkEliminar.TabIndex = 8;
-            chkEliminar.Text = "Eliminar";
-            chkEliminar.UseVisualStyleBackColor = true;
             // 
             // dgvVentas
             // 
@@ -127,11 +106,11 @@
             // lblTotalRegistros
             // 
             lblTotalRegistros.AutoSize = true;
-            lblTotalRegistros.Location = new Point(627, 120);
+            lblTotalRegistros.Location = new Point(697, 120);
             lblTotalRegistros.Name = "lblTotalRegistros";
-            lblTotalRegistros.Size = new Size(94, 15);
+            lblTotalRegistros.Size = new Size(81, 15);
             lblTotalRegistros.TabIndex = 10;
-            lblTotalRegistros.Text = "Total Articulos: 0";
+            lblTotalRegistros.Text = "Total Ventas: 0";
             // 
             // cboClientes
             // 
@@ -169,7 +148,7 @@
             // 
             // btnVentas
             // 
-            btnVentas.Location = new Point(692, 51);
+            btnVentas.Location = new Point(692, 42);
             btnVentas.Name = "btnVentas";
             btnVentas.Size = new Size(75, 23);
             btnVentas.TabIndex = 15;
@@ -185,9 +164,7 @@
             Controls.Add(btnVentas);
             Controls.Add(lblTotalRegistros);
             Controls.Add(dgvVentas);
-            Controls.Add(chkEliminar);
             Controls.Add(btnImprimir);
-            Controls.Add(btnComprobante);
             Controls.Add(btnEliminar);
             Controls.Add(btnBuscar);
             Controls.Add(label2);
@@ -213,9 +190,7 @@
         private Label label2;
         private Button btnBuscar;
         private Button btnEliminar;
-        private Button btnComprobante;
         private Button btnImprimir;
-        private CheckBox chkEliminar;
         private DataGridView dgvVentas;
         private Label lblTotalRegistros;
         private ComboBox cboClientes;

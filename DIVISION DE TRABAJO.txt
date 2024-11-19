@@ -1,6 +1,4 @@
-﻿productos hacer (roddy) (REVISAR)
-compras hacer (chino) HECHO 15/10 (REVISAR)
-unificar ventas y detalles de ventas (ventas) EN PROCESO 15/10
+﻿unificar ventas y detalles de ventas (ventas) EN PROCESO 15/10
 (------------------------------------------------
 boton ... para cargar un cliente V
 btn limpiar
@@ -26,3 +24,23 @@ sino encuentra, un registro que contenga cerrado = false, se genera un nuevo cie
 
 
 ventasC 4/11 8:36am
+
+VentasC line 113
+
+//
+Ventas form:
+agregar btn cancelar, este deberá 
+btnguardar (update tabla ventas. total del txtTotal, id_cliente, id_medios_de_pago, id_cierre). guardar deberá cargar todo en detalle de ventas, y la venta e imprimir el ticket
+llamar la funcion CargarNuevaVenta(); (revisar)
+al dejar de llamar la funcion CargarNuevaVenta(); donde estaba (linea 40), estoy abriendo form Ventas y este está esperando los datos de detalle de ventas, y no existen
+
+
+sacar/deshabilitar el marco de windows
+
+
+
+VentasC form:
+btnEliminar: al eliminar un registro, eliminar el detalle de venta y luego la venta
+btn reimprimir: darle funcionalidad al seleccionar una fila en la grid
+
+

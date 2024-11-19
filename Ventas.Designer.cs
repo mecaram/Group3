@@ -55,6 +55,8 @@
             cboProductoNombre = new ComboBox();
             btnFormCliente = new Button();
             btnLimpiar = new Button();
+            btnCargarVenta = new Button();
+            btnCancelarVenta = new Button();
             ((System.ComponentModel.ISupportInitialize)gridVenta).BeginInit();
             SuspendLayout();
             // 
@@ -299,11 +301,32 @@
             btnLimpiar.UseVisualStyleBackColor = true;
             btnLimpiar.Click += btnLimpiar_Click;
             // 
+            // btnCargarVenta
+            // 
+            btnCargarVenta.Location = new Point(403, 359);
+            btnCargarVenta.Name = "btnCargarVenta";
+            btnCargarVenta.Size = new Size(75, 23);
+            btnCargarVenta.TabIndex = 33;
+            btnCargarVenta.Text = "CARGAR";
+            btnCargarVenta.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelarVenta
+            // 
+            btnCancelarVenta.Location = new Point(493, 359);
+            btnCancelarVenta.Name = "btnCancelarVenta";
+            btnCancelarVenta.Size = new Size(75, 23);
+            btnCancelarVenta.TabIndex = 34;
+            btnCancelarVenta.Text = "CANCELAR";
+            btnCancelarVenta.UseVisualStyleBackColor = true;
+            btnCancelarVenta.Click += btnCancelarVenta_Click;
+            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(888, 406);
+            Controls.Add(btnCancelarVenta);
+            Controls.Add(btnCargarVenta);
             Controls.Add(btnLimpiar);
             Controls.Add(btnFormCliente);
             Controls.Add(cboProductoNombre);
@@ -369,5 +392,7 @@
         private ComboBox cboProductoNombre;
         private Button btnFormCliente;
         private Button btnLimpiar;
+        private Button btnCargarVenta;
+        private Button btnCancelarVenta;
     }
 }

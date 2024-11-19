@@ -24,6 +24,15 @@ namespace Gestion
             gridVenta.CurrentCell = null;
             txtIdVenta.Enabled = false;
             txtFechaDeVenta.Enabled = false;
+            txtTotal.Enabled = false;
+            txtIdCierre.Enabled = false;
+            txtPrecioUnitario.Enabled = false;
+            txtSubTotal.Enabled = false;
+
+            //para mayor comodidad, poner por defecto 1 solo producto
+            txtCantidad.Text = "1";
+
+
 
             // Conectar a la base de datos y cargar las ventas
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
@@ -33,6 +42,8 @@ namespace Gestion
                 CargarClientes(conexion);
                 CargarProductos(conexion);
                 CargarMediosPago(conexion);
+                CargarUltimoIdCierre(conexion);
+
             }
         }
 
@@ -84,6 +95,8 @@ namespace Gestion
 
             using (MySqlCommand cmd = new MySqlCommand(query, conexion))
             {
+                conexion.Open();
+
                 var result = cmd.ExecuteScalar();
                 if (result != DBNull.Value)
                 {
@@ -93,6 +106,8 @@ namespace Gestion
                 {
                     txtIdCierre.Text = "1"; // Valor predeterminado si no se encuentra ningún id_cierre
                 }
+
+                conexion.Close();
             }
         }
 
@@ -116,12 +131,10 @@ namespace Gestion
             {
                 decimal subtotal = precioUnitario * cantidad;
                 txtSubTotal.Text = subtotal.ToString("0.00");
-                txtTotal.Text = subtotal.ToString("0.00");
             }
             else
             {
                 txtSubTotal.Text = "0.00";
-                txtTotal.Text = "0.00";
             }
         }
 
@@ -132,70 +145,54 @@ namespace Gestion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //// Validación de datos
-            //if (cboClientes.SelectedValue == null)
-            //{
-            //    MessageBox.Show("Seleccione un cliente.");
-            //    return;
-            //}
-            //if (!decimal.TryParse(txtTotal.Text, out decimal total))
-            //{
-            //    MessageBox.Show("Ingrese un valor numérico en el campo Total.");
-            //    return;
-            //}
-            //if (cboMedioPago.SelectedValue == null)
-            //{
-            //    MessageBox.Show("Seleccione un medio de pago.");
-            //    return;
-            //}
 
-            
-                using (MySqlConnection conexion = new MySqlConnection(conexionBD))
-                {
-                    conexion.Open();
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                conexion.Open();
 
-              
-                        // Código para insertar en la tabla detalle_de_ventas
-                        string queryDetalle = @"INSERT INTO detalle_de_ventas (id_venta, id_producto, cantidad, precio_unitario, subtotal)
+
+                // Código para insertar en la tabla detalle_de_ventas
+                string queryDetalle = @"INSERT INTO detalle_de_ventas (id_venta, id_producto, cantidad, precio_unitario, subtotal)
                     VALUES (@id_venta, @id_producto, @cantidad, @precio_unitario, @subtotal)";
-                        using (MySqlCommand cmdDetalle = new MySqlCommand(queryDetalle, conexion))
-                        {
-                            cmdDetalle.Parameters.AddWithValue("@id_venta", txtIdVenta.Text); // Usar el id de la venta recién creada
-                            cmdDetalle.Parameters.AddWithValue("@id_producto", cboProductoNombre.SelectedValue); // ID del producto seleccionado
-                            cmdDetalle.Parameters.AddWithValue("@cantidad", int.Parse(txtCantidad.Text)); // Cantidad ingresada
-                            cmdDetalle.Parameters.AddWithValue("@precio_unitario", precioUnitario); // Precio unitario del producto
-                            cmdDetalle.Parameters.AddWithValue("@subtotal", decimal.Parse(txtSubTotal.Text)); // Subtotal calculado
+                using (MySqlCommand cmdDetalle = new MySqlCommand(queryDetalle, conexion))
+                {
+                    cmdDetalle.Parameters.AddWithValue("@id_venta", txtIdVenta.Text); // Usar el id de la venta recién creada
+                    cmdDetalle.Parameters.AddWithValue("@id_producto", cboProductoNombre.SelectedValue); // ID del producto seleccionado
+                    cmdDetalle.Parameters.AddWithValue("@cantidad", int.Parse(txtCantidad.Text)); // Cantidad ingresada
+                    cmdDetalle.Parameters.AddWithValue("@precio_unitario", precioUnitario); // Precio unitario del producto
+                    cmdDetalle.Parameters.AddWithValue("@subtotal", decimal.Parse(txtSubTotal.Text)); // Subtotal calculado
 
-                            cmdDetalle.ExecuteNonQuery(); // Ejecutar inserción en detalle_de_ventas
-                        }
+                    cmdDetalle.ExecuteNonQuery(); // Ejecutar inserción en detalle_de_ventas
+                }
 
-                    CargarVentasEnGrid();
+                CargarVentasEnGrid();
+                txtTotal.Text = Convert.ToString(CalcularTotalVenta());
 
             }
 
         }
-            
 
-    private void CargarNuevaVenta()
-        {            
-  
-                    using (MySqlConnection conexion = new MySqlConnection(conexionBD))
-                    {
-                        conexion.Open();
 
-                        /// Código para insertar en la tabla Ventas
-                        string queryVentas = @"INSERT INTO ventas (fecha_venta) VALUES (@fecha_venta)";
-                        using (MySqlCommand cmdVentas = new MySqlCommand(queryVentas, conexion))
-                        {
-                            cmdVentas.Parameters.AddWithValue("@fecha_venta", DateTime.Now);  // Almacena fecha y hora actual
-               
-                            cmdVentas.ExecuteNonQuery();
-                            int idVenta = (int)cmdVentas.LastInsertedId; // Captura el id de la venta recién insertada
+        private void CargarNuevaVenta()
+        {
 
-                             txtIdVenta.Text = idVenta.ToString();
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                conexion.Open();
+
+                /// Código para insertar en la tabla Ventas
+                string queryVentas = @"INSERT INTO ventas (fecha_venta) VALUES (@fecha_venta)";
+                using (MySqlCommand cmdVentas = new MySqlCommand(queryVentas, conexion))
+                {
+                    cmdVentas.Parameters.AddWithValue("@fecha_venta", DateTime.Now);  // Almacena fecha y hora actual
+
+                    cmdVentas.ExecuteNonQuery();
+                    int idVenta = (int)cmdVentas.LastInsertedId; // Captura el id de la venta recién insertada
+
+                    txtIdVenta.Text = idVenta.ToString();
                     txtFechaDeVenta.Text = DateTime.Now.ToShortDateString();
-                        } 
-                     }
+                }
+            }
 
         }
 
@@ -229,6 +226,32 @@ namespace Gestion
             }
         }
 
+        private double CalcularTotalVenta()
+        {
+            double totalVenta = 0;
+            try
+            {
+                using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+                {
+                    conexion.Open();
+                    string query = @"
+            SELECT Sum(subtotal) as total
+            FROM detalle_de_ventas
+            WHERE detalle_de_ventas.Id_Venta = " + txtIdVenta.Text;
+
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, conexion);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    totalVenta = Convert.ToDouble(dt.Rows[0]["total"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los detalles de ventas en la grilla: " + ex.Message);
+            }
+
+            return totalVenta;
+        }
 
         private void btnFormCliente_Click(object sender, EventArgs e)
         {
@@ -249,7 +272,7 @@ namespace Gestion
             cboClientes.SelectedIndex = -1;
             cboMedioPago.SelectedIndex = -1;
             txtFechaDeVenta.Text = DateTime.Now.ToShortDateString();
-            
+
 
             // Otros campos adicionales...
         }
@@ -341,5 +364,10 @@ namespace Gestion
             }
         }
 
+        private void btnCancelarVenta_Click(object sender, EventArgs e)
+        {
+            //cerrar form
+            this.Close();
+        }
     }
 }
