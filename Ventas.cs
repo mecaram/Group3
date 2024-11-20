@@ -343,24 +343,43 @@ namespace Gestion
             using (MySqlConnection conexion = new MySqlConnection(conexionBD))
             {
                 conexion.Open();
-                string sentencia = @"SELECT v.id_venta, v.total, v.fecha_venta, c.nombre AS cliente, m.medios_de_pago 
-                                     FROM ventas v
-                                     JOIN clientes c ON v.id_cliente = c.id_cliente
-                                     JOIN medios_de_pagos m ON v.id_medio_de_pago = m.id_medio
-                                     WHERE c.nombre LIKE @filtro OR 
-                                           v.total LIKE @filtro OR 
-                                           m.medios_de_pago LIKE @filtro";
 
+                // Filtro de búsqueda
+                string sentencia = @"
+            SELECT v.id_detalle, v.id_venta, v.id_producto, p.nombre AS producto, v.cantidad, v.precio_unitario, v.subtotal
+            FROM detalle_de_ventas v
+            JOIN productos p ON v.id_producto = p.id_producto
+            WHERE v.id_venta = @id_venta";  // Siempre filtrar por id_venta
+
+                // Agregar parámetros iniciales
                 MySqlCommand cmdBuscar = new MySqlCommand(sentencia, conexion);
-                cmdBuscar.Parameters.AddWithValue("@filtro", "%" + txtBuscarVenta.Text + "%");
+                cmdBuscar.Parameters.AddWithValue("@id_venta", txtIdVenta.Text);  // Filtro para id_venta
+
+                // Verificar si txtBuscarVenta no está vacío y agregar filtros adicionales
+                if (!string.IsNullOrWhiteSpace(txtBuscarVenta.Text))
+                {
+                    string filtro = "%" + txtBuscarVenta.Text + "%";  // Valor del filtro con comodines
+
+                    sentencia += @"
+                AND (p.nombre LIKE @producto OR v.cantidad LIKE @cantidad OR v.precio_unitario LIKE @precio_unitario)";  // Filtrar por nombre del producto, cantidad o precio unitario
+
+                    cmdBuscar.CommandText = sentencia;
+                    cmdBuscar.Parameters.AddWithValue("@producto", filtro);  // Filtro para el nombre del producto
+                    cmdBuscar.Parameters.AddWithValue("@cantidad", filtro);  // Filtro para la cantidad
+                    cmdBuscar.Parameters.AddWithValue("@precio_unitario", filtro);  // Filtro para el precio unitario
+                }
 
                 MySqlDataAdapter daBuscar = new MySqlDataAdapter(cmdBuscar);
                 DataTable dtBuscar = new DataTable();
                 daBuscar.Fill(dtBuscar);
 
+                // Asignar los resultados de la búsqueda a la grilla
                 gridVenta.DataSource = dtBuscar.Rows.Count > 0 ? dtBuscar : null;
             }
         }
+
+
+
 
         private void btnCancelarVenta_Click(object sender, EventArgs e)
         {
@@ -413,8 +432,6 @@ namespace Gestion
                 }
             }
         }
-
-
 
     }
 }

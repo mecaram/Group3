@@ -135,6 +135,7 @@
             txtBuscarVenta.Name = "txtBuscarVenta";
             txtBuscarVenta.Size = new Size(450, 23);
             txtBuscarVenta.TabIndex = 10;
+            txtBuscarVenta.TextChanged += txtBuscarVenta_TextChanged;
             // 
             // gridVenta
             // 

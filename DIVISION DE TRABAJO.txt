@@ -5,13 +5,6 @@
 sacar/deshabilitar el marco de windows
 
 
-//cambios VentasC (SIN HACER)
-
-*al presionar en cancelar, el programa eliminará todos los registros con el id_venta correspondiente en detalle_de_ventas y en la tabla ventas tambien mediante el id_venta
-*btn reimprimir: darle funcionalidad al seleccionar una fila en la grid
-
-
-
 
 
 cierre hacer
@@ -26,6 +19,7 @@ cierre:
 al ejecutar el programa, buscar si cierre en la bd está false
 si está true, reanudar la sesion
 sino encuentra, un registro que contenga cerrado = false, se genera un nuevo cierre (sesion/registro)
+
 
 
 
