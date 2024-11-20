@@ -1,10 +1,4 @@
-﻿SIN HACER en Ventas:
-*al presionar en cancelar, el programa eliminará todos los registros con el id_venta correspondiente en detalle_de_ventas y en la tabla ventas tambien mediante el id_venta
-*(ver si funciona correctamente el boton limpiar)
-
-sacar/deshabilitar el marco de windows
-
-
+﻿
 
 
 cierre hacer

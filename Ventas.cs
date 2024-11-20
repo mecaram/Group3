@@ -76,7 +76,7 @@ namespace Gestion
         private void CargarProductos(MySqlConnection conexion)
         {
             MySqlDataAdapter daProductos = new MySqlDataAdapter(
-                "SELECT id_producto, nombre, precio_venta FROM productos", conexion);
+                "SELECT id_producto, nombre, precio_venta, stock_actual FROM productos", conexion);
             DataTable dtProductos = new DataTable();
             daProductos.Fill(dtProductos);
 
@@ -85,6 +85,7 @@ namespace Gestion
             rowDefault["id_producto"] = -1; // ID ficticio para la opción por defecto
             rowDefault["nombre"] = "Seleccionar producto";
             rowDefault["precio_venta"] = 0; // Precio ficticio por defecto
+            rowDefault["stock_actual"] = 0; // Stock ficticio por defecto
             dtProductos.Rows.InsertAt(rowDefault, 0);
 
             cboProductoNombre.DataSource = dtProductos;
@@ -109,6 +110,9 @@ namespace Gestion
                 }
             };
         }
+
+
+
 
 
 
@@ -179,7 +183,6 @@ namespace Gestion
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
             // Validar si el subtotal es 0
             if (decimal.TryParse(txtSubTotal.Text, out decimal subtotal) && subtotal == 0)
             {
@@ -191,10 +194,30 @@ namespace Gestion
             {
                 conexion.Open();
 
+                // Obtener el stock del producto seleccionado
+                string queryStock = "SELECT stock_actual FROM productos WHERE id_producto = @id_producto";
+                MySqlCommand cmdStock = new MySqlCommand(queryStock, conexion);
+                cmdStock.Parameters.AddWithValue("@id_producto", cboProductoNombre.SelectedValue);
+                object stockObj = cmdStock.ExecuteScalar();
+
+                if (stockObj == null || Convert.ToInt32(stockObj) <= 0)
+                {
+                    MessageBox.Show("No hay stock disponible para este producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Salir del método si no hay stock disponible
+                }
+
+                int stockDisponible = Convert.ToInt32(stockObj);
+                int cantidadSolicitada = int.Parse(txtCantidad.Text);
+
+                if (cantidadSolicitada > stockDisponible)
+                {
+                    MessageBox.Show($"La cantidad solicitada excede el stock disponible. Stock disponible: {stockDisponible}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Salir del método si la cantidad solicitada excede el stock
+                }
 
                 // Código para insertar en la tabla detalle_de_ventas
                 string queryDetalle = @"INSERT INTO detalle_de_ventas (id_venta, id_producto, cantidad, precio_unitario, subtotal)
-                    VALUES (@id_venta, @id_producto, @cantidad, @precio_unitario, @subtotal)";
+                                VALUES (@id_venta, @id_producto, @cantidad, @precio_unitario, @subtotal)";
                 using (MySqlCommand cmdDetalle = new MySqlCommand(queryDetalle, conexion))
                 {
                     cmdDetalle.Parameters.AddWithValue("@id_venta", txtIdVenta.Text); // Usar el id de la venta recién creada
@@ -206,16 +229,29 @@ namespace Gestion
                     cmdDetalle.ExecuteNonQuery(); // Ejecutar inserción en detalle_de_ventas
                 }
 
+                // Actualizar el stock en la tabla productos
+                string queryActualizarStock = "UPDATE productos SET stock_actual = stock_actual - @cantidad WHERE id_producto = @id_producto";
+                using (MySqlCommand cmdActualizarStock = new MySqlCommand(queryActualizarStock, conexion))
+                {
+                    cmdActualizarStock.Parameters.AddWithValue("@cantidad", cantidadSolicitada);
+                    cmdActualizarStock.Parameters.AddWithValue("@id_producto", cboProductoNombre.SelectedValue);
+                    cmdActualizarStock.ExecuteNonQuery(); // Ejecutar actualización de stock
+                }
+
                 CargarVentasEnGrid();
                 txtTotal.Text = Convert.ToString(CalcularTotalVenta());
 
                 // Deshabilitar los ComboBox
                 cboClientes.Enabled = false;
                 cboMedioPago.Enabled = false;
-
             }
-
         }
+
+
+
+
+
+
 
 
         private void CargarNuevaVenta()
@@ -250,30 +286,33 @@ namespace Gestion
                     conexion.Open();
 
                     string query = @"
-            SELECT 
-                detalle_de_ventas.id_detalle, -- Asegúrate de seleccionar id_detalle para ordenar
-                detalle_de_ventas.id_venta,
-                productos.nombre AS producto,
-                detalle_de_ventas.cantidad,
-                detalle_de_ventas.precio_unitario,
-                detalle_de_ventas.subtotal
-            FROM detalle_de_ventas
-            LEFT JOIN productos ON detalle_de_ventas.id_producto = productos.id_producto
-            WHERE detalle_de_ventas.id_venta = @id_venta
-            ORDER BY detalle_de_ventas.id_detalle DESC";  // Ordenar de forma descendente por id_detalle
+                SELECT 
+                    detalle_de_ventas.id_detalle,
+                    detalle_de_ventas.id_venta,
+                    productos.nombre AS producto,
+                    detalle_de_ventas.cantidad,
+                    detalle_de_ventas.precio_unitario,
+                    detalle_de_ventas.subtotal
+                FROM detalle_de_ventas
+                LEFT JOIN productos ON detalle_de_ventas.id_producto = productos.id_producto
+                WHERE detalle_de_ventas.id_venta = @id_venta
+                ORDER BY detalle_de_ventas.id_detalle DESC";
 
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conexion);
-                    da.SelectCommand.Parameters.AddWithValue("@id_venta", txtIdVenta.Text); // Usa el id de venta actual
+                    da.SelectCommand.Parameters.AddWithValue("@id_venta", txtIdVenta.Text); // Asegúrate de que txtIdVenta tiene el ID correcto
                     DataTable dt = new DataTable();
                     da.Fill(dt);
+
+                    // Asigna los datos a la grilla
                     gridVenta.DataSource = dt;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los detalles de ventas en la grilla: " + ex.Message);
+                MessageBox.Show("Error al cargar los detalles de ventas en la grilla: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private double CalcularTotalVenta()
@@ -432,6 +471,41 @@ namespace Gestion
                 }
             }
         }
+
+
+
+
+        private void ActualizarTotal()
+        {
+            using (MySqlConnection conexion = new MySqlConnection(conexionBD))
+            {
+                try
+                {
+                    conexion.Open();
+
+                    // Calcular el total sumando los subtotales de detalle_de_ventas para la venta actual
+                    string query = "SELECT SUM(subtotal) FROM detalle_de_ventas WHERE id_venta = @id_venta";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@id_venta", txtIdVenta.Text);
+                        object resultado = cmd.ExecuteScalar();
+
+                        // Si no hay productos en el detalle, el total será 0
+                        decimal total = resultado != DBNull.Value ? Convert.ToDecimal(resultado) : 0;
+
+                        // Actualizar el campo txtTotal con el nuevo total
+                        txtTotal.Text = total.ToString("F2"); // Formato con 2 decimales
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al calcular el total: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
 
     }
 }
