@@ -203,5 +203,17 @@ namespace Gestion
             ventas.ShowDialog();
             btnBuscar_Click(sender, e);
         }
+
+        private void VentasC_Load(object sender, EventArgs e)
+        {
+            
+            CargarComboBoxClientes();
+            CargarComboBoxMediosDePago();
+
+            // Asociar eventos
+            btnBuscar.Click += btnBuscar_Click;
+
+            CargarVentas();
+        }
     }
 }

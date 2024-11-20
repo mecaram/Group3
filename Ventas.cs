@@ -72,6 +72,7 @@ namespace Gestion
             cboMedioPago.ValueMember = "id_medio";
         }
 
+        private int ultimaSeleccion = 1; // Almacena la última selección válida (variable utilizada en la funcion CargarProductos)
         private void CargarProductos(MySqlConnection conexion)
         {
             MySqlDataAdapter daProductos = new MySqlDataAdapter(
@@ -81,7 +82,7 @@ namespace Gestion
 
             // Agregar la opción "Seleccionar producto" como la primera fila
             DataRow rowDefault = dtProductos.NewRow();
-            rowDefault["id_producto"] = 0; // ID ficticio para la opción por defecto
+            rowDefault["id_producto"] = -1; // ID ficticio para la opción por defecto
             rowDefault["nombre"] = "Seleccionar producto";
             rowDefault["precio_venta"] = 0; // Precio ficticio por defecto
             dtProductos.Rows.InsertAt(rowDefault, 0);
@@ -90,9 +91,26 @@ namespace Gestion
             cboProductoNombre.DisplayMember = "nombre";
             cboProductoNombre.ValueMember = "id_producto";
 
-            // Seleccionar la opción por defecto
+            // Seleccionar la opción por defecto inicialmente
             cboProductoNombre.SelectedIndex = 0;
+
+            // Manejador para evitar seleccionar la opción predeterminada nuevamente
+            cboProductoNombre.SelectedIndexChanged += (s, e) =>
+            {
+                if (cboProductoNombre.SelectedIndex == 0) // Opción predeterminada
+                {
+                    // Volver automáticamente a la última selección válida
+                    cboProductoNombre.SelectedIndex = ultimaSeleccion;
+                }
+                else
+                {
+                    // Actualizar la última selección válida
+                    ultimaSeleccion = cboProductoNombre.SelectedIndex;
+                }
+            };
         }
+
+
 
 
         private void CargarUltimoIdCierre(MySqlConnection conexion)
@@ -143,6 +161,16 @@ namespace Gestion
                 txtSubTotal.Text = "0.00";
             }
         }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite solo números (0-9) y la tecla de retroceso
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+            {
+                e.Handled = true; // No permite la entrada de caracteres no numéricos
+            }
+        }
+
 
         private void txtCantidad_TextChanged(object sender, EventArgs e)
         {
@@ -220,8 +248,10 @@ namespace Gestion
                 using (MySqlConnection conexion = new MySqlConnection(conexionBD))
                 {
                     conexion.Open();
+
                     string query = @"
             SELECT 
+                detalle_de_ventas.id_detalle, -- Asegúrate de seleccionar id_detalle para ordenar
                 detalle_de_ventas.id_venta,
                 productos.nombre AS producto,
                 detalle_de_ventas.cantidad,
@@ -229,9 +259,11 @@ namespace Gestion
                 detalle_de_ventas.subtotal
             FROM detalle_de_ventas
             LEFT JOIN productos ON detalle_de_ventas.id_producto = productos.id_producto
-            WHERE detalle_de_ventas.Id_Venta = " + txtIdVenta.Text;
+            WHERE detalle_de_ventas.id_venta = @id_venta
+            ORDER BY detalle_de_ventas.id_detalle DESC";  // Ordenar de forma descendente por id_detalle
 
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conexion);
+                    da.SelectCommand.Parameters.AddWithValue("@id_venta", txtIdVenta.Text); // Usa el id de venta actual
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     gridVenta.DataSource = dt;
@@ -242,6 +274,7 @@ namespace Gestion
                 MessageBox.Show("Error al cargar los detalles de ventas en la grilla: " + ex.Message);
             }
         }
+
 
         private double CalcularTotalVenta()
         {
@@ -275,25 +308,6 @@ namespace Gestion
             Clientes clientes = new Clientes();
             clientes.ShowDialog();
         }
-
-        // Evento para limpiar todos los TextBox y ComboBox
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            LimpiarTextBox();
-        }
-
-        private void LimpiarTextBox()
-        {
-            txtIdVenta.Clear();
-            txtTotal.Clear();
-            cboClientes.SelectedIndex = -1;
-            cboMedioPago.SelectedIndex = -1;
-            txtFechaDeVenta.Text = DateTime.Now.ToShortDateString();
-
-
-        }
-
-
 
         private void gridVenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {

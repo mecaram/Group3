@@ -54,7 +54,6 @@
             cboMedioPago = new ComboBox();
             cboProductoNombre = new ComboBox();
             btnFormCliente = new Button();
-            btnLimpiar = new Button();
             btnCargarVenta = new Button();
             btnCancelarVenta = new Button();
             ((System.ComponentModel.ISupportInitialize)gridVenta).BeginInit();
@@ -246,6 +245,7 @@
             txtCantidad.Size = new Size(100, 23);
             txtCantidad.TabIndex = 26;
             txtCantidad.TextChanged += txtCantidad_TextChanged;
+            txtCantidad.KeyPress += txtCantidad_KeyPress;
             // 
             // txtSubTotal
             // 
@@ -256,6 +256,7 @@
             // 
             // cboClientes
             // 
+            cboClientes.DropDownStyle = ComboBoxStyle.DropDownList;
             cboClientes.FormattingEnabled = true;
             cboClientes.Location = new Point(115, 38);
             cboClientes.Name = "cboClientes";
@@ -264,6 +265,7 @@
             // 
             // cboMedioPago
             // 
+            cboMedioPago.DropDownStyle = ComboBoxStyle.DropDownList;
             cboMedioPago.FormattingEnabled = true;
             cboMedioPago.Location = new Point(114, 127);
             cboMedioPago.Name = "cboMedioPago";
@@ -272,6 +274,7 @@
             // 
             // cboProductoNombre
             // 
+            cboProductoNombre.DropDownStyle = ComboBoxStyle.DropDownList;
             cboProductoNombre.FormattingEnabled = true;
             cboProductoNombre.Location = new Point(121, 189);
             cboProductoNombre.Name = "cboProductoNombre";
@@ -289,16 +292,6 @@
             btnFormCliente.Text = "...";
             btnFormCliente.UseVisualStyleBackColor = true;
             btnFormCliente.Click += btnFormCliente_Click;
-            // 
-            // btnLimpiar
-            // 
-            btnLimpiar.Location = new Point(258, 324);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.Size = new Size(75, 23);
-            btnLimpiar.TabIndex = 32;
-            btnLimpiar.Text = "Limpiar";
-            btnLimpiar.UseVisualStyleBackColor = true;
-            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnCargarVenta
             // 
@@ -327,7 +320,6 @@
             ClientSize = new Size(888, 406);
             Controls.Add(btnCancelarVenta);
             Controls.Add(btnCargarVenta);
-            Controls.Add(btnLimpiar);
             Controls.Add(btnFormCliente);
             Controls.Add(cboProductoNombre);
             Controls.Add(cboMedioPago);
@@ -391,7 +383,6 @@
         private ComboBox cboMedioPago;
         private ComboBox cboProductoNombre;
         private Button btnFormCliente;
-        private Button btnLimpiar;
         private Button btnCargarVenta;
         private Button btnCancelarVenta;
     }

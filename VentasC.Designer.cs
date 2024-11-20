@@ -177,6 +177,7 @@
             Controls.Add(cboMedioPago);
             Name = "VentasC";
             Text = "VentasC";
+            Load += VentasC_Load;
             ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
             ResumeLayout(false);
             PerformLayout();
